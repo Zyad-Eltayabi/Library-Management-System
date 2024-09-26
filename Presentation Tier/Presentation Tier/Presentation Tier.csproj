@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{74938227-3C17-4952-95C6-9ABACFC2C49E}</ProjectGuid>
+    <ProjectGuid>{36B4495D-F9EF-4391-AE44-8E1A14879E07}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Presentation_Tier</RootNamespace>
     <AssemblyName>Presentation Tier</AssemblyName>
@@ -75,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application Tier\Application Tier.csproj">
+      <Project>{91eea75c-01fd-4e7a-a0e0-801dfd667506}</Project>
+      <Name>Application Tier</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
