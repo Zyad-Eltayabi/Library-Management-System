@@ -50,6 +50,7 @@
             this.btnAddNew.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnAddNew.TabIndex = 7;
             this.btnAddNew.TabStop = false;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // dgvTable
             // 

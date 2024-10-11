@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admins\frmAddNewAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admins\frmAddNewAdmin.Designer.cs">
+      <DependentUpon>frmAddNewAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admins\frmAdmins.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admins\frmAddNewAdmin.resx">
+      <DependentUpon>frmAddNewAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admins\frmAdmins.resx">
       <DependentUpon>frmAdmins.cs</DependentUpon>
     </EmbeddedResource>

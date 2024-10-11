@@ -16,5 +16,11 @@ namespace Presentation_Tier.Admins
         {
             InitializeComponent();
         }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddNewAdmin frmAddNewAdmin = new frmAddNewAdmin();
+            frmAddNewAdmin.ShowDialog();
+        }
     }
 }
