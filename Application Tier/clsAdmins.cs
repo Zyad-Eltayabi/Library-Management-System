@@ -1,6 +1,7 @@
 ﻿using Database_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,11 @@ namespace Application_Tier
             string encryptedPassword = clsHashing.ComputeHash(Password);
             this.AdminID = clsAdminsDB.AddNewAdmin(UserName, encryptedPassword, IsActive, FullName);
             return AdminID != -1;
+        }
+
+        public static DataTable GetAllAdmins()
+        {
+            return clsAdminsDB.GetAllAdmins();
         }
 
         public bool Save()

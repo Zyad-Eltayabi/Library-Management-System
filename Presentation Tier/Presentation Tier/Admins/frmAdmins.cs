@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,16 @@ namespace Presentation_Tier.Admins
         {
             frmAddNewAdmin frmAddNewAdmin = new frmAddNewAdmin();
             frmAddNewAdmin.ShowDialog();
+        }
+
+        private void frmAdmins_Load(object sender, EventArgs e)
+        {
+            GetAllAdmins();
+        }
+
+        private void GetAllAdmins()
+        {
+            dgvTable.DataSource = clsAdmins.GetAllAdmins();
         }
     }
 }

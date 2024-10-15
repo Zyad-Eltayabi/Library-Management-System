@@ -52,5 +52,35 @@ namespace Database_Tier
 
             return adminID;
         }
+
+        public static DataTable GetAllAdmins()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = @"SELECT AdminID,FullName,IsActive FROM Admins";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
+
     }
 }
