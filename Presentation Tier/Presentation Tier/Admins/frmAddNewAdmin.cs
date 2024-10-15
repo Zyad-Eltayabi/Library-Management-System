@@ -62,13 +62,13 @@ namespace Presentation_Tier.Admins
             clsAdmins newAdmin = new clsAdmins(txtName.Text.ToString(), txtUserName.Text.ToString(),
                 txtPass.Text.ToString(), cbIsActive.Checked);
 
-            if(newAdmin.Save())
+            if (newAdmin.Save())
             {
-                MessageBox.Show("good");
+                clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully.");
             }
             else
             {
-                MessageBox.Show("failed to save");
+                clsUtilityLibrary.PrintErrorMessage("failed to save");
             }
         }
 
@@ -78,6 +78,7 @@ namespace Presentation_Tier.Admins
             {
                 case Mode.Add:
                     {
+                        _enMode = Mode.Update;
                         AddNewAdmin();
                         break;
                     }

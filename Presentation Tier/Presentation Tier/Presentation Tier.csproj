@@ -64,6 +64,7 @@
     <Compile Include="Admins\frmAdmins.Designer.cs">
       <DependentUpon>frmAdmins.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsUtilityLibrary.cs" />
     <Compile Include="Component\frm.cs">
       <SubType>Form</SubType>
     </Compile>

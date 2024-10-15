@@ -28,7 +28,8 @@ namespace Application_Tier
 
         private bool AddNewAdmin()
         {
-            this.AdminID = clsAdminsDB.AddNewAdmin(UserName, Password, IsActive, FullName);
+            string encryptedPassword = clsHashing.ComputeHash(Password);
+            this.AdminID = clsAdminsDB.AddNewAdmin(UserName, encryptedPassword, IsActive, FullName);
             return AdminID != -1;
         }
 
