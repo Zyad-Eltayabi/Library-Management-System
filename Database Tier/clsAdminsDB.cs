@@ -25,7 +25,7 @@ namespace Database_Tier
 
             try
             {
-                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString3"].ConnectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
                 {
                     sqlConnection.Open();
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
