@@ -39,6 +39,11 @@ namespace Application_Tier
             return clsAdminsDB.GetAllAdmins();
         }
 
+        public static bool DeleteAdmin(int adminID)
+        {
+            return clsAdminsDB.DeleteAdmin(adminID);
+        }
+
         public bool Save()
         {
             switch (enMode)

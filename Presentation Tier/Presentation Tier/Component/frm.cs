@@ -16,5 +16,7 @@ namespace Presentation_Tier.Component
         {
             InitializeComponent();
         }
+
+       
     }
 }
