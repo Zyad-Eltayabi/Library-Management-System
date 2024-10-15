@@ -25,7 +25,7 @@ namespace Database_Tier
 
             try
             {
-                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString3"].ConnectionString))
                 {
                     sqlConnection.Open();
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
@@ -47,8 +47,7 @@ namespace Database_Tier
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-
+                clsErrorLog.Log(ex.Message);
             }
 
             return adminID;
