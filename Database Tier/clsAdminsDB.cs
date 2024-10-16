@@ -105,5 +105,81 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static bool GetAdminByID(int adminID, ref string fullName, ref string userName, ref string password, ref bool isActive)
+        {
+            bool isFound = false;
+            string query = "select top 1 * from Admins where AdminID = @AdminID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.Parameters.AddWithValue("@AdminID", adminID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.Read())
+                            {
+                                isFound = true;
+                                fullName = (string)sqlDataReader["FullName"];
+                                userName = (string)sqlDataReader["UserName"];
+                                password = (string)sqlDataReader["Password"];
+                                isActive = (bool)sqlDataReader["IsActive"];
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return isFound;
+        }
+
+        public static bool UpdateAdmin(int adminID, string fullName, string userName, string password, bool isActive)
+        {
+            int rowsAffected = 0;
+            string query = @"USE [LibraryManagementSystem]
+                                        UPDATE [dbo].[Admins]
+                                              SET  
+                                                    [FullName] = @FullName,
+                                                    [UserName] = @UserName,
+                                                    [Password] = @Password,
+                                                    [IsActive] = @IsActive
+                                         WHERE AdminID = @AdminID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@AdminID", adminID);
+                        sqlCommand.Parameters.AddWithValue("@FullName", fullName ?? (object)DBNull.Value);
+                        sqlCommand.Parameters.AddWithValue("@UserName", userName);
+                        sqlCommand.Parameters.AddWithValue("@Password", password);
+                        sqlCommand.Parameters.AddWithValue("@IsActive", isActive);
+
+
+                        rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
+
     }
 }

@@ -39,6 +39,8 @@
             this.cbIsActive = new System.Windows.Forms.CheckBox();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,11 +175,33 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(99, 36);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Admin ID";
+            // 
+            // lbID
+            // 
+            this.lbID.AutoSize = true;
+            this.lbID.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbID.Location = new System.Drawing.Point(129, 42);
+            this.lbID.Name = "lbID";
+            this.lbID.Size = new System.Drawing.Size(26, 36);
+            this.lbID.TabIndex = 9;
+            this.lbID.Text = "?";
+            // 
             // frmAddNewAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 506);
+            this.Controls.Add(this.lbID);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.cbIsActive);
             this.Controls.Add(this.txtUserName);
@@ -191,6 +215,7 @@
             this.Name = "frmAddNewAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Admin";
+            this.Load += new System.EventHandler(this.frmAddNewAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -209,5 +234,7 @@
         private System.Windows.Forms.CheckBox cbIsActive;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lbID;
+        private System.Windows.Forms.Label label5;
     }
 }

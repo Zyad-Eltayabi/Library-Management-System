@@ -27,6 +27,27 @@ namespace Application_Tier
             enMode = Mode.Add;
         }
 
+        private clsAdmins(int adminID, string fullName, string userName, string password, bool isActive, Mode enMode)
+        {
+            AdminID = adminID;
+            FullName = fullName;
+            UserName = userName;
+            Password = password;
+            IsActive = isActive;
+            this.enMode = enMode;
+        }
+
+        public static clsAdmins GetAdminByID(int adminID)
+        {
+            string fullName = string.Empty, userName = string.Empty, password = string.Empty;
+            bool isActive = false;
+
+            if (clsAdminsDB.GetAdminByID(adminID, ref fullName, ref userName, ref password, ref isActive))
+                return new clsAdmins(adminID, fullName, userName, password, isActive, Mode.Update);
+
+            return null;
+        }
+
         private bool AddNewAdmin()
         {
             string encryptedPassword = clsHashing.ComputeHash(Password);
@@ -44,6 +65,12 @@ namespace Application_Tier
             return clsAdminsDB.DeleteAdmin(adminID);
         }
 
+        private bool UpdateAdmin()
+        {
+            string encryptedPassword = clsHashing.ComputeHash(Password);
+            return clsAdminsDB.UpdateAdmin(AdminID, FullName, UserName, encryptedPassword, IsActive);
+        }
+
         public bool Save()
         {
             switch (enMode)
@@ -53,9 +80,9 @@ namespace Application_Tier
                         enMode = Mode.Update;
                         return AddNewAdmin();
                     }
-                    case Mode.Update:
+                case Mode.Update:
                     {
-                        break;
+                        return UpdateAdmin();
                     }
             }
             return false;

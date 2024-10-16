@@ -13,10 +13,18 @@ namespace Presentation_Tier.Admins
 {
     public partial class frmAddNewAdmin : Form
     {
+        clsAdmins _updatedAdmin { get; set; }
         public frmAddNewAdmin()
         {
             InitializeComponent();
             _enMode = Mode.Add;
+        }
+
+        public frmAddNewAdmin(int adminID)
+        {
+            InitializeComponent();
+            _enMode = Mode.Update;
+            _updatedAdmin = clsAdmins.GetAdminByID(adminID);
         }
 
         private enum Mode { Add = 1, Update = 2 };
@@ -65,6 +73,29 @@ namespace Presentation_Tier.Admins
             if (newAdmin.Save())
             {
                 clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully.");
+                lbID.Text = newAdmin.AdminID.ToString();
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("failed to save");
+            }
+        }
+
+        private void UpdateAdminInfo()
+        {
+            _updatedAdmin.UserName = txtUserName.Text;
+            _updatedAdmin.Password = txtPass.Text;
+            _updatedAdmin.FullName = txtName.Text;
+            _updatedAdmin.IsActive = cbIsActive.Checked;
+        }
+
+        private void UpdateAdmin()
+        {
+            UpdateAdminInfo();
+
+            if (_updatedAdmin.Save())
+            {
+                clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully.");
             }
             else
             {
@@ -84,6 +115,7 @@ namespace Presentation_Tier.Admins
                     }
                 case Mode.Update:
                     {
+                        UpdateAdmin();
                         break;
                     }
             }
@@ -98,6 +130,22 @@ namespace Presentation_Tier.Admins
             }
 
             AddOrUpdateAdmin();
+        }
+
+        private void frmAddNewAdmin_Load(object sender, EventArgs e)
+        {
+            if (_enMode == Mode.Update)
+            {
+                SetAdminInfoInUpdateMode();
+            }
+        }
+
+        private void SetAdminInfoInUpdateMode()
+        {
+            lbID.Text = _updatedAdmin.AdminID.ToString();
+            txtName.Text = _updatedAdmin.FullName.ToString();
+            txtUserName.Text = _updatedAdmin.UserName.ToString();
+            cbIsActive.Checked = _updatedAdmin.IsActive;
         }
     }
 }

@@ -67,5 +67,12 @@ namespace Presentation_Tier.Admins
                 }
             }
         }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCheckAdminPassword frmCheckAdminPassword = new frmCheckAdminPassword(GetSelectedRowID());
+            frmCheckAdminPassword.ShowDialog();
+            GetAllAdmins();
+        }
     }
 }

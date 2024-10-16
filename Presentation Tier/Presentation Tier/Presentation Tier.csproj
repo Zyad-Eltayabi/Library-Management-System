@@ -67,6 +67,12 @@
     <Compile Include="Admins\frmAdmins.Designer.cs">
       <DependentUpon>frmAdmins.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admins\frmCheckAdminPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admins\frmCheckAdminPassword.Designer.cs">
+      <DependentUpon>frmCheckAdminPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsUtilityLibrary.cs" />
     <Compile Include="Component\frm.cs">
       <SubType>Form</SubType>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admins\frmAdmins.resx">
       <DependentUpon>frmAdmins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admins\frmCheckAdminPassword.resx">
+      <DependentUpon>frmCheckAdminPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\frm.resx">
       <DependentUpon>frm.cs</DependentUpon>
