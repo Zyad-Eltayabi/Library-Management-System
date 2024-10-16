@@ -180,6 +180,37 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static DataTable GetAdminByUserNameAndPassword(string userName,string password)
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = @"SELECT TOP 1 * FROM Admins WHERE UserName = @UserName AND Password = @Password";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@UserName",userName);
+                        sqlCommand.Parameters.AddWithValue("@Password", password);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
 
     }
 }

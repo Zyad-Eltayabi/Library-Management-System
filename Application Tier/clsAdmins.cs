@@ -71,6 +71,13 @@ namespace Application_Tier
             return clsAdminsDB.UpdateAdmin(AdminID, FullName, UserName, encryptedPassword, IsActive);
         }
 
+        public static DataTable GetAdminByUserNameAndPassword(string userName, string password)
+        {
+            string encryptedPassword = clsHashing.ComputeHash(password);
+
+            return clsAdminsDB.GetAdminByUserNameAndPassword(userName, encryptedPassword);
+        }
+
         public bool Save()
         {
             switch (enMode)
