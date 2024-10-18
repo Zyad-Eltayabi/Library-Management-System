@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAdminsDB.cs" />
+    <Compile Include="clsAuthorsDB.cs" />
+    <Compile Include="clsCountriesDB.cs" />
     <Compile Include="clsErrorLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

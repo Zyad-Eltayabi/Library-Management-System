@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsAdmins.cs" />
+    <Compile Include="clsAuthors.cs" />
+    <Compile Include="clsCountries.cs" />
     <Compile Include="clsHashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

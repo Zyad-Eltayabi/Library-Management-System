@@ -310,6 +310,7 @@
             this.Name = "frmAddOrUpdateAuthor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Author";
+            this.Load += new System.EventHandler(this.frmAddOrUpdateAuthor_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
