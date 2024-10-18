@@ -16,5 +16,17 @@ namespace Presentation_Tier.Authors
         {
             InitializeComponent();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddOrUpdateAuthor addOrUpdateAuthor = new frmAddOrUpdateAuthor();
+            addOrUpdateAuthor.ShowDialog();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddOrUpdateAuthor addOrUpdateAuthor = new frmAddOrUpdateAuthor();
+            addOrUpdateAuthor.ShowDialog();
+        }
     }
 }
