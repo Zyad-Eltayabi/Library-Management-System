@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +22,25 @@ namespace Presentation_Tier.Authors
         {
             frmAddOrUpdateAuthor addOrUpdateAuthor = new frmAddOrUpdateAuthor();
             addOrUpdateAuthor.ShowDialog();
+            GetALlAuthors();
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             frmAddOrUpdateAuthor addOrUpdateAuthor = new frmAddOrUpdateAuthor();
             addOrUpdateAuthor.ShowDialog();
+            GetALlAuthors();
+        }
+
+        private void frmManageAuthors_Load(object sender, EventArgs e)
+        {
+            GetALlAuthors();
+        }
+
+        private void GetALlAuthors()
+        {
+            dgvTable.DataSource = clsAuthors.GetAllAuthors();
+            lbRecords.Text = dgvTable.RowCount.ToString();
         }
     }
 }
