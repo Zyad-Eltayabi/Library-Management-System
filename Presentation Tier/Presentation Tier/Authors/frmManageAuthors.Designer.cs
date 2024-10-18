@@ -124,7 +124,7 @@
             this.guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.guna2ContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(169, 108);
+            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(215, 136);
             // 
             // label1
             // 
@@ -163,7 +163,7 @@
             // 
             this.showDetailsToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem1.Image")));
             this.showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
-            this.showDetailsToolStripMenuItem1.Size = new System.Drawing.Size(168, 26);
+            this.showDetailsToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
             this.showDetailsToolStripMenuItem1.Text = "Show Details";
             // 
             // addToolStripMenuItem
@@ -187,6 +187,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // btnAddNew
             // 

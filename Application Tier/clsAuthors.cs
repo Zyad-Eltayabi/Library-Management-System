@@ -60,7 +60,10 @@ namespace Application_Tier
             return clsAuthorsDB.GetAllAuthors();
         }
 
-
+        public static bool DeleteAuthor(int authorID)
+        {
+            return clsAuthorsDB.DeleteAuthor(authorID);
+        }
 
     }
 }
