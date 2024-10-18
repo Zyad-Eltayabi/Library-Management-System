@@ -67,10 +67,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.guna2PictureBox2);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Location = new System.Drawing.Point(0, -9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(650, 734);
+            this.groupBox1.Size = new System.Drawing.Size(650, 749);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
