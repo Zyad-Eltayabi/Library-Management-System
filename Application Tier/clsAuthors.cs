@@ -31,10 +31,42 @@ namespace Application_Tier
             enMode = Mode.Add;
         }
 
+        private clsAuthors(int authorID, string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID, Mode enMode)
+        {
+            AuthorID = authorID;
+            FirstName = firstName;
+            LastName = lastName;
+            DateOfBirth = dateOfBirth;
+            DateOfDeath = dateOfDeath;
+            Gender = gender;
+            NationalityID = nationalityID;
+            this.enMode = enMode;
+        }
+
+        public static clsAuthors GetAuthorByID(int authorID)
+        {
+            string firstName = "", lastName = "";
+            DateTime dateOfBirth = DateTime.Now;
+            DateTime? dateOfDeath = null;
+            bool gender = true;
+            int nationalityID = -1;
+
+            if (clsAuthorsDB.GetAuthorByID(authorID, ref firstName, ref lastName, ref dateOfBirth, ref dateOfDeath, ref gender, ref nationalityID))
+                return new clsAuthors(authorID, firstName, lastName, dateOfBirth, dateOfDeath, gender, nationalityID, Mode.Update);
+
+            return null;
+
+        }
+
         private bool AddNewAuthor()
         {
-            this.AuthorID = clsAuthorsDB.AddNewAuthor(FirstName, LastName, DateOfBirth,DateOfDeath,Gender,NationalityID);
+            this.AuthorID = clsAuthorsDB.AddNewAuthor(FirstName, LastName, DateOfBirth, DateOfDeath, Gender, NationalityID);
             return AuthorID != -1;
+        }
+
+        private bool UpdateAuthor()
+        {
+            return clsAuthorsDB.UpdateAuthor(AuthorID, FirstName, LastName, DateOfBirth, DateOfDeath, Gender, NationalityID);
         }
 
         public bool Save()
@@ -48,8 +80,7 @@ namespace Application_Tier
                     }
                 case Mode.Update:
                     {
-                       // return UpdateAdmin();
-                       break;
+                        return UpdateAuthor();
                     }
             }
             return false;
@@ -64,6 +95,7 @@ namespace Application_Tier
         {
             return clsAuthorsDB.DeleteAuthor(authorID);
         }
+
 
     }
 }

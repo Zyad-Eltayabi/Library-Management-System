@@ -16,11 +16,20 @@ namespace Presentation_Tier.Authors
     {
         private enum Mode { Add = 1, Update = 2 };
         private Mode _enMode;
+        private int _authorID;
+        private clsAuthors _updatedAuthor;
 
         public frmAddOrUpdateAuthor()
         {
             InitializeComponent();
             _enMode = Mode.Add;
+        }
+        public frmAddOrUpdateAuthor(int authorID)
+        {
+            InitializeComponent();
+            _enMode = Mode.Update;
+            _authorID = authorID;
+            _updatedAuthor = clsAuthors.GetAuthorByID(_authorID);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -80,6 +89,37 @@ namespace Presentation_Tier.Authors
 
         }
 
+        private void UpdateAuthorInfo()
+        {
+            _updatedAuthor.FirstName = txtFirstName.Text;
+            _updatedAuthor.LastName = txtLastName.Text;
+            _updatedAuthor.DateOfBirth = dtDateOfBirth.Value.Date;
+
+            if(checkBox1.Checked)
+                _updatedAuthor.DateOfDeath = dtDateOfDeath.Value.Date;
+            else 
+                _updatedAuthor.DateOfDeath = null;
+
+            _updatedAuthor.Gender = rbMale.Checked;
+
+            _updatedAuthor.NationalityID = cbCountry.SelectedIndex + 1;
+        }
+
+        private void UpdateAuthor()
+        {
+            UpdateAuthorInfo();
+
+            if (_updatedAuthor.Save())
+            {
+                lbAuthorID.Text = _updatedAuthor.AuthorID.ToString();
+                clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Failed To Save");
+            }
+        }
+
         private void Save()
         {
             switch (_enMode)
@@ -89,6 +129,7 @@ namespace Presentation_Tier.Authors
                     AddNewAuthor();
                     break;
                 case Mode.Update:
+                    UpdateAuthor();
                     break;
                 default:
                     break;
@@ -98,6 +139,10 @@ namespace Presentation_Tier.Authors
         private void frmAddOrUpdateAuthor_Load(object sender, EventArgs e)
         {
             GetAllCountries();
+            if(_enMode == Mode.Update)
+            {
+                SetAuthorInfo();
+            }
         }
 
         private void GetAllCountries()
@@ -105,6 +150,27 @@ namespace Presentation_Tier.Authors
             DataTable countries = clsCountries.GetAllCountries();
             cbCountry.DataSource = countries;
             cbCountry.ValueMember = "CountryName";
+        }
+
+        private void SetAuthorInfo()
+        {
+            lbAuthorID.Text = _updatedAuthor.AuthorID.ToString();
+            txtFirstName.Text = _updatedAuthor.FirstName;
+            txtLastName.Text = _updatedAuthor.LastName;
+            dtDateOfBirth.Value = _updatedAuthor.DateOfBirth;
+
+            if(_updatedAuthor.DateOfDeath != null)
+            {
+                checkBox1.Checked = true;
+                dtDateOfDeath.Value = _updatedAuthor.DateOfDeath.Value;
+            }
+
+            if (_updatedAuthor.Gender)
+                rbMale.Checked = true;
+            else 
+                rbFemale.Checked = true;
+
+            cbCountry.SelectedIndex = _updatedAuthor.NationalityID - 1;
         }
     }
 }

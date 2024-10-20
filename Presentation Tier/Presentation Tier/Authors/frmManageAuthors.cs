@@ -66,5 +66,14 @@ namespace Presentation_Tier.Authors
         {
             return int.Parse(dgvTable.SelectedRows[0].Cells["AuthorID"].Value.ToString());
         }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddOrUpdateAuthor addOrUpdateAuthor = new frmAddOrUpdateAuthor(GetAuthorID());
+            addOrUpdateAuthor.ShowDialog();
+            GetALlAuthors();
+        }
+
+
     }
 }
