@@ -39,14 +39,14 @@
             this.btnCopies = new Guna.UI2.WinForms.Guna2Button();
             this.btnBorrowing = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pnMainPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.pnMainPanel = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -128,6 +128,7 @@
             this.btnUsers.Size = new System.Drawing.Size(247, 45);
             this.btnUsers.TabIndex = 7;
             this.btnUsers.Text = "Users";
+            this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
             // btnReservation
             // 
@@ -205,6 +206,17 @@
             this.guna2Button1.TabIndex = 2;
             this.guna2Button1.Text = "Dashboard";
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(94, 12);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(64, 67);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 1;
+            this.guna2PictureBox1.TabStop = false;
+            // 
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.White;
@@ -214,15 +226,6 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(1254, 47);
             this.guna2Panel2.TabIndex = 1;
-            // 
-            // pnMainPanel
-            // 
-            this.pnMainPanel.BackColor = System.Drawing.Color.White;
-            this.pnMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMainPanel.Location = new System.Drawing.Point(253, 47);
-            this.pnMainPanel.Name = "pnMainPanel";
-            this.pnMainPanel.Size = new System.Drawing.Size(1254, 710);
-            this.pnMainPanel.TabIndex = 2;
             // 
             // guna2PictureBox2
             // 
@@ -236,16 +239,14 @@
             this.guna2PictureBox2.TabStop = false;
             this.guna2PictureBox2.Click += new System.EventHandler(this.guna2PictureBox2_Click);
             // 
-            // guna2PictureBox1
+            // pnMainPanel
             // 
-            this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(94, 12);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(64, 67);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 1;
-            this.guna2PictureBox1.TabStop = false;
+            this.pnMainPanel.BackColor = System.Drawing.Color.White;
+            this.pnMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnMainPanel.Location = new System.Drawing.Point(253, 47);
+            this.pnMainPanel.Name = "pnMainPanel";
+            this.pnMainPanel.Size = new System.Drawing.Size(1254, 710);
+            this.pnMainPanel.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -261,9 +262,9 @@
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.guna2Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

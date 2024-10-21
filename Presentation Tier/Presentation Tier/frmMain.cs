@@ -1,5 +1,6 @@
 ﻿using Presentation_Tier.Admins;
 using Presentation_Tier.Authors;
+using Presentation_Tier.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,12 +46,17 @@ namespace Presentation_Tier
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnAuthors.PerformClick();
+            btnUsers.PerformClick();
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)
         {
             AddNewFormToMainPanel(new frmManageAuthors());
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            AddNewFormToMainPanel(new frmManageUsers());
         }
     }
 }
