@@ -208,6 +208,30 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static bool DeleteUser(int userID)
+        {
+            string query = @"delete from Users where UserID = @UserID";
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@UserID", userID);
+                        rowsAffected = (int)sqlCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
+
 
 
     }

@@ -113,5 +113,10 @@ namespace Application_Tier
         {
             return clsUsersDB.DoesUserExist(userID);
         }
+
+        public static bool DeleteUser(int userID)
+        {
+            return clsUsersDB.DeleteUser(userID);
+        }
     }
 }

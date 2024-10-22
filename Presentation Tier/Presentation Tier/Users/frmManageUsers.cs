@@ -65,7 +65,27 @@ namespace Presentation_Tier.Users
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GetAllUsers();
+            int userID = GetUserID();
+
+            if (clsUsers.DoesUserExist(userID))
+            {
+                if (MessageBox.Show($"Are you sure to delete this User where ID = {userID}", "Info", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    if (clsUsers.DeleteUser(userID))
+                    {
+                        clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
+                        GetAllUsers();
+                    }
+                    else
+                    {
+                        clsUtilityLibrary.PrintErrorMessage("Failed to delete.");
+                    }
+                }
+                return;
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Sorry, This user is not exist");
         }
     }
 }
