@@ -119,6 +119,28 @@ namespace Presentation_Tier.Users
                 lbUserID.Text = user.UserID.ToString();
                 this.Text = "Update User";
                 clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully");
+                _updatedUser = clsUsers.GetUserByID(user.UserID);
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Sorry, Failed To Save");
+            }
+        }
+
+        private void UpdateUser()
+        {
+            _updatedUser.FirstName = txtFirstName.Text;
+            _updatedUser.LastName = txtLastName.Text;
+            _updatedUser.DateOfBirth = dtDateOfBirth.Value;
+            _updatedUser.Gender = rbMale.Checked;
+            _updatedUser.Email = txtEmail.Text;
+            _updatedUser.PhoneNumber = txtPhoneNumber.Text;
+            _updatedUser.Address = txtAddress.Text;
+            _updatedUser.NationalityID = cbCountry.SelectedIndex + 1;
+
+            if (_updatedUser.Save())
+            {
+                clsUtilityLibrary.PrintInfoMessage("Data Updated Successfully");
             }
             else
             {
@@ -135,6 +157,7 @@ namespace Presentation_Tier.Users
                     AddNewUser();
                     break;
                 case Mode.Update:
+                    UpdateUser();
                     break;
                 default:
                     break;

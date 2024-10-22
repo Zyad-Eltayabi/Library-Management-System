@@ -159,5 +159,56 @@ namespace Database_Tier
             return isFound;
         }
 
+        public static bool UpdateUser(int userID, string libraryCardNumber, string firstName, string lastName, DateTime dateOfBirth, bool gender, string email, string phoneNumber, string address, DateTime membershipDate, int nationalityID)
+        {
+            int rowsAffected = 0;
+            string query = @"USE [LibraryManagementSystem]
+                                        UPDATE [dbo].[Users]
+                                              SET  [LibraryCardNumber] = @LibraryCardNumber,
+                                             [FirstName] = @FirstName,
+                                             [LastName] = @LastName,
+                                             [DateOfBirth] = @DateOfBirth,
+                                             [Gender] = @Gender,
+                                             [Email] = @Email,
+                                             [PhoneNumber] = @PhoneNumber,
+                                             [Address] = @Address,
+                                             [MembershipDate] = @MembershipDate,
+                                             [NationalityID] = @NationalityID
+                                         WHERE UserID = @UserID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@UserID", userID);
+                        sqlCommand.Parameters.AddWithValue("@LibraryCardNumber", libraryCardNumber);
+                        sqlCommand.Parameters.AddWithValue("@FirstName", firstName);
+                        sqlCommand.Parameters.AddWithValue("@LastName", lastName);
+                        sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+                        sqlCommand.Parameters.AddWithValue("@Gender", gender);
+                        sqlCommand.Parameters.AddWithValue("@Email", email);
+                        sqlCommand.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                        sqlCommand.Parameters.AddWithValue("@Address", address);
+                        sqlCommand.Parameters.AddWithValue("@MembershipDate", membershipDate);
+                        sqlCommand.Parameters.AddWithValue("@NationalityID", nationalityID);
+
+
+                        rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
+
+
     }
 }

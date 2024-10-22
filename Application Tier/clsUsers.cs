@@ -68,7 +68,8 @@ namespace Application_Tier
 
         private bool UpdateAuthor()
         {
-            return false;
+            return clsUsersDB.UpdateUser(UserID, LibraryCardNumber, FirstName, LastName, DateOfBirth, Gender,
+             Email, PhoneNumber, Address, MembershipDate, NationalityID);
         }
 
         public bool Save()
