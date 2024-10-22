@@ -16,5 +16,11 @@ namespace Presentation_Tier.Users
         {
             InitializeComponent();
         }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddNewUser frm = new frmAddNewUser();
+            frm.ShowDialog();
+        }
     }
 }
