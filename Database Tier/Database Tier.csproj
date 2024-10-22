@@ -46,6 +46,7 @@
     <Compile Include="clsAuthorsDB.cs" />
     <Compile Include="clsCountriesDB.cs" />
     <Compile Include="clsErrorLog.cs" />
+    <Compile Include="clsUsersDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

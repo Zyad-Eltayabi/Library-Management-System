@@ -1,4 +1,5 @@
-﻿using Guna.UI2.WinForms;
+﻿using Application_Tier;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,13 @@ namespace Presentation_Tier.Users
 {
     public partial class frmAddNewUser : Form
     {
+        private enum Mode { Add = 1, Update = 2 };
+        private Mode _enMode;
+
         public frmAddNewUser()
         {
             InitializeComponent();
+            _enMode = Mode.Add;
         }
 
         private void frmAddNewUser_Load(object sender, EventArgs e)
@@ -73,14 +78,62 @@ namespace Presentation_Tier.Users
 
         private bool ValidateTextBoxes()
         {
-            Guna2TextBox[] textBoxes =  { txtFirstName,txtLastName,txtEmail,txtPhoneNumber,txtAddress};
+            Guna2TextBox[] textBoxes = { txtFirstName, txtLastName, txtEmail, txtPhoneNumber, txtAddress };
             return clsUtilityLibrary.ValidateTextBoxes(textBoxes);
+        }
+
+        private void AddNewUser()
+        {
+            string newLibraryCard = (Guid.NewGuid()).ToString();
+            int nationalityNumber = cbCountry.SelectedIndex + 1;
+
+            clsUsers user = new clsUsers(
+                newLibraryCard,
+                txtFirstName.Text,
+                txtLastName.Text,
+                dtDateOfBirth.Value,
+                rbMale.Checked,
+                txtEmail.Text,
+                txtPhoneNumber.Text,
+                txtAddress.Text,
+                DateTime.Now,
+                nationalityNumber,
+                clsUsers.Mode.Add
+                );
+
+            if (user.Save())
+            {
+                lbUserID.Text = user.UserID.ToString();
+                this.Text = "Update User";
+                clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Sorry, Failed To Save");
+            }
+        }
+
+        private void Save()
+        {
+            switch (_enMode)
+            {
+                case Mode.Add:
+                    _enMode = Mode.Update;
+                    AddNewUser();
+                    break;
+                case Mode.Update:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (!ValidateTextBoxes())
                 return;
+
+            Save();
         }
     }
 }

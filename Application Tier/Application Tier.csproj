@@ -45,6 +45,7 @@
     <Compile Include="clsAuthors.cs" />
     <Compile Include="clsCountries.cs" />
     <Compile Include="clsHashing.cs" />
+    <Compile Include="clsUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
