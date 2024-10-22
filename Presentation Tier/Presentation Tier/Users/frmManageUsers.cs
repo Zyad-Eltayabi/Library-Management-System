@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,35 @@ namespace Presentation_Tier.Users
         {
             frmAddNewUser frm = new frmAddNewUser();
             frm.ShowDialog();
+            GetAllUsers();
+        }
+
+        private void GetAllUsers()
+        {
+            dgvTable.DataSource = clsUsers.GetAllUsers();
+            lbRecords.Text = dgvTable.RowCount.ToString();
+        }
+
+        private void frmManageUsers_Load(object sender, EventArgs e)
+        {
+            GetAllUsers();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddNewUser frm = new frmAddNewUser();
+            frm.ShowDialog();
+            GetAllUsers();
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetAllUsers();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetAllUsers();
         }
     }
 }
