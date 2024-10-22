@@ -14,5 +14,10 @@ namespace Presentation_Tier
         {
             return clsCountriesDB.GetAllCountries();
         }
+
+        public static string GetCountryName(int countryID)
+        {
+            return clsCountriesDB.GetCountryName(countryID);
+        }
     }
 }

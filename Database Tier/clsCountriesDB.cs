@@ -39,6 +39,39 @@ namespace Database_Tier
 
             return dataTable;
         }
+        
+        public static string GetCountryName(int countryID)
+        {
+            string countryName = "";
+            string query = @"select CountryName from Countries where CountryID = @CountryID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CountryID", countryID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                           if(sqlDataReader.Read())
+                            {
+                                countryName = (string)sqlDataReader[0];
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return countryName;
+        }
 
     }
 }

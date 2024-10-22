@@ -87,5 +87,17 @@ namespace Presentation_Tier.Users
 
             clsUtilityLibrary.PrintErrorMessage("Sorry, This user is not exist");
         }
+
+        private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (clsUsers.DoesUserExist(GetUserID()))
+            {
+                frmShowDetails showDetails = new frmShowDetails(GetUserID());
+                showDetails.ShowDialog();
+                return;
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Sorry, This user is not exist");
+        }
     }
 }
