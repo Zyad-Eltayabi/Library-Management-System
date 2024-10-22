@@ -88,6 +88,76 @@ namespace Database_Tier
             return dataTable;
         }
 
+        public static bool GetUserByID(int userID, ref string libraryCardNumber, ref string firstName, ref string lastName, ref DateTime dateOfBirth, ref bool gender, ref string email, ref string phoneNumber, ref string address, ref DateTime membershipDate, ref int nationalityID)
+        {
+            bool isFound = false;
+            string query = "SELECT TOP 1 * FROM Users WHERE UserID = @UserID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.Parameters.AddWithValue("UserID", userID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.Read())
+                            {
+                                isFound = true;
+                                libraryCardNumber = (string)sqlDataReader["LibraryCardNumber"];
+                                firstName = (string)sqlDataReader["FirstName"];
+                                lastName = (string)sqlDataReader["LastName"];
+                                dateOfBirth = (DateTime)sqlDataReader["DateOfBirth"];
+                                gender = (bool)sqlDataReader["Gender"];
+                                email = (string)sqlDataReader["Email"];
+                                phoneNumber = (string)sqlDataReader["PhoneNumber"];
+                                address = (string)sqlDataReader["Address"];
+                                membershipDate = (DateTime)sqlDataReader["MembershipDate"];
+                                nationalityID = (int)sqlDataReader["NationalityID"];
+                                ;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return isFound;
+        }
+
+        public static bool DoesUserExist(int userID)
+        {
+            bool isFound = false;
+            string query = @"SELECT UserID FROM Users WHERE UserID = @UserID";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("UserID", userID);
+
+                        object result = sqlCommand.ExecuteScalar();
+
+                        isFound = (result != null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+
+            }
+            return isFound;
+        }
 
     }
 }

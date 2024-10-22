@@ -43,9 +43,24 @@ namespace Presentation_Tier.Users
             GetAllUsers();
         }
 
+        private int GetUserID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["UserID"].Value.ToString());
+        }
+
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GetAllUsers();
+            int userID = GetUserID();
+
+            if (clsUsers.DoesUserExist(userID))
+            {
+                frmAddNewUser addNewUser = new frmAddNewUser(userID);
+                addNewUser.ShowDialog();
+                GetAllUsers();
+                return;
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Sorry, This user is not exist");
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)

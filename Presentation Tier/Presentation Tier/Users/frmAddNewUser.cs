@@ -17,6 +17,8 @@ namespace Presentation_Tier.Users
     {
         private enum Mode { Add = 1, Update = 2 };
         private Mode _enMode;
+        int _userID;
+        clsUsers _updatedUser { get; set; }
 
         public frmAddNewUser()
         {
@@ -24,9 +26,20 @@ namespace Presentation_Tier.Users
             _enMode = Mode.Add;
         }
 
+        public frmAddNewUser(int userID)
+        {
+            InitializeComponent();
+            _enMode = Mode.Update;
+            _userID = userID;
+
+        }
+
         private void frmAddNewUser_Load(object sender, EventArgs e)
         {
             GetAllCountries();
+            if (_enMode == Mode.Update)
+                SetUserInfo();
+
         }
 
         private void GetAllCountries()
@@ -134,6 +147,28 @@ namespace Presentation_Tier.Users
                 return;
 
             Save();
+        }
+
+        private void SetUserInfo()
+        {
+            this.Text = "Update User";
+
+            _updatedUser = clsUsers.GetUserByID(_userID);
+
+            lbUserID.Text = _updatedUser.UserID.ToString();
+            txtFirstName.Text = _updatedUser.FirstName.ToString();
+            txtLastName.Text = _updatedUser.LastName.ToString();
+            dtDateOfBirth.Value = _updatedUser.DateOfBirth;
+
+            if (_updatedUser.Gender)
+                rbMale.Checked = true;
+            else rbFemale.Checked = true;
+
+            txtEmail.Text = _updatedUser.Email.ToString();
+            txtPhoneNumber.Text = _updatedUser.PhoneNumber.ToString();
+            txtAddress.Text = _updatedUser.Address.ToString();
+
+            cbCountry.SelectedIndex = _updatedUser.NationalityID - 1;
         }
     }
 }

@@ -60,8 +60,8 @@ namespace Application_Tier
 
         private bool AddNewUser()
         {
-            this.UserID = clsUsersDB.AddNewUser(LibraryCardNumber,  FirstName,  LastName,  DateOfBirth,  Gender,
-             Email,  PhoneNumber,  Address,  MembershipDate,  NationalityID);
+            this.UserID = clsUsersDB.AddNewUser(LibraryCardNumber, FirstName, LastName, DateOfBirth, Gender,
+             Email, PhoneNumber, Address, MembershipDate, NationalityID);
 
             return UserID != -1;
         }
@@ -91,6 +91,26 @@ namespace Application_Tier
         public static DataTable GetAllUsers()
         {
             return clsUsersDB.GetAllUsers();
+        }
+
+        public static clsUsers GetUserByID(int userID)
+        {
+            string libraryCardNumber = "", firstName = "", lastName = "", email = "", phoneNumber = "", address = "";
+            DateTime dateOfBirth = DateTime.Now;
+            bool gender = true;
+            DateTime membershipDate = DateTime.Now; int nationalityID = -1;
+
+            if (clsUsersDB.GetUserByID(userID, ref libraryCardNumber, ref firstName, ref lastName, ref dateOfBirth, ref gender,
+            ref email, ref phoneNumber, ref address, ref membershipDate, ref nationalityID))
+                return new clsUsers(userID, libraryCardNumber, firstName, lastName, dateOfBirth, gender,
+             email, phoneNumber, address, membershipDate, nationalityID, clsUsers.Mode.Update);
+
+            return null;
+        }
+
+        public static bool DoesUserExist(int userID)
+        {
+            return clsUsersDB.DoesUserExist(userID);
         }
     }
 }
