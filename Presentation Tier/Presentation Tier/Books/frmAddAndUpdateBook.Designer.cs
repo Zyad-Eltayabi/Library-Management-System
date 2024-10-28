@@ -45,11 +45,11 @@
             this.cbAuthor = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picBook = new System.Windows.Forms.PictureBox();
             this.btnAddImage = new Guna.UI2.WinForms.Guna2Button();
             this.btnRemoveImage = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBook)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -266,14 +266,14 @@
             this.guna2Button1.Text = "Save";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
-            // pictureBox2
+            // picBook
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(626, 338);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(300, 197);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 34;
-            this.pictureBox2.TabStop = false;
+            this.picBook.Location = new System.Drawing.Point(626, 271);
+            this.picBook.Name = "picBook";
+            this.picBook.Size = new System.Drawing.Size(300, 197);
+            this.picBook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBook.TabIndex = 34;
+            this.picBook.TabStop = false;
             // 
             // btnAddImage
             // 
@@ -284,11 +284,12 @@
             this.btnAddImage.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnAddImage.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnAddImage.ForeColor = System.Drawing.Color.White;
-            this.btnAddImage.Location = new System.Drawing.Point(705, 557);
+            this.btnAddImage.Location = new System.Drawing.Point(705, 490);
             this.btnAddImage.Name = "btnAddImage";
             this.btnAddImage.Size = new System.Drawing.Size(161, 49);
             this.btnAddImage.TabIndex = 35;
             this.btnAddImage.Text = "Add Image";
+            this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
             // 
             // btnRemoveImage
             // 
@@ -299,11 +300,12 @@
             this.btnRemoveImage.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnRemoveImage.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnRemoveImage.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveImage.Location = new System.Drawing.Point(705, 624);
+            this.btnRemoveImage.Location = new System.Drawing.Point(705, 557);
             this.btnRemoveImage.Name = "btnRemoveImage";
             this.btnRemoveImage.Size = new System.Drawing.Size(161, 49);
             this.btnRemoveImage.TabIndex = 36;
             this.btnRemoveImage.Text = "Remove Image";
+            this.btnRemoveImage.Click += new System.EventHandler(this.btnRemoveImage_Click);
             // 
             // frmAddAndUpdateBook
             // 
@@ -312,7 +314,7 @@
             this.ClientSize = new System.Drawing.Size(984, 882);
             this.Controls.Add(this.btnRemoveImage);
             this.Controls.Add(this.btnAddImage);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.picBook);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.cbAuthor);
             this.Controls.Add(this.label8);
@@ -333,7 +335,7 @@
             this.Name = "frmAddAndUpdateBook";
             this.Text = "Add New Book";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBook)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,7 +359,7 @@
         private Guna.UI2.WinForms.Guna2ComboBox cbAuthor;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox picBook;
         private Guna.UI2.WinForms.Guna2Button btnAddImage;
         private Guna.UI2.WinForms.Guna2Button btnRemoveImage;
     }
