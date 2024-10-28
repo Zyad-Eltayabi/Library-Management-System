@@ -47,7 +47,7 @@ namespace Presentation_Tier
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnUsers.PerformClick();
+            btnBooks.PerformClick();
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)

@@ -14,7 +14,13 @@ namespace Presentation_Tier.Books
     {
         public frmManageBooks()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddAndUpdateBook addAndUpdateBook = new frmAddAndUpdateBook();
+            addAndUpdateBook.ShowDialog();
         }
     }
 }
