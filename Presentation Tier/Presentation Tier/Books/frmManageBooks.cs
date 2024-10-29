@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,23 @@ namespace Presentation_Tier.Books
         {
             frmAddAndUpdateBook addAndUpdateBook = new frmAddAndUpdateBook();
             addAndUpdateBook.ShowDialog();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddAndUpdateBook addAndUpdateBook = new frmAddAndUpdateBook();
+            addAndUpdateBook.ShowDialog();
+        }
+
+        private void frmManageBooks_Load(object sender, EventArgs e)
+        {
+            GetAllBooks();
+        }
+
+        private void GetAllBooks()
+        {
+            dgvTable.DataSource = clsBooks.GetAllBooks();
+            lbRecords.Text = dgvTable.RowCount.ToString();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Database_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -57,6 +58,11 @@ namespace Application_Tier
                     }
             }
             return false;
+        }
+
+        public static DataTable GetAllBooks()
+        {
+            return clsBooksDB.GetAllBooks();
         }
     }
 }
