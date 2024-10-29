@@ -96,6 +96,9 @@ namespace Application_Tier
             return clsAuthorsDB.DeleteAuthor(authorID);
         }
 
-
+        public static DataTable GetAuthorsNames()
+        {
+            return clsAuthorsDB.GetAuthorsNames();
+        }
     }
 }

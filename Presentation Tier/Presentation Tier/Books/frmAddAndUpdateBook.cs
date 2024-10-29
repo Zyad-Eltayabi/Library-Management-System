@@ -1,4 +1,5 @@
-﻿using Guna.UI2.WinForms;
+﻿using Application_Tier;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace Presentation_Tier.Books
 {
     public partial class frmAddAndUpdateBook : Form
     {
-        private string _imageName;
+        DataTable _authorsDetails;
         private string _imagePath;
         public frmAddAndUpdateBook()
         {
@@ -88,6 +89,18 @@ namespace Presentation_Tier.Books
             {
                 File.Delete(_imagePath);
             }
+        }
+
+        private void frmAddAndUpdateBook_Load(object sender, EventArgs e)
+        {
+            GetAuthorsNames();
+        }
+
+        private void GetAuthorsNames()
+        {
+            _authorsDetails = clsAuthors.GetAuthorsNames();
+            cbAuthor.DataSource = _authorsDetails;
+            cbAuthor.ValueMember = "FullName";
         }
     }
 }

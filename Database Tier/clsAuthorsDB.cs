@@ -207,6 +207,33 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static DataTable GetAuthorsNames()
+        {
+            DataTable dataTable = new DataTable();
 
+            string query = @"select AuthorID, FullName = FirstName + ' ' +  LastName from Authors";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
     }
 }

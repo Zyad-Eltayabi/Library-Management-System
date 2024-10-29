@@ -334,6 +334,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmAddAndUpdateBook";
             this.Text = "Add New Book";
+            this.Load += new System.EventHandler(this.frmAddAndUpdateBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBook)).EndInit();
             this.ResumeLayout(false);
