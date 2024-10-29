@@ -17,9 +17,15 @@ namespace Presentation_Tier.Books
     {
         DataTable _authorsDetails;
         private string _imagePath;
+        private string _imageName;
+
+        private enum Mode { Add = 1, Update = 2 }
+        private Mode _enMode { get; set; }
+
         public frmAddAndUpdateBook()
         {
             InitializeComponent();
+            _enMode = Mode.Add;
         }
 
         private bool ValidateTextBoxes()
@@ -28,11 +34,6 @@ namespace Presentation_Tier.Books
             return clsUtilityLibrary.ValidateTextBoxes(textBoxes);
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            if (!ValidateTextBoxes())
-                return;
-        }
 
         private string GetBooksImagesFolderPath()
         {
@@ -48,6 +49,7 @@ namespace Presentation_Tier.Books
             string newImageName = Guid.NewGuid().ToString();
             File.Copy(sourceImagePath, $@"{GetBooksImagesFolderPath()}\{newImageName}.jpg");
             _imagePath = $@"{GetBooksImagesFolderPath()}\{newImageName}.jpg";
+            _imageName = $"{newImageName}.jpg";
         }
 
         private void ReadImage()
@@ -101,6 +103,56 @@ namespace Presentation_Tier.Books
             _authorsDetails = clsAuthors.GetAuthorsNames();
             cbAuthor.DataSource = _authorsDetails;
             cbAuthor.ValueMember = "FullName";
+        }
+
+        private int GetAuthorID()
+        {
+            return int.Parse(_authorsDetails.Rows[cbAuthor.SelectedIndex]["AuthorID"].ToString());
+        }
+
+        private void AddNewBook()
+        {
+            clsBooks newBook = new clsBooks(
+                txtBookTitle.Text.ToString(),
+                txtISBN.Text.ToString(),
+                dtPublicationDate.Value,
+                txtGenre.Text.ToString(),
+                txtAdditionalDetails.Text.ToString(),
+                _imageName,
+                 GetAuthorID()
+                );
+
+            if (newBook.Save())
+            {
+                lbBookID.Text = newBook.BookID.ToString();
+                clsUtilityLibrary.PrintInfoMessage("Book Added Successfully");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Failed Operation");
+            }
+        }
+
+        private void SaveBook()
+        {
+            switch (_enMode)
+            {
+                case Mode.Add:
+                    _enMode = Mode.Update;
+                    AddNewBook();
+                    break;
+                case Mode.Update:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            if (!ValidateTextBoxes())
+                return;
+            SaveBook();
         }
     }
 }

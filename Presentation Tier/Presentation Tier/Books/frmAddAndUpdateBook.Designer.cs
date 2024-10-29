@@ -311,7 +311,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 882);
+            this.ClientSize = new System.Drawing.Size(984, 832);
             this.Controls.Add(this.btnRemoveImage);
             this.Controls.Add(this.btnAddImage);
             this.Controls.Add(this.picBook);
