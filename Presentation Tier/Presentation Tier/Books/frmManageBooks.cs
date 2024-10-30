@@ -22,12 +22,14 @@ namespace Presentation_Tier.Books
         {
             frmAddAndUpdateBook addAndUpdateBook = new frmAddAndUpdateBook();
             addAndUpdateBook.ShowDialog();
+            GetAllBooks();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddAndUpdateBook addAndUpdateBook = new frmAddAndUpdateBook();
             addAndUpdateBook.ShowDialog();
+            GetAllBooks();
         }
 
         private void frmManageBooks_Load(object sender, EventArgs e)
@@ -61,6 +63,27 @@ namespace Presentation_Tier.Books
             }
 
             GetAllBooks();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int bookID = GetBookID();
+
+            if (MessageBox.Show($"Are you sure to delete this Book where ID = {bookID}", "Info", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                if (clsBooks.DoesBookExist(bookID))
+                {
+                    if (clsBooks.DeleteBook(bookID))
+                    {
+                        clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
+                        GetAllBooks();
+                        return;
+                    }
+                }
+
+                clsUtilityLibrary.PrintErrorMessage("Failed to delete.");
+            }
         }
     }
 }

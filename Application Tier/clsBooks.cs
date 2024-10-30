@@ -112,5 +112,10 @@ namespace Application_Tier
 
             return null;
         }
+
+        public static bool DeleteBook(int bookID)
+        {
+            return clsBooksDB.DeleteBook(bookID);
+        }
     }
 }
