@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Guna.UI2.Native.WinApi;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentation_Tier.Books
@@ -142,6 +143,27 @@ namespace Presentation_Tier.Books
             }
         }
 
+        private void UpdateBook()
+        {
+            _book.Title = txtBookTitle.Text;
+            _book.Genre = txtGenre.Text;
+            _book.ISBN = txtISBN.Text;
+            _book.AdditionalDetails = txtAdditionalDetails.Text;
+            _book.PublicationDate = dtPublicationDate.Value;
+            _book.AuthorID = GetAuthorID();
+            _book.BookImage = _imageName;
+
+            if (_book.Save())
+            {
+                lbBookID.Text = _book.BookID.ToString();
+                clsUtilityLibrary.PrintInfoMessage("Book Updated Successfully");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Failed Operation");
+            }
+        }
+
         private void SaveBook()
         {
             switch (_enMode)
@@ -151,6 +173,7 @@ namespace Presentation_Tier.Books
                     AddNewBook();
                     break;
                 case Mode.Update:
+                    UpdateBook();
                     break;
                 default:
                     break;
@@ -177,7 +200,7 @@ namespace Presentation_Tier.Books
         {
             int indexOfAuthorNameInComboBoxAuthor = cbAuthor.FindString(_book.Author.AuthorFullName());
 
-            if (indexOfAuthorNameInComboBoxAuthor > 0)
+            if (indexOfAuthorNameInComboBoxAuthor >= 0)
             {
                 cbAuthor.SelectedIndex = indexOfAuthorNameInComboBoxAuthor;
             }

@@ -61,6 +61,12 @@ namespace Application_Tier
             return this.BookID != -1;
         }
 
+        private bool UpdateBook()
+        {
+            return clsBooksDB.UpdateBook(BookID, Title, ISBN, PublicationDate, Genre,
+             AdditionalDetails, BookImage, AuthorID);
+        }
+
         public bool Save()
         {
             switch (enMode)
@@ -72,7 +78,7 @@ namespace Application_Tier
                     }
                 case Mode.Update:
                     {
-                        break;
+                        return UpdateBook();
                     }
             }
             return false;

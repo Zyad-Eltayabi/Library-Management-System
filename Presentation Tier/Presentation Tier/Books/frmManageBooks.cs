@@ -59,6 +59,8 @@ namespace Presentation_Tier.Books
             {
                 clsUtilityLibrary.PrintWarningMessage("this book is not found.");
             }
+
+            GetAllBooks();
         }
     }
 }

@@ -156,5 +156,50 @@ namespace Database_Tier
             return isFound;
         }
 
+        public static bool UpdateBook(int bookID, string title, string iSBN, DateTime publicationDate, string genre,
+            string additionalDetails, string bookImage, int authorID)
+        {
+            int rowsAffected = 0;
+            string query = @"USE [LibraryManagementSystem]
+                                        UPDATE [dbo].[Books]
+                                              SET  [Title] = @Title,
+                                             [ISBN] = @ISBN,
+                                             [PublicationDate] = @PublicationDate,
+                                             [Genre] = @Genre,
+                                             [AdditionalDetails] = @AdditionalDetails,
+                                             [BookImage] = @BookImage,
+                                             [AuthorID] = @AuthorID
+                                         WHERE BookID = @BookID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@BookID", bookID);
+                        sqlCommand.Parameters.AddWithValue("@Title", title);
+                        sqlCommand.Parameters.AddWithValue("@ISBN", iSBN);
+                        sqlCommand.Parameters.AddWithValue("@PublicationDate", publicationDate);
+                        sqlCommand.Parameters.AddWithValue("@Genre", genre);
+                        sqlCommand.Parameters.AddWithValue("@AdditionalDetails", additionalDetails ?? (object)DBNull.Value);
+                        sqlCommand.Parameters.AddWithValue("@BookImage", bookImage ?? (object)DBNull.Value);
+                        sqlCommand.Parameters.AddWithValue("@AuthorID", authorID);
+
+
+                        rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
+
     }
 }
