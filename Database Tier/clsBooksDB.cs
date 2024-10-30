@@ -11,7 +11,8 @@ namespace Database_Tier
 {
     public class clsBooksDB
     {
-        public static int AddNewBook(string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails, string bookImage, int authorID)
+        public static int AddNewBook(string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails,
+            string bookImage, int authorID)
         {
             int bookID = -1;
             string query = @" USE [LibraryManagementSystem] 
@@ -84,6 +85,75 @@ namespace Database_Tier
             }
 
             return dataTable;
+        }
+
+        public static bool DoesBookExist(int bookID)
+        {
+            bool isFound = false;
+            string query = @"SELECT BookID FROM Books WHERE BookID = @BookID";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("BookID", bookID);
+
+                        object result = sqlCommand.ExecuteScalar();
+
+                        isFound = (result != null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+
+            }
+            return isFound;
+        }
+
+        public static bool GetBookByID(int bookID, ref string title, ref string iSBN, ref DateTime publicationDate, ref string genre,
+            ref string additionalDetails, ref string bookImage, ref int authorID)
+        {
+            bool isFound = false;
+            string query = "SELECT TOP 1 * FROM Books WHERE BookID = @BookID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.Parameters.AddWithValue("BookID", bookID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.Read())
+                            {
+                                isFound = true;
+                                title = (string)sqlDataReader["Title"];
+                                iSBN = (string)sqlDataReader["ISBN"];
+                                publicationDate = (DateTime)sqlDataReader["PublicationDate"];
+                                genre = (string)sqlDataReader["Genre"];
+                                additionalDetails = (string)sqlDataReader["AdditionalDetails"];
+                                bookImage = (string)sqlDataReader["BookImage"];
+                                authorID = (int)sqlDataReader["AuthorID"];
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return isFound;
         }
 
     }

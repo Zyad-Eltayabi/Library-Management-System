@@ -7,9 +7,11 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentation_Tier.Books
 {
@@ -18,14 +20,24 @@ namespace Presentation_Tier.Books
         DataTable _authorsDetails;
         private string _imagePath;
         private string _imageName;
-
+        private clsBooks _book;
+        private int _bookID;
         private enum Mode { Add = 1, Update = 2 }
         private Mode _enMode { get; set; }
+
 
         public frmAddAndUpdateBook()
         {
             InitializeComponent();
             _enMode = Mode.Add;
+        }
+
+        public frmAddAndUpdateBook(int bookID)
+        {
+            InitializeComponent();
+            _enMode = Mode.Update;
+            _bookID = bookID;
+            _book = clsBooks.GetBookByID(_bookID);
         }
 
         private bool ValidateTextBoxes()
@@ -87,16 +99,13 @@ namespace Presentation_Tier.Books
         private void btnRemoveImage_Click(object sender, EventArgs e)
         {
             picBook.Image = null;
+            _imageName = string.Empty;
             if (!string.IsNullOrEmpty(_imagePath) && File.Exists(_imagePath))
             {
                 File.Delete(_imagePath);
             }
         }
 
-        private void frmAddAndUpdateBook_Load(object sender, EventArgs e)
-        {
-            GetAuthorsNames();
-        }
 
         private void GetAuthorsNames()
         {
@@ -112,7 +121,7 @@ namespace Presentation_Tier.Books
 
         private void AddNewBook()
         {
-            clsBooks newBook = new clsBooks(
+            _book = new clsBooks(
                 txtBookTitle.Text.ToString(),
                 txtISBN.Text.ToString(),
                 dtPublicationDate.Value,
@@ -122,9 +131,9 @@ namespace Presentation_Tier.Books
                  GetAuthorID()
                 );
 
-            if (newBook.Save())
+            if (_book.Save())
             {
-                lbBookID.Text = newBook.BookID.ToString();
+                lbBookID.Text = _book.BookID.ToString();
                 clsUtilityLibrary.PrintInfoMessage("Book Added Successfully");
             }
             else
@@ -146,6 +155,49 @@ namespace Presentation_Tier.Books
                 default:
                     break;
             }
+        }
+        private void frmAddAndUpdateBook_Load(object sender, EventArgs e)
+        {
+            GetAuthorsNames();
+
+            if (_enMode == Mode.Update)
+                SetBookInfoInUpdateMode();
+        }
+
+        private void SetImageInUpdateMode()
+        {
+            if (!string.IsNullOrEmpty(_book.BookImage))
+            {
+                _imagePath = $@"{GetBooksImagesFolderPath()}\{_book.BookImage}";
+                ReadImage();
+            }
+        }
+
+        private void SetAuthorNameInAuthorsComboBox()
+        {
+            int indexOfAuthorNameInComboBoxAuthor = cbAuthor.FindString(_book.Author.AuthorFullName());
+
+            if (indexOfAuthorNameInComboBoxAuthor > 0)
+            {
+                cbAuthor.SelectedIndex = indexOfAuthorNameInComboBoxAuthor;
+            }
+            else
+            {
+                clsUtilityLibrary.PrintWarningMessage("Author book is not found.");
+            }
+        }
+
+        private void SetBookInfoInUpdateMode()
+        {
+            this.Text = "Update Book";
+            lbBookID.Text = _book.BookID.ToString();
+            txtBookTitle.Text = _book.Title.ToString();
+            txtGenre.Text = _book.Genre.ToString();
+            txtISBN.Text = _book.ISBN.ToString();
+            txtAdditionalDetails.Text = _book.AdditionalDetails.ToString();
+            dtPublicationDate.Value = _book.PublicationDate;
+            SetImageInUpdateMode();
+            SetAuthorNameInAuthorsComboBox();
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)

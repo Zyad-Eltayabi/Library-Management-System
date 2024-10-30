@@ -19,6 +19,8 @@ namespace Application_Tier
         public string AdditionalDetails { get; set; }
         public string BookImage { get; set; }
         public int AuthorID { get; set; }
+        public clsAuthors Author { get; set; }
+
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
@@ -32,7 +34,23 @@ namespace Application_Tier
             AdditionalDetails = additionalDetails;
             BookImage = bookImage;
             AuthorID = authorID;
+            Author = clsAuthors.GetAuthorByID(authorID);
             enMode = Mode.Add;
+        }
+
+        private clsBooks(int bookID, string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails,
+            string bookImage, int authorID)
+        {
+            BookID = bookID;
+            Title = title;
+            ISBN = iSBN;
+            PublicationDate = publicationDate;
+            Genre = genre;
+            AdditionalDetails = additionalDetails;
+            BookImage = bookImage;
+            AuthorID = authorID;
+            Author = clsAuthors.GetAuthorByID(authorID);
+            this.enMode = Mode.Update;
         }
 
         private bool AddNewBook()
@@ -63,6 +81,30 @@ namespace Application_Tier
         public static DataTable GetAllBooks()
         {
             return clsBooksDB.GetAllBooks();
+        }
+
+        public static bool DoesBookExist(int bookID)
+        {
+            return clsBooksDB.DoesBookExist(bookID);
+        }
+
+        public static clsBooks GetBookByID(int bookID)
+        {
+            string title = "";
+            string iSBN = "";
+            DateTime publicationDate = DateTime.Now;
+            string genre = "";
+            string additionalDetails = "";
+            string bookImage = "";
+            int authorID = -1;
+
+
+            if (clsBooksDB.GetBookByID(bookID, ref title, ref iSBN, ref publicationDate, ref genre,
+            ref additionalDetails, ref bookImage, ref authorID))
+                return new clsBooks(bookID, title, iSBN, publicationDate, genre,
+             additionalDetails, bookImage, authorID);
+
+            return null;
         }
     }
 }

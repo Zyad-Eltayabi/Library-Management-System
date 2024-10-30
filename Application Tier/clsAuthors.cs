@@ -100,5 +100,10 @@ namespace Application_Tier
         {
             return clsAuthorsDB.GetAuthorsNames();
         }
+
+        public string AuthorFullName()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }

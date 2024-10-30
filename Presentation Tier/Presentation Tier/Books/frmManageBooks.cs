@@ -15,7 +15,7 @@ namespace Presentation_Tier.Books
     {
         public frmManageBooks()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -39,6 +39,26 @@ namespace Presentation_Tier.Books
         {
             dgvTable.DataSource = clsBooks.GetAllBooks();
             lbRecords.Text = dgvTable.RowCount.ToString();
+        }
+
+        private int GetBookID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["BookID"].Value.ToString());
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int bookID = GetBookID();
+
+            if (clsBooks.DoesBookExist(bookID))
+            {
+                frmAddAndUpdateBook updateBook = new frmAddAndUpdateBook(bookID);
+                updateBook.ShowDialog();
+            }
+            else
+            {
+                clsUtilityLibrary.PrintWarningMessage("this book is not found.");
+            }
         }
     }
 }
