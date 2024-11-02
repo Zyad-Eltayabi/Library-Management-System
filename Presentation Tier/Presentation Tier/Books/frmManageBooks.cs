@@ -85,5 +85,12 @@ namespace Presentation_Tier.Books
                 clsUtilityLibrary.PrintErrorMessage("Failed to delete.");
             }
         }
+
+        private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int bookID = GetBookID();
+            frmShowBookDetails showBookDetails = new frmShowBookDetails(bookID);
+            showBookDetails.ShowDialog();
+        }
     }
 }

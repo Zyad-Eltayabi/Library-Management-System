@@ -97,6 +97,18 @@
     <Compile Include="Books\frmManageBooks.Designer.cs">
       <DependentUpon>frmManageBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Books\frmShowBookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Books\frmShowBookDetails.Designer.cs">
+      <DependentUpon>frmShowBookDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Books\ucShowBookDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Books\ucShowBookDetails.Designer.cs">
+      <DependentUpon>ucShowBookDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsUtilityLibrary.cs" />
     <Compile Include="Component\frm.cs">
       <SubType>Form</SubType>
@@ -156,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Books\frmManageBooks.resx">
       <DependentUpon>frmManageBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Books\frmShowBookDetails.resx">
+      <DependentUpon>frmShowBookDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Books\ucShowBookDetails.resx">
+      <DependentUpon>ucShowBookDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\frm.resx">
       <DependentUpon>frm.cs</DependentUpon>
