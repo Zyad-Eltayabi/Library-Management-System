@@ -18,6 +18,8 @@ namespace Presentation_Tier.Books
             InitializeComponent();
         }
 
+
+
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             frmAddAndUpdateBook addAndUpdateBook = new frmAddAndUpdateBook();
@@ -91,6 +93,21 @@ namespace Presentation_Tier.Books
             int bookID = GetBookID();
             frmShowBookDetails showBookDetails = new frmShowBookDetails(bookID);
             showBookDetails.ShowDialog();
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
+
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable _booksTable = clsBooks.GetAllBooks();
+            DataView dv = new DataView();
+            dv = _booksTable.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
         }
     }
 }
