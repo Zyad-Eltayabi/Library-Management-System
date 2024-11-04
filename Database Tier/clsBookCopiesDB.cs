@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,40 @@ namespace Database_Tier
             return bookCopyID;
 
         }
+
+        public static DataTable GetAllBookCopies()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = @"SELECT      BookCopies.CopyID, Books.Title, Books.ISBN, Books.Genre, Authors.AuthorID, Authors.FirstName,
+                            Authors.LastName,BookCopies.AvailabilityStatus
+                            FROM          Books INNER JOIN
+                              BookCopies ON Books.BookID = BookCopies.BookID INNER JOIN
+                              Authors ON Books.AuthorID = Authors.AuthorID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
+
 
     }
 }

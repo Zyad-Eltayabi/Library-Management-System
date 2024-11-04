@@ -1,6 +1,7 @@
 ﻿using Database_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,12 @@ namespace Application_Tier
         public bool AvailabilityStatus { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
+        public clsBooks Book { get; set; }
 
         public clsBookCopies(int bookID, bool availabilityStatus)
         {
             BookID = bookID;
+            Book = clsBooks.GetBookByID(bookID);
             AvailabilityStatus = availabilityStatus;
             this.enMode = Mode.Add;
         }
@@ -33,6 +36,11 @@ namespace Application_Tier
             }
             enMode = Mode.Update;
             return true;
+        }
+
+        public static DataTable GetAllBookCopies()
+        {
+            return clsBookCopiesDB.GetAllBookCopies();
         }
     }
 }
