@@ -16,5 +16,17 @@ namespace Presentation_Tier.BookCopies
         {
             InitializeComponent();
         }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddNewBookCopy addNewBookCopy = new frmAddNewBookCopy();
+            addNewBookCopy.ShowDialog();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddNewBookCopy addNewBookCopy = new frmAddNewBookCopy();
+            addNewBookCopy.ShowDialog();
+        }
     }
 }
