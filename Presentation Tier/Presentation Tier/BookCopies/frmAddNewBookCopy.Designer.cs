@@ -58,6 +58,7 @@
             this.txtFilter.SelectedText = "";
             this.txtFilter.Size = new System.Drawing.Size(388, 43);
             this.txtFilter.TabIndex = 16;
+            this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
             // cbFilter
             // 
@@ -85,9 +86,9 @@
             this.label3.ForeColor = System.Drawing.Color.Teal;
             this.label3.Location = new System.Drawing.Point(23, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 34);
+            this.label3.Size = new System.Drawing.Size(99, 34);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Filter By";
+            this.label3.Text = "Search By";
             // 
             // guna2Button1
             // 
@@ -106,6 +107,7 @@
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(67, 51);
             this.guna2Button1.TabIndex = 18;
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // label1
             // 
@@ -148,6 +150,7 @@
             this.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(940, 711);

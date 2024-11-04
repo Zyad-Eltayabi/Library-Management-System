@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -223,6 +224,34 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static int GetBookIDByBookTitle(string bookTitle)
+        {
+            int bookID = -1;
+            string query = @"SELECT BookID FROM Books WHERE Title = @Title";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@Title", bookTitle);
 
+                        object result = sqlCommand.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            bookID = (int)result;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+
+            }
+            return bookID;
+        }
     }
 }

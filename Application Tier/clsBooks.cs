@@ -117,5 +117,10 @@ namespace Application_Tier
         {
             return clsBooksDB.DeleteBook(bookID);
         }
+
+        public static int GetBookIDByBookTitle(string bookTitle)
+        {
+            return clsBooksDB.GetBookIDByBookTitle(bookTitle);
+        }
     }
 }
