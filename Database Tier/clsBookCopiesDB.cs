@@ -52,7 +52,7 @@ namespace Database_Tier
         {
             DataTable dataTable = new DataTable();
 
-            string query = @"SELECT      BookCopies.CopyID, Books.Title, Books.ISBN, Books.Genre, Authors.AuthorID, Authors.FirstName,
+            string query = @"SELECT      BookCopies.CopyID,Books.BookID, Books.Title, Books.ISBN, Books.Genre, Authors.AuthorID, Authors.FirstName,
                             Authors.LastName,BookCopies.AvailabilityStatus
                             FROM          Books INNER JOIN
                               BookCopies ON Books.BookID = BookCopies.BookID INNER JOIN

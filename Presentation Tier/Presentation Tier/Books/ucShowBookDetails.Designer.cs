@@ -163,7 +163,7 @@
             // 
             // picBook
             // 
-            this.picBook.Location = new System.Drawing.Point(346, 26);
+            this.picBook.Location = new System.Drawing.Point(447, 26);
             this.picBook.Name = "picBook";
             this.picBook.Size = new System.Drawing.Size(209, 151);
             this.picBook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

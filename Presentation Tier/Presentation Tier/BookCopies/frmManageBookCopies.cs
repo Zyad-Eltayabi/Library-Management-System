@@ -1,4 +1,5 @@
 ﻿using Application_Tier;
+using Presentation_Tier.Books;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,17 @@ namespace Presentation_Tier.BookCopies
         {
             dgvTable.DataSource = clsBookCopies.GetAllBookCopies();
             lbRecords.Text = dgvTable.Rows.Count.ToString();
+        }
+
+        private int GetBookID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["BookID"].Value.ToString());
+        }
+
+        private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmShowBookDetails showBookDetails = new frmShowBookDetails(GetBookID());
+            showBookDetails.ShowDialog();
         }
     }
 }
