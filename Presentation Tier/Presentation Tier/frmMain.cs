@@ -1,5 +1,6 @@
 ﻿using Presentation_Tier.Admins;
 using Presentation_Tier.Authors;
+using Presentation_Tier.BookCopies;
 using Presentation_Tier.Books;
 using Presentation_Tier.Users;
 using System;
@@ -47,7 +48,7 @@ namespace Presentation_Tier
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnBooks.PerformClick();
+            btnCopies.PerformClick();
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)
@@ -63,6 +64,11 @@ namespace Presentation_Tier
         private void btnBooks_Click(object sender, EventArgs e)
         {
             AddNewFormToMainPanel(new frmManageBooks());
+        }
+
+        private void btnCopies_Click(object sender, EventArgs e)
+        {
+            AddNewFormToMainPanel(new frmManageBookCopies());
         }
     }
 }

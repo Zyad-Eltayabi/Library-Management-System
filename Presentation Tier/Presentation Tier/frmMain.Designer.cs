@@ -176,6 +176,7 @@
             this.btnCopies.Size = new System.Drawing.Size(247, 45);
             this.btnCopies.TabIndex = 4;
             this.btnCopies.Text = "Books Copies";
+            this.btnCopies.Click += new System.EventHandler(this.btnCopies_Click);
             // 
             // btnBorrowing
             // 
