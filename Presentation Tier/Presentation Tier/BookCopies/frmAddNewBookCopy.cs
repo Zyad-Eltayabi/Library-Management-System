@@ -85,5 +85,26 @@ namespace Presentation_Tier.BookCopies
                 btnSave.Enabled = false;
             }
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            AddBookCopies();
+        }
+
+        private void AddBookCopies()
+        {
+            int numberOfBookCopies = int.Parse(nudValue.Value.ToString());
+
+            clsBookCopies bookCopies = new clsBookCopies(_bookID, true);
+
+            if (bookCopies.AddBookCopies(numberOfBookCopies))
+            {
+                clsUtilityLibrary.PrintInfoMessage("Successfully Operation");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Failed operation to add book copies");
+            }
+        }
     }
 }

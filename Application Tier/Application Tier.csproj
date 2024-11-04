@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="clsAdmins.cs" />
     <Compile Include="clsAuthors.cs" />
+    <Compile Include="clsBookCopies.cs" />
     <Compile Include="clsBooks.cs" />
     <Compile Include="clsCountries.cs" />
     <Compile Include="clsHashing.cs" />
