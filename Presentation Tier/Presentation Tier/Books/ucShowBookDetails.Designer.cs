@@ -65,7 +65,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(18, 385);
+            this.label8.Location = new System.Drawing.Point(591, 304);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 36);
             this.label8.TabIndex = 41;
@@ -75,7 +75,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 470);
+            this.label6.Location = new System.Drawing.Point(510, 389);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(160, 36);
             this.label6.TabIndex = 40;
@@ -85,17 +85,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(18, 555);
+            this.label5.Location = new System.Drawing.Point(35, 447);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(172, 36);
+            this.label5.Size = new System.Drawing.Size(78, 36);
             this.label5.TabIndex = 39;
-            this.label5.Text = "AdditionalDetails";
+            this.label5.Text = "Details";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 300);
+            this.label4.Location = new System.Drawing.Point(591, 219);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 36);
             this.label4.TabIndex = 38;
@@ -105,7 +105,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 215);
+            this.label3.Location = new System.Drawing.Point(35, 389);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 36);
             this.label3.TabIndex = 37;
@@ -115,7 +115,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 130);
+            this.label1.Location = new System.Drawing.Point(35, 304);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 36);
             this.label1.TabIndex = 36;
@@ -125,7 +125,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 45);
+            this.label2.Location = new System.Drawing.Point(35, 219);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 36);
             this.label2.TabIndex = 35;
@@ -135,7 +135,7 @@
             // 
             this.lbBookID.AutoSize = true;
             this.lbBookID.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBookID.Location = new System.Drawing.Point(270, 45);
+            this.lbBookID.Location = new System.Drawing.Point(223, 219);
             this.lbBookID.Name = "lbBookID";
             this.lbBookID.Size = new System.Drawing.Size(34, 26);
             this.lbBookID.TabIndex = 43;
@@ -144,7 +144,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(202, 470);
+            this.pictureBox9.Location = new System.Drawing.Point(694, 389);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(33, 34);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -154,7 +154,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(197, 45);
+            this.pictureBox2.Location = new System.Drawing.Point(169, 219);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(38, 36);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -163,9 +163,9 @@
             // 
             // picBook
             // 
-            this.picBook.Location = new System.Drawing.Point(580, 247);
+            this.picBook.Location = new System.Drawing.Point(346, 26);
             this.picBook.Name = "picBook";
-            this.picBook.Size = new System.Drawing.Size(300, 197);
+            this.picBook.Size = new System.Drawing.Size(209, 151);
             this.picBook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picBook.TabIndex = 42;
             this.picBook.TabStop = false;
@@ -173,7 +173,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(197, 130);
+            this.pictureBox1.Location = new System.Drawing.Point(169, 304);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 36);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -183,7 +183,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(197, 215);
+            this.pictureBox3.Location = new System.Drawing.Point(169, 389);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 36);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -193,7 +193,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(197, 300);
+            this.pictureBox4.Location = new System.Drawing.Point(689, 219);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(38, 36);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -203,7 +203,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(197, 385);
+            this.pictureBox5.Location = new System.Drawing.Point(689, 304);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(38, 36);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -213,7 +213,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(202, 555);
+            this.pictureBox6.Location = new System.Drawing.Point(169, 447);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(38, 36);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -224,7 +224,7 @@
             // 
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitle.Location = new System.Drawing.Point(270, 134);
+            this.lbTitle.Location = new System.Drawing.Point(223, 308);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(34, 26);
             this.lbTitle.TabIndex = 72;
@@ -234,7 +234,7 @@
             // 
             this.lbISBN.AutoSize = true;
             this.lbISBN.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbISBN.Location = new System.Drawing.Point(270, 219);
+            this.lbISBN.Location = new System.Drawing.Point(223, 393);
             this.lbISBN.Name = "lbISBN";
             this.lbISBN.Size = new System.Drawing.Size(34, 26);
             this.lbISBN.TabIndex = 73;
@@ -244,7 +244,7 @@
             // 
             this.lbGenre.AutoSize = true;
             this.lbGenre.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGenre.Location = new System.Drawing.Point(270, 310);
+            this.lbGenre.Location = new System.Drawing.Point(762, 229);
             this.lbGenre.Name = "lbGenre";
             this.lbGenre.Size = new System.Drawing.Size(34, 26);
             this.lbGenre.TabIndex = 74;
@@ -254,7 +254,7 @@
             // 
             this.lbAuthor.AutoSize = true;
             this.lbAuthor.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAuthor.Location = new System.Drawing.Point(270, 395);
+            this.lbAuthor.Location = new System.Drawing.Point(762, 314);
             this.lbAuthor.Name = "lbAuthor";
             this.lbAuthor.Size = new System.Drawing.Size(34, 26);
             this.lbAuthor.TabIndex = 75;
@@ -264,7 +264,7 @@
             // 
             this.lbDate.AutoSize = true;
             this.lbDate.Font = new System.Drawing.Font("Arial Unicode MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDate.Location = new System.Drawing.Point(270, 474);
+            this.lbDate.Location = new System.Drawing.Point(762, 393);
             this.lbDate.Name = "lbDate";
             this.lbDate.Size = new System.Drawing.Size(34, 26);
             this.lbDate.TabIndex = 76;
@@ -281,13 +281,13 @@
             this.txtDetails.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDetails.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtDetails.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDetails.Location = new System.Drawing.Point(275, 555);
+            this.txtDetails.Location = new System.Drawing.Point(228, 447);
             this.txtDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.PasswordChar = '\0';
             this.txtDetails.PlaceholderText = "";
             this.txtDetails.SelectedText = "";
-            this.txtDetails.Size = new System.Drawing.Size(605, 111);
+            this.txtDetails.Size = new System.Drawing.Size(568, 111);
             this.txtDetails.TabIndex = 77;
             // 
             // ucShowBookDetails
@@ -317,7 +317,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "ucShowBookDetails";
-            this.Size = new System.Drawing.Size(924, 691);
+            this.Size = new System.Drawing.Size(1103, 575);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBook)).EndInit();

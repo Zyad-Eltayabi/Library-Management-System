@@ -35,21 +35,21 @@
             // 
             // ucShowBookDetails1
             // 
-            this.ucShowBookDetails1.Location = new System.Drawing.Point(2, 3);
+            this.ucShowBookDetails1.Location = new System.Drawing.Point(12, 12);
             this.ucShowBookDetails1.Name = "ucShowBookDetails1";
-            this.ucShowBookDetails1.Size = new System.Drawing.Size(924, 691);
+            this.ucShowBookDetails1.Size = new System.Drawing.Size(1103, 575);
             this.ucShowBookDetails1.TabIndex = 0;
-            this.ucShowBookDetails1.Load += new System.EventHandler(this.ucShowBookDetails1_Load);
             // 
             // frmShowBookDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 711);
+            this.ClientSize = new System.Drawing.Size(1125, 597);
             this.Controls.Add(this.ucShowBookDetails1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowBookDetails";
             this.Text = " Book Details";
+            this.Load += new System.EventHandler(this.frmShowBookDetails_Load);
             this.ResumeLayout(false);
 
         }

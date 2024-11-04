@@ -19,7 +19,7 @@ namespace Presentation_Tier.Books
             this.bookID = bookID;
         }
 
-        private void ucShowBookDetails1_Load(object sender, EventArgs e)
+        private void frmShowBookDetails_Load(object sender, EventArgs e)
         {
             ucShowBookDetails1.LoadBookInfo(bookID);
         }
