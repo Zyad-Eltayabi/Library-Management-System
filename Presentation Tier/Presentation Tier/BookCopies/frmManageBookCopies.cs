@@ -54,5 +54,21 @@ namespace Presentation_Tier.BookCopies
             frmShowBookDetails showBookDetails = new frmShowBookDetails(GetBookID());
             showBookDetails.ShowDialog();
         }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
+
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable _bookCopiesTable = clsBookCopies.GetAllBookCopies();
+            DataView dv = new DataView();
+            dv = _bookCopiesTable.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
+        }
+
     }
 }
