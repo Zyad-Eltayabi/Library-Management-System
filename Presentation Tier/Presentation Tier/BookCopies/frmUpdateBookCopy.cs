@@ -40,7 +40,29 @@ namespace Presentation_Tier.BookCopies
                     return;
                 }
             }
+
             clsUtilityLibrary.PrintErrorMessage("We can not upload the book at this time.");
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            UpdateBookCopy();
+        }
+
+        private void UpdateBookCopy()
+        {
+            if (_bookCopy != null)
+            {
+                _bookCopy.AvailabilityStatus = cbAVA.Checked;
+                if (_bookCopy.UpdateBookCopy())
+                {
+                    clsUtilityLibrary.PrintInfoMessage("Book copy updated successfully.");
+                    return;
+                }
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Book copy does not updated successfully.");
         }
     }
 }

@@ -72,5 +72,10 @@ namespace Application_Tier
 
             return null;
         }
+
+        public bool UpdateBookCopy()
+        {
+            return clsBookCopiesDB.UpdateBookCopy(CopyID, BookID, AvailabilityStatus);
+        }
     }
 }

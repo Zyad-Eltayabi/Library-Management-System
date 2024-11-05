@@ -172,6 +172,7 @@
             this.btnSave.Size = new System.Drawing.Size(180, 45);
             this.btnSave.TabIndex = 69;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmUpdateBookCopy
             // 

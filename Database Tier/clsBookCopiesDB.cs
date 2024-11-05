@@ -167,5 +167,39 @@ namespace Database_Tier
             return isFound;
         }
 
+        public static bool UpdateBookCopy(int copyID, int bookID, bool availabilityStatus)
+        {
+            int rowsAffected = 0;
+            string query = @"USE [LibraryManagementSystem]
+                                        UPDATE [dbo].[BookCopies]
+                                              SET  [BookID] = @BookID,
+                                                   [AvailabilityStatus] = @AvailabilityStatus
+                                         WHERE CopyID = @CopyID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CopyID", copyID);
+                        sqlCommand.Parameters.AddWithValue("@BookID", bookID);
+                        sqlCommand.Parameters.AddWithValue("@AvailabilityStatus", availabilityStatus);
+
+
+                        rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
+
     }
 }

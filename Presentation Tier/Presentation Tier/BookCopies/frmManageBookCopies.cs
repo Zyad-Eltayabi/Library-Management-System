@@ -101,6 +101,7 @@ namespace Presentation_Tier.BookCopies
             int copyID = GetCopyID();
             frmUpdateBookCopy updateBookCopy = new frmUpdateBookCopy(copyID);
             updateBookCopy.ShowDialog();
+            GetBookCopies();
         }
     }
 }
