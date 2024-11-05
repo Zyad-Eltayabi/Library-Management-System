@@ -25,6 +25,15 @@ namespace Application_Tier
             this.enMode = Mode.Add;
         }
 
+        private clsBookCopies(int copyID, int bookID, bool availabilityStatus)
+        {
+            CopyID = copyID;
+            BookID = bookID;
+            AvailabilityStatus = availabilityStatus;
+            this.enMode = Mode.Update;
+            Book = clsBooks.GetBookByID(bookID);
+        }
+
         public bool AddBookCopies(int NumberOfCopies)
         {
             for (int i = 0; i < NumberOfCopies; i++)
@@ -51,6 +60,17 @@ namespace Application_Tier
         public static bool DeleteBookCopy(int bookCopyID)
         {
             return clsBookCopiesDB.DeleteBookCopy(bookCopyID);
+        }
+
+        public static clsBookCopies GetBookCopyByID(int bookCopyID)
+        {
+            int bookID = -1;
+            bool availabilityStatus = false;
+
+            if (clsBookCopiesDB.GetBookCopyByID(bookCopyID, ref bookID, ref availabilityStatus))
+                return new clsBookCopies(bookCopyID, bookID, availabilityStatus);
+
+            return null;
         }
     }
 }

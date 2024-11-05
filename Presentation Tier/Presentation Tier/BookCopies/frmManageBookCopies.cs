@@ -95,5 +95,12 @@ namespace Presentation_Tier.BookCopies
                 clsUtilityLibrary.PrintErrorMessage("Failed to delete.");
             }
         }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int copyID = GetCopyID();
+            frmUpdateBookCopy updateBookCopy = new frmUpdateBookCopy(copyID);
+            updateBookCopy.ShowDialog();
+        }
     }
 }

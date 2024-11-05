@@ -97,6 +97,12 @@
     <Compile Include="BookCopies\frmManageBookCopies.Designer.cs">
       <DependentUpon>frmManageBookCopies.cs</DependentUpon>
     </Compile>
+    <Compile Include="BookCopies\frmUpdateBookCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookCopies\frmUpdateBookCopy.Designer.cs">
+      <DependentUpon>frmUpdateBookCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Books\frmAddAndUpdateBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BookCopies\frmManageBookCopies.resx">
       <DependentUpon>frmManageBookCopies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookCopies\frmUpdateBookCopy.resx">
+      <DependentUpon>frmUpdateBookCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Books\frmAddAndUpdateBook.resx">
       <DependentUpon>frmAddAndUpdateBook.cs</DependentUpon>

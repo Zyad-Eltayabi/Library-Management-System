@@ -130,5 +130,42 @@ namespace Database_Tier
             }
             return isFound;
         }
+
+        public static bool GetBookCopyByID(int copyID, ref int bookID, ref bool availabilityStatus)
+        {
+            bool isFound = false;
+            string query = "SELECT TOP 1 * FROM BookCopies WHERE CopyID = @CopyID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.Parameters.AddWithValue("CopyID", copyID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.Read())
+                            {
+                                isFound = true;
+                                bookID = (int)sqlDataReader["BookID"];
+                                availabilityStatus = (bool)sqlDataReader["AvailabilityStatus"];
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return isFound;
+        }
+
     }
 }
