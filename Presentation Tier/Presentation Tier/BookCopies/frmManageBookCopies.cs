@@ -49,6 +49,11 @@ namespace Presentation_Tier.BookCopies
             return int.Parse(dgvTable.SelectedRows[0].Cells["BookID"].Value.ToString());
         }
 
+        private int GetCopyID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["CopyID"].Value.ToString());
+        }
+
         private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmShowBookDetails showBookDetails = new frmShowBookDetails(GetBookID());
@@ -70,5 +75,25 @@ namespace Presentation_Tier.BookCopies
             dgvTable.DataSource = dv;
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int copyID = GetCopyID();
+
+            if (MessageBox.Show($"Are you sure to delete this Book Copy where ID = {copyID}", "Info", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                if (clsBookCopies.DoesBookCopyExist(copyID))
+                {
+                    if (clsBookCopies.DeleteBookCopy(copyID))
+                    {
+                        clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
+                        GetBookCopies();
+                        return;
+                    }
+                }
+
+                clsUtilityLibrary.PrintErrorMessage("Failed to delete.");
+            }
+        }
     }
 }

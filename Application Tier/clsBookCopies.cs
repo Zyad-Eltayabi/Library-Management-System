@@ -42,5 +42,15 @@ namespace Application_Tier
         {
             return clsBookCopiesDB.GetAllBookCopies();
         }
+
+        public static bool DoesBookCopyExist(int bookCopyID)
+        {
+            return clsBookCopiesDB.DoesBookCopyExist(bookCopyID);
+        }
+
+        public static bool DeleteBookCopy(int bookCopyID)
+        {
+            return clsBookCopiesDB.DeleteBookCopy(bookCopyID);
+        }
     }
 }

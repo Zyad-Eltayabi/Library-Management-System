@@ -81,6 +81,54 @@ namespace Database_Tier
             return dataTable;
         }
 
+        public static bool DeleteBookCopy(int bookCopyID)
+        {
+            string query = @"delete from BookCopies where CopyID = @CopyID";
+            int rowsAffected = 0;
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CopyID", bookCopyID);
+                        rowsAffected = (int)sqlCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
 
+        public static bool DoesBookCopyExist(int bookCopyID)
+        {
+            bool isFound = false;
+            string query = @"SELECT CopyID FROM BookCopies WHERE CopyID = @CopyID";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("CopyID", bookCopyID);
+
+                        object result = sqlCommand.ExecuteScalar();
+
+                        isFound = (result != null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+
+            }
+            return isFound;
+        }
     }
 }
