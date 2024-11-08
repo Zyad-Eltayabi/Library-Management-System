@@ -48,5 +48,22 @@ namespace Presentation_Tier.Borrowing
         {
             return int.Parse(dgvTable.SelectedRows[0].Cells["BorrowingRecordID"].Value.ToString());
         }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
+
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable _borrowingBooks = clsBorrowingRecords.GetAllBorrowingRecords();
+            DataView dv = new DataView();
+            dv = _borrowingBooks.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
+        }
+
+
     }
 }
