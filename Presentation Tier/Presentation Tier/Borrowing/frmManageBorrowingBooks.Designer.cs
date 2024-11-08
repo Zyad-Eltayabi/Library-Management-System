@@ -34,21 +34,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageBorrowingBooks));
             this.dgvTable = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.showDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilter = new Guna.UI2.WinForms.Guna2TextBox();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnAddNew = new System.Windows.Forms.PictureBox();
+            this.showDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.guna2ContextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,34 +127,6 @@
             this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(169, 108);
             // 
-            // showDetailsToolStripMenuItem1
-            // 
-            this.showDetailsToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem1.Image")));
-            this.showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
-            this.showDetailsToolStripMenuItem1.Size = new System.Drawing.Size(168, 26);
-            this.showDetailsToolStripMenuItem1.Text = "Show Details";
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addToolStripMenuItem.Image")));
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.addToolStripMenuItem.Text = "Add";
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Image = global::Presentation_Tier.Properties.Resources.edit;
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.updateToolStripMenuItem.Text = "Update";
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -236,15 +206,33 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Records  -";
             // 
-            // btnAddNew
+            // showDetailsToolStripMenuItem1
             // 
-            this.btnAddNew.Image = global::Presentation_Tier.Properties.Resources.add1;
-            this.btnAddNew.Location = new System.Drawing.Point(1156, 252);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(60, 55);
-            this.btnAddNew.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAddNew.TabIndex = 20;
-            this.btnAddNew.TabStop = false;
+            this.showDetailsToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem1.Image")));
+            this.showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
+            this.showDetailsToolStripMenuItem1.Size = new System.Drawing.Size(168, 26);
+            this.showDetailsToolStripMenuItem1.Text = "Show Details";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addToolStripMenuItem.Image")));
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.addToolStripMenuItem.Text = "Add";
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Image = global::Presentation_Tier.Properties.Resources.edit;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.updateToolStripMenuItem.Text = "Update";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // pictureBox1
             // 
@@ -260,6 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1254, 720);
             this.Controls.Add(this.dgvTable);
             this.Controls.Add(this.label1);
@@ -268,14 +257,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbRecords);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmManageBorrowingBooks";
             this.Text = "Manage Borrowing Books";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
             this.guna2ContextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -296,7 +283,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbRecords;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox btnAddNew;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

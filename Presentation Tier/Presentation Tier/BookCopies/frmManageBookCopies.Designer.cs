@@ -46,6 +46,7 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddNew = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.borrowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.guna2ContextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).BeginInit();
@@ -114,6 +115,7 @@
             this.guna2ContextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.guna2ContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showDetailsToolStripMenuItem1,
+            this.borrowToolStripMenuItem,
             this.addToolStripMenuItem,
             this.updateToolStripMenuItem,
             this.deleteToolStripMenuItem});
@@ -127,7 +129,7 @@
             this.guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.guna2ContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(215, 136);
+            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(215, 162);
             // 
             // label1
             // 
@@ -268,6 +270,14 @@
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
+            // borrowToolStripMenuItem
+            // 
+            this.borrowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("borrowToolStripMenuItem.Image")));
+            this.borrowToolStripMenuItem.Name = "borrowToolStripMenuItem";
+            this.borrowToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.borrowToolStripMenuItem.Text = "Borrow";
+            this.borrowToolStripMenuItem.Click += new System.EventHandler(this.borrowToolStripMenuItem_Click);
+            // 
             // frmManageBookCopies
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -312,5 +322,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox btnAddNew;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem borrowToolStripMenuItem;
     }
 }

@@ -192,6 +192,7 @@
             this.btnBorrowing.Size = new System.Drawing.Size(247, 45);
             this.btnBorrowing.TabIndex = 3;
             this.btnBorrowing.Text = "Borrowing Books";
+            this.btnBorrowing.Click += new System.EventHandler(this.btnBorrowing_Click);
             // 
             // guna2Button1
             // 

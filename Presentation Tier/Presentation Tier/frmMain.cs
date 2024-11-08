@@ -2,6 +2,7 @@
 using Presentation_Tier.Authors;
 using Presentation_Tier.BookCopies;
 using Presentation_Tier.Books;
+using Presentation_Tier.Borrowing;
 using Presentation_Tier.Users;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,11 @@ namespace Presentation_Tier
         private void btnCopies_Click(object sender, EventArgs e)
         {
             AddNewFormToMainPanel(new frmManageBookCopies());
+        }
+
+        private void btnBorrowing_Click(object sender, EventArgs e)
+        {
+            AddNewFormToMainPanel(new frmManageBorrowingBooks());
         }
     }
 }

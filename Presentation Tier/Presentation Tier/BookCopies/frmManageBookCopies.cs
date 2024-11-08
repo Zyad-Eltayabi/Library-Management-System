@@ -1,5 +1,6 @@
 ﻿using Application_Tier;
 using Presentation_Tier.Books;
+using Presentation_Tier.Borrowing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +103,12 @@ namespace Presentation_Tier.BookCopies
             frmUpdateBookCopy updateBookCopy = new frmUpdateBookCopy(copyID);
             updateBookCopy.ShowDialog();
             GetBookCopies();
+        }
+
+        private void borrowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBorrowBook frmBorrowBook = new frmBorrowBook(GetCopyID());
+            frmBorrowBook.ShowDialog();
         }
     }
 }
