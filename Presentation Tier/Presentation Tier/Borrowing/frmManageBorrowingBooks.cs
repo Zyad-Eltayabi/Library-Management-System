@@ -28,5 +28,25 @@ namespace Presentation_Tier.Borrowing
             dgvTable.DataSource = clsBorrowingRecords.GetAllBorrowingRecords();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int borrowingRecordID = GetBorrowingRecordID();
+            clsBorrowingRecords borrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(borrowingRecordID);
+            if (borrowingRecord != null)
+            {
+                frmBorrowBook borrowBook = new frmBorrowBook(borrowingRecord);
+                borrowBook.ShowDialog();
+                GetBorrowingBooks();
+                return;
+            }
+
+            clsUtilityLibrary.PrintWarningMessage($"Sorry, this borrowing book with ID = {borrowingRecordID} is not found");
+        }
+
+        private int GetBorrowingRecordID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["BorrowingRecordID"].Value.ToString());
+        }
     }
 }

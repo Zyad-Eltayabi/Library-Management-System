@@ -53,6 +53,11 @@ namespace Application_Tier
             return this.BorrowingRecordID != -1;
         }
 
+        private bool UpdateBorrowingRecord()
+        {
+            return clsBorrowingRecordsDB.UpdateBorrowingRecord(BorrowingRecordID, UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
+        }
+
         public bool Save()
         {
             switch (enMode)
@@ -61,7 +66,7 @@ namespace Application_Tier
                     enMode = Mode.Update;
                     return AddNewBorrowingRecord();
                 case Mode.Update:
-                // return false;
+                 return UpdateBorrowingRecord();
                 default:
                     return false;
             }

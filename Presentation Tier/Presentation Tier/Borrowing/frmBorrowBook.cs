@@ -91,6 +91,8 @@ namespace Presentation_Tier.Borrowing
                 }
                 GetUserIDs();
                 SetUserID();
+                this.Text = "Return The Book";
+                btnBorrow.Text = "Save";
             }
         }
 
@@ -125,7 +127,7 @@ namespace Presentation_Tier.Borrowing
         private void AddNewBorrowingRecord()
         {
             int userID = int.Parse(cbUsers.Text.ToString());
-            clsBorrowingRecords newBorrowingRecord = new clsBorrowingRecords(
+            _borrowingRecord = new clsBorrowingRecords(
                 userID,
                 _bookCopy.CopyID,
                 DateTime.Now,
@@ -139,15 +141,40 @@ namespace Presentation_Tier.Borrowing
             if (_bookCopy.UpdateBookCopy())
             {
                 //if book deactivated successfully, then save a new borrowing record
-                if (newBorrowingRecord.Save())
+                if (_borrowingRecord.Save())
                 {
-                    lbBorrowingRecordID.Text = newBorrowingRecord.BorrowingRecordID.ToString();
+                    lbBorrowingRecordID.Text = _borrowingRecord.BorrowingRecordID.ToString();
                     clsUtilityLibrary.PrintInfoMessage("Successful operation.");
                     return;
                 }
             }
 
             clsUtilityLibrary.PrintErrorMessage("Failed to save");
+        }
+
+        private void UpdateBorrowingRecord()
+        {
+            _borrowingRecord.DueDate = dtDueDate.Value;
+            _borrowingRecord.UserID = int.Parse(cbUsers.Text.ToString());
+            if (dtActualReturnDate.Enabled)
+                _borrowingRecord.ActualReturnDate = dtActualReturnDate.Value;
+
+            // First, active a book copy.
+            _bookCopy = clsBookCopies.GetBookCopyByID(_borrowingRecord.CopyID);
+            _bookCopy.AvailabilityStatus = true;
+
+            if (_bookCopy.UpdateBookCopy())
+            {
+                //if book activated successfully, then update the borrowing record
+                if (_borrowingRecord.Save())
+                {
+                    clsUtilityLibrary.PrintInfoMessage("borrowing record updated successfully.");
+                    return;
+                }
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Failed to save");
+
         }
 
         private void Save()
@@ -159,6 +186,7 @@ namespace Presentation_Tier.Borrowing
                     enMode = Mode.Update;
                     break;
                 case Mode.Update:
+                    UpdateBorrowingRecord();
                     break;
                 default:
                     break;

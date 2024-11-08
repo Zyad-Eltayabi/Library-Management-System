@@ -146,5 +146,45 @@ namespace Database_Tier
             }
             return dataTable;
         }
+
+        public static bool UpdateBorrowingRecord(int borrowingRecordID, int userID, int copyID, DateTime borrowingDate, DateTime dueDate, DateTime? actualReturnDate)
+        {
+            int rowsAffected = 0;
+            string query = @"USE [LibraryManagementSystem]
+                                        UPDATE [dbo].[BorrowingRecords]
+                                              SET  [UserID] = @UserID,
+                                                     [CopyID] = @CopyID,
+                                                     [BorrowingDate] = @BorrowingDate,
+                                                     [DueDate] = @DueDate,
+                                                     [ActualReturnDate] = @ActualReturnDate
+                                         WHERE BorrowingRecordID = @BorrowingRecordID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@BorrowingRecordID", borrowingRecordID);
+                        sqlCommand.Parameters.AddWithValue("@UserID", userID);
+                        sqlCommand.Parameters.AddWithValue("@CopyID", copyID);
+                        sqlCommand.Parameters.AddWithValue("@BorrowingDate", borrowingDate);
+                        sqlCommand.Parameters.AddWithValue("@DueDate", dueDate);
+                        sqlCommand.Parameters.AddWithValue("@ActualReturnDate", actualReturnDate ?? (object)DBNull.Value);
+
+
+                        rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
     }
 }
