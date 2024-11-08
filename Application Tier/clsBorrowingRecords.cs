@@ -97,5 +97,10 @@ namespace Application_Tier
         {
             return clsBorrowingRecordsDB.GetAllBorrowingRecords();
         }
+
+        public static bool DeleteBorrowingRecord(int borrowingRecordID)
+        {
+            return clsBorrowingRecordsDB.DeleteBorrowingRecord(borrowingRecordID);
+        }
     }
 }

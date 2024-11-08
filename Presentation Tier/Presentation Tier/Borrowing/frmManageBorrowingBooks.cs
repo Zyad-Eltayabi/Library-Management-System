@@ -64,6 +64,25 @@ namespace Presentation_Tier.Borrowing
             dgvTable.DataSource = dv;
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int borrowingRecordID = GetBorrowingRecordID();
 
+            if (MessageBox.Show($"Are you sure to delete this borrowing record where BorrowingID = {borrowingRecordID}", "Info", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                if (clsBorrowingRecords.DoesBorrowingRecordExist(borrowingRecordID))
+                {
+                    if (clsBorrowingRecords.DeleteBorrowingRecord(borrowingRecordID))
+                    {
+                        clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
+                        GetBorrowingBooks();
+                        return;
+                    }
+                }
+
+                clsUtilityLibrary.PrintErrorMessage("Failed to delete.");
+            }
+        }
     }
 }
