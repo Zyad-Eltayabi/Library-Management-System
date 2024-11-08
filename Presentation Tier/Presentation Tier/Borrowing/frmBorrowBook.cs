@@ -8,25 +8,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Guna.UI2.Native.WinApi;
 
 namespace Presentation_Tier.Borrowing
 {
     public partial class frmBorrowBook : Form
     {
         clsBookCopies _bookCopy { get; set; }
+        clsBorrowingRecords _borrowingRecord { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public frmBorrowBook(int copyID, Mode mode)
+        public frmBorrowBook(clsBookCopies bookCopy)
         {
             InitializeComponent();
-            _bookCopy = clsBookCopies.GetBookCopyByID(copyID);
-            enMode = mode;
+            _bookCopy = bookCopy;
+            enMode = Mode.Add;
         }
+
+        public frmBorrowBook(clsBorrowingRecords borrowingRecord)
+        {
+            InitializeComponent();
+            _borrowingRecord = borrowingRecord;
+            enMode = Mode.Update;
+        }
+
+
 
         private void frmBorrowBook_Load(object sender, EventArgs e)
         {
-            SetBookCopyInfo();
+            SetBookInfo();
+        }
+
+        private void SetBookInfo()
+        {
+            switch (enMode)
+            {
+                case Mode.Add:
+                    SetBookCopyInfo();
+                    break;
+                case Mode.Update:
+                    SetBookCopyInfoInUpdateMode();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void GetUserIDs()
@@ -45,6 +71,36 @@ namespace Presentation_Tier.Borrowing
                 txtBorrowingDate.Text = DateTime.Now.ToShortDateString();
                 dtDueDate.MinDate = DateTime.Now.AddDays(1);
                 GetUserIDs();
+            }
+        }
+
+        private void SetBookCopyInfoInUpdateMode()
+        {
+            if (_borrowingRecord != null)
+            {
+                lbBorrowingRecordID.Text = _borrowingRecord.BorrowingRecordID.ToString();
+                lbCopyID.Text = _borrowingRecord.CopyID.ToString();
+                lbBookTitle.Text = (clsBookCopies.GetBookCopyByID(_borrowingRecord.CopyID)).Book.Title.ToString();
+                txtBorrowingDate.Text = _borrowingRecord.BorrowingDate.ToShortDateString();
+                dtDueDate.MinDate = _borrowingRecord.DueDate;
+                dtActualReturnDate.Enabled = true;
+                dtActualReturnDate.MinDate = DateTime.Now;
+                if (_borrowingRecord.ActualReturnDate != null)
+                {
+                    dtActualReturnDate.Value = _borrowingRecord.ActualReturnDate.Value;
+                }
+                GetUserIDs();
+                SetUserID();
+            }
+        }
+
+        private void SetUserID()
+        {
+            int indexOfUserIDeInComboBoxAuthor = cbUsers.FindString(_borrowingRecord.UserID.ToString());
+
+            if (indexOfUserIDeInComboBoxAuthor >= 0)
+            {
+                cbUsers.SelectedIndex = indexOfUserIDeInComboBoxAuthor;
             }
         }
 

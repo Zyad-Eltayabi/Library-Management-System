@@ -51,5 +51,73 @@ namespace Database_Tier
             return borrowingRecordID;
         }
 
+        public static bool GetBorrowingRecordByID(int borrowingRecordID, ref int userID, ref int copyID, ref DateTime borrowingDate, ref DateTime dueDate, ref DateTime? actualReturnDate)
+        {
+            bool isFound = false;
+            string query = "SELECT TOP 1 * FROM BorrowingRecords WHERE BorrowingRecordID = @BorrowingRecordID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.Parameters.AddWithValue("BorrowingRecordID", borrowingRecordID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.Read())
+                            {
+                                isFound = true;
+                                userID = (int)sqlDataReader["UserID"];
+                                copyID = (int)sqlDataReader["CopyID"];
+                                borrowingDate = (DateTime)sqlDataReader["BorrowingDate"];
+                                dueDate = (DateTime)sqlDataReader["DueDate"];
+
+                                if (!string.IsNullOrWhiteSpace(sqlDataReader["ActualReturnDate"].ToString()))
+                                    actualReturnDate = (DateTime)sqlDataReader["ActualReturnDate"];
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return isFound;
+        }
+
+        public static bool DoesBorrowingRecordExist(int borrowingRecordID)
+        {
+            bool isFound = false;
+            string query = @"SELECT BorrowingRecordID FROM BorrowingRecords WHERE BorrowingRecordID = @BorrowingRecordID";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("BorrowingRecordID", borrowingRecordID);
+
+                        object result = sqlCommand.ExecuteScalar();
+
+                        isFound = (result != null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+
+            }
+            return isFound;
+        }
+
     }
 }

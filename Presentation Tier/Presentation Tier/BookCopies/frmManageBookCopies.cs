@@ -121,8 +121,20 @@ namespace Presentation_Tier.BookCopies
                 return;
             }
 
-            frmBorrowBook frmBorrowBook = new frmBorrowBook(GetCopyID(), frmBorrowBook.Mode.Add);
+            frmBorrowBook frmBorrowBook = new frmBorrowBook(bookCopy);
             frmBorrowBook.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int borrowingID = 1;
+
+            if(clsBorrowingRecords.DoesBorrowingRecordExist(borrowingID))
+            {
+                clsBorrowingRecords borrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(borrowingID);
+                frmBorrowBook borrowBook = new frmBorrowBook(borrowingRecord);
+                borrowBook.ShowDialog();
+            }
         }
     }
 }

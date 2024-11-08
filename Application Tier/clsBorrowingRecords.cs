@@ -20,7 +20,7 @@ namespace Application_Tier
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsBorrowingRecords( int userID, int copyID, DateTime borrowingDate, DateTime dueDate, DateTime? actualReturnDate)
+        public clsBorrowingRecords(int userID, int copyID, DateTime borrowingDate, DateTime dueDate, DateTime? actualReturnDate)
         {
             UserID = userID;
             CopyID = copyID;
@@ -32,9 +32,23 @@ namespace Application_Tier
             this.enMode = Mode.Add;
         }
 
+        private clsBorrowingRecords(int borrowingRecordID, int userID, int copyID, DateTime borrowingDate, DateTime dueDate,
+            DateTime? actualReturnDate)
+        {
+            BorrowingRecordID = borrowingRecordID;
+            UserID = userID;
+            CopyID = copyID;
+            BorrowingDate = borrowingDate;
+            DueDate = dueDate;
+            ActualReturnDate = actualReturnDate;
+            BookCopy = clsBookCopies.GetBookCopyByID(copyID);
+            User = clsUsers.GetUserByID(userID);
+            this.enMode = Mode.Update;
+        }
+
         private bool AddNewBorrowingRecord()
         {
-            this.BorrowingRecordID = clsBorrowingRecordsDB.AddNewBorrowingRecord(UserID, CopyID,BorrowingDate,DueDate,ActualReturnDate);
+            this.BorrowingRecordID = clsBorrowingRecordsDB.AddNewBorrowingRecord(UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
             return this.BorrowingRecordID != -1;
         }
 
@@ -46,10 +60,31 @@ namespace Application_Tier
                     enMode = Mode.Update;
                     return AddNewBorrowingRecord();
                 case Mode.Update:
-                   // return false;
+                // return false;
                 default:
-                   return false;
+                    return false;
             }
+        }
+
+        public static bool DoesBorrowingRecordExist(int borrowingRecordID)
+        {
+            return clsBorrowingRecordsDB.DoesBorrowingRecordExist(borrowingRecordID);
+        }
+
+        public static clsBorrowingRecords GetBorrowingRecordByID(int borrowingRecordID)
+        {
+            int userID = -1;
+            int copyID = -1;
+            DateTime borrowingDate = DateTime.Now;
+            DateTime dueDate = DateTime.Now;
+            DateTime? actualReturnDate = null;
+
+            if (clsBorrowingRecordsDB.GetBorrowingRecordByID(borrowingRecordID, ref userID, ref copyID, ref borrowingDate,
+                ref dueDate, ref actualReturnDate))
+                return new clsBorrowingRecords(borrowingRecordID, userID, copyID, borrowingDate,
+                 dueDate, actualReturnDate);
+
+            return null;
         }
     }
 }

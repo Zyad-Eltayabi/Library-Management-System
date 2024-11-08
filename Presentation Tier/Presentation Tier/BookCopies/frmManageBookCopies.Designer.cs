@@ -34,19 +34,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageBookCopies));
             this.dgvTable = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            this.showDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.borrowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilter = new Guna.UI2.WinForms.Guna2TextBox();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.showDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddNew = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.borrowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.guna2ContextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).BeginInit();
@@ -129,7 +130,47 @@
             this.guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.guna2ContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(215, 162);
+            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(195, 134);
+            // 
+            // showDetailsToolStripMenuItem1
+            // 
+            this.showDetailsToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem1.Image")));
+            this.showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
+            this.showDetailsToolStripMenuItem1.Size = new System.Drawing.Size(194, 26);
+            this.showDetailsToolStripMenuItem1.Text = "Show Book Copy";
+            this.showDetailsToolStripMenuItem1.Click += new System.EventHandler(this.showDetailsToolStripMenuItem1_Click);
+            // 
+            // borrowToolStripMenuItem
+            // 
+            this.borrowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("borrowToolStripMenuItem.Image")));
+            this.borrowToolStripMenuItem.Name = "borrowToolStripMenuItem";
+            this.borrowToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.borrowToolStripMenuItem.Text = "Borrow";
+            this.borrowToolStripMenuItem.Click += new System.EventHandler(this.borrowToolStripMenuItem_Click);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addToolStripMenuItem.Image")));
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Image = global::Presentation_Tier.Properties.Resources.edit;
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.updateToolStripMenuItem.Text = "Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -217,38 +258,6 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Records  -";
             // 
-            // showDetailsToolStripMenuItem1
-            // 
-            this.showDetailsToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("showDetailsToolStripMenuItem1.Image")));
-            this.showDetailsToolStripMenuItem1.Name = "showDetailsToolStripMenuItem1";
-            this.showDetailsToolStripMenuItem1.Size = new System.Drawing.Size(214, 26);
-            this.showDetailsToolStripMenuItem1.Text = "Show Book Copy";
-            this.showDetailsToolStripMenuItem1.Click += new System.EventHandler(this.showDetailsToolStripMenuItem1_Click);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addToolStripMenuItem.Image")));
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Image = global::Presentation_Tier.Properties.Resources.edit;
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.updateToolStripMenuItem.Text = "Update";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
             // btnAddNew
             // 
             this.btnAddNew.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNew.Image")));
@@ -270,13 +279,15 @@
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
-            // borrowToolStripMenuItem
+            // button1
             // 
-            this.borrowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("borrowToolStripMenuItem.Image")));
-            this.borrowToolStripMenuItem.Name = "borrowToolStripMenuItem";
-            this.borrowToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
-            this.borrowToolStripMenuItem.Text = "Borrow";
-            this.borrowToolStripMenuItem.Click += new System.EventHandler(this.borrowToolStripMenuItem_Click);
+            this.button1.Location = new System.Drawing.Point(296, 158);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmManageBookCopies
             // 
@@ -284,6 +295,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1254, 720);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvTable);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFilter);
@@ -323,5 +335,6 @@
         private System.Windows.Forms.PictureBox btnAddNew;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem borrowToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
