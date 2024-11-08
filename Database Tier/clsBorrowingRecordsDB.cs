@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -110,6 +111,7 @@ namespace Database_Tier
                         isFound = (result != null);
                     }
                 }
+                SqlParameter sqlParameter = new SqlParameter();
             }
             catch (Exception ex)
             {
@@ -119,5 +121,30 @@ namespace Database_Tier
             return isFound;
         }
 
+        public static DataTable GetAllBorrowingRecords()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetBorrowingRecords", sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return dataTable;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace Presentation_Tier.Borrowing
         public frmManageBorrowingBooks()
         {
             InitializeComponent();
+        }
+
+        private void frmManageBorrowingBooks_Load(object sender, EventArgs e)
+        {
+            GetBorrowingBooks();
+        }
+
+        private void GetBorrowingBooks()
+        {
+            dgvTable.DataSource = clsBorrowingRecords.GetAllBorrowingRecords();
+            lbRecords.Text = dgvTable.RowCount.ToString();
         }
     }
 }

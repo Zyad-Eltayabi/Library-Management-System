@@ -1,6 +1,7 @@
 ﻿using Database_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,6 +86,11 @@ namespace Application_Tier
                  dueDate, actualReturnDate);
 
             return null;
+        }
+
+        public static DataTable GetAllBorrowingRecords()
+        {
+            return clsBorrowingRecordsDB.GetAllBorrowingRecords();
         }
     }
 }
