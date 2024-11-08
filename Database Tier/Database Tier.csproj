@@ -46,6 +46,7 @@
     <Compile Include="clsAuthorsDB.cs" />
     <Compile Include="clsBookCopiesDB.cs" />
     <Compile Include="clsBooksDB.cs" />
+    <Compile Include="clsBorrowingRecordsDB.cs" />
     <Compile Include="clsCountriesDB.cs" />
     <Compile Include="clsErrorLog.cs" />
     <Compile Include="clsUsersDB.cs" />

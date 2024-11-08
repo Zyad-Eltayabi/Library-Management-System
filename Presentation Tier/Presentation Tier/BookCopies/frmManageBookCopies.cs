@@ -107,7 +107,21 @@ namespace Presentation_Tier.BookCopies
 
         private void borrowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmBorrowBook frmBorrowBook = new frmBorrowBook(GetCopyID());
+            int copyID = GetCopyID();
+            clsBookCopies bookCopy = clsBookCopies.GetBookCopyByID(copyID);
+
+            if (bookCopy == null)
+            {
+                clsUtilityLibrary.PrintWarningMessage("This book is not found");
+            }
+
+            if (!bookCopy.AvailabilityStatus)
+            {
+                clsUtilityLibrary.PrintWarningMessage("This book is already borrowed, choose another book.");
+                return;
+            }
+
+            frmBorrowBook frmBorrowBook = new frmBorrowBook(GetCopyID(), frmBorrowBook.Mode.Add);
             frmBorrowBook.ShowDialog();
         }
     }

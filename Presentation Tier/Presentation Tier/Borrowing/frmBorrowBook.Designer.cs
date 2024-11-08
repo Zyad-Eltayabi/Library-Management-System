@@ -46,7 +46,6 @@
             this.lbUserName = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.dtBorrowingDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.dtDueDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -55,6 +54,7 @@
             this.dtActualReturnDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBorrow = new Guna.UI2.WinForms.Guna2Button();
+            this.txtBorrowingDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -242,19 +242,6 @@
             this.pictureBox9.TabIndex = 76;
             this.pictureBox9.TabStop = false;
             // 
-            // dtBorrowingDate
-            // 
-            this.dtBorrowingDate.Checked = true;
-            this.dtBorrowingDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtBorrowingDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtBorrowingDate.Location = new System.Drawing.Point(308, 482);
-            this.dtBorrowingDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtBorrowingDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtBorrowingDate.Name = "dtBorrowingDate";
-            this.dtBorrowingDate.Size = new System.Drawing.Size(317, 45);
-            this.dtBorrowingDate.TabIndex = 75;
-            this.dtBorrowingDate.Value = new System.DateTime(2024, 10, 18, 3, 42, 42, 51);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -346,6 +333,17 @@
             this.btnBorrow.Size = new System.Drawing.Size(180, 45);
             this.btnBorrow.TabIndex = 83;
             this.btnBorrow.Text = "Borrow ";
+            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
+            // 
+            // txtBorrowingDate
+            // 
+            this.txtBorrowingDate.AutoSize = true;
+            this.txtBorrowingDate.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBorrowingDate.Location = new System.Drawing.Point(316, 480);
+            this.txtBorrowingDate.Name = "txtBorrowingDate";
+            this.txtBorrowingDate.Size = new System.Drawing.Size(37, 36);
+            this.txtBorrowingDate.TabIndex = 72;
+            this.txtBorrowingDate.Text = "??";
             // 
             // frmBorrowBook
             // 
@@ -360,9 +358,9 @@
             this.Controls.Add(this.dtDueDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.dtBorrowingDate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.txtBorrowingDate);
             this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbUsers);
@@ -416,7 +414,6 @@
         private System.Windows.Forms.Label lbUserName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtBorrowingDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox7;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtDueDate;
@@ -425,5 +422,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtActualReturnDate;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2Button btnBorrow;
+        private System.Windows.Forms.Label txtBorrowingDate;
     }
 }

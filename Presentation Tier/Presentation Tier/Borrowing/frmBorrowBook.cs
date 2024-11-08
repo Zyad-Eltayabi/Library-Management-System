@@ -14,10 +14,14 @@ namespace Presentation_Tier.Borrowing
     public partial class frmBorrowBook : Form
     {
         clsBookCopies _bookCopy { get; set; }
-        public frmBorrowBook(int copyID)
+        public enum Mode { Add = 1, Update = 2 }
+        public Mode enMode { get; set; }
+
+        public frmBorrowBook(int copyID, Mode mode)
         {
             InitializeComponent();
             _bookCopy = clsBookCopies.GetBookCopyByID(copyID);
+            enMode = mode;
         }
 
         private void frmBorrowBook_Load(object sender, EventArgs e)
@@ -30,7 +34,6 @@ namespace Presentation_Tier.Borrowing
             DataTable users = clsUsers.GetAllUsers();
             cbUsers.DataSource = users;
             cbUsers.DisplayMember = "UserID";
-            //cbUsers.SelectedIndex = -1;
         }
 
         private void SetBookCopyInfo()
@@ -39,6 +42,8 @@ namespace Presentation_Tier.Borrowing
             {
                 lbCopyID.Text = _bookCopy.CopyID.ToString();
                 lbBookTitle.Text = _bookCopy.Book.Title.ToString();
+                txtBorrowingDate.Text = DateTime.Now.ToShortDateString();
+                dtDueDate.MinDate = DateTime.Now.AddDays(1);
                 GetUserIDs();
             }
         }
@@ -61,6 +66,52 @@ namespace Presentation_Tier.Borrowing
             }
         }
 
-        
+        private void AddNewBorrowingRecord()
+        {
+            int userID = int.Parse(cbUsers.Text.ToString());
+            clsBorrowingRecords newBorrowingRecord = new clsBorrowingRecords(
+                userID,
+                _bookCopy.CopyID,
+                DateTime.Now,
+                dtDueDate.Value,
+                null
+                );
+
+            // First, inactive a book copy.
+            _bookCopy.AvailabilityStatus = false;
+
+            if (_bookCopy.UpdateBookCopy())
+            {
+                //if book deactivated successfully, then save a new borrowing record
+                if (newBorrowingRecord.Save())
+                {
+                    lbBorrowingRecordID.Text = newBorrowingRecord.BorrowingRecordID.ToString();
+                    clsUtilityLibrary.PrintInfoMessage("Successful operation.");
+                    return;
+                }
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Failed to save");
+        }
+
+        private void Save()
+        {
+            switch (enMode)
+            {
+                case Mode.Add:
+                    AddNewBorrowingRecord();
+                    enMode = Mode.Update;
+                    break;
+                case Mode.Update:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btnBorrow_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
     }
 }
