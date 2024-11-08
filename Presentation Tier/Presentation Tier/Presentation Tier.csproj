@@ -127,6 +127,12 @@
     <Compile Include="Books\ucShowBookDetails.Designer.cs">
       <DependentUpon>ucShowBookDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Borrowing\frmManageBorrowingBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrowing\frmManageBorrowingBooks.Designer.cs">
+      <DependentUpon>frmManageBorrowingBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsUtilityLibrary.cs" />
     <Compile Include="Component\frm.cs">
       <SubType>Form</SubType>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Books\ucShowBookDetails.resx">
       <DependentUpon>ucShowBookDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrowing\frmManageBorrowingBooks.resx">
+      <DependentUpon>frmManageBorrowingBooks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Component\frm.resx">
       <DependentUpon>frm.cs</DependentUpon>
