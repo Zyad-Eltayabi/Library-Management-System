@@ -3,6 +3,7 @@ using Presentation_Tier.Authors;
 using Presentation_Tier.BookCopies;
 using Presentation_Tier.Books;
 using Presentation_Tier.Borrowing;
+using Presentation_Tier.Fines;
 using Presentation_Tier.Users;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace Presentation_Tier
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnAdmins.PerformClick();
+            btnBorrowing.PerformClick();
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)
@@ -75,6 +76,11 @@ namespace Presentation_Tier
         private void btnBorrowing_Click(object sender, EventArgs e)
         {
             AddNewFormToMainPanel(new frmManageBorrowingBooks());
+        }
+
+        private void btnFines_Click(object sender, EventArgs e)
+        {
+            AddNewFormToMainPanel(new frmManageFines());
         }
     }
 }
