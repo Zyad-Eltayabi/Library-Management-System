@@ -74,6 +74,20 @@ namespace Presentation_Tier.Authors
             GetALlAuthors();
         }
 
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
+
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable _authorsTable = clsAuthors.GetAllAuthors();
+            DataView dv = new DataView();
+            dv = _authorsTable.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
+        }
 
     }
 }

@@ -224,6 +224,7 @@
             this.txtFilter.SelectedText = "";
             this.txtFilter.Size = new System.Drawing.Size(229, 36);
             this.txtFilter.TabIndex = 19;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
             // cbFilter
             // 
@@ -235,9 +236,16 @@
             this.cbFilter.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cbFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbFilter.ItemHeight = 30;
+            this.cbFilter.Items.AddRange(new object[] {
+            "AuthorID",
+            "FirstName",
+            "LastName",
+            "CountryName",
+            "Gender"});
             this.cbFilter.Location = new System.Drawing.Point(131, 271);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(178, 36);
+            this.cbFilter.StartIndex = 0;
             this.cbFilter.TabIndex = 18;
             // 
             // label3
