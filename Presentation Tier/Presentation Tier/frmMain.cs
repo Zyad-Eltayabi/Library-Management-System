@@ -49,7 +49,7 @@ namespace Presentation_Tier
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnAuthors.PerformClick();
+            btnUsers.PerformClick();
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)

@@ -62,15 +62,12 @@ namespace Database_Tier
         public static DataTable GetAllUsers()
         {
             DataTable dataTable = new DataTable();
-
-            string query = @" SELECT *  FROM Users ";
-
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
                 {
                     sqlConnection.Open();
-                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllUsers", sqlConnection))
                     {
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
