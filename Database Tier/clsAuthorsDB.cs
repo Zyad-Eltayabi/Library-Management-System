@@ -65,16 +65,14 @@ namespace Database_Tier
         public static DataTable GetAllAuthors()
         {
             DataTable dataTable = new DataTable();
-
-            string query = @" SELECT *  FROM Authors ";
-
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
                 {
                     sqlConnection.Open();
-                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllAuthors", sqlConnection))
                     {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             dataTable.Load(sqlDataReader);
@@ -84,10 +82,8 @@ namespace Database_Tier
             }
             catch (Exception ex)
             {
-
                 clsErrorLog.Log(ex.Message);
             }
-
             return dataTable;
         }
 
