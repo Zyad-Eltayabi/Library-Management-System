@@ -57,15 +57,14 @@ namespace Database_Tier
         {
             DataTable dataTable = new DataTable();
 
-            string query = @"SELECT AdminID,FullName,IsActive FROM Admins";
-
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
                 {
                     sqlConnection.Open();
-                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllAdmins", sqlConnection))
                     {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             dataTable.Load(sqlDataReader);
