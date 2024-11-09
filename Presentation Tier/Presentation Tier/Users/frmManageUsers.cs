@@ -99,5 +99,21 @@ namespace Presentation_Tier.Users
 
             clsUtilityLibrary.PrintErrorMessage("Sorry, This user is not exist");
         }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
+
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable usersTable = clsUsers.GetAllUsers();
+            DataView dv = new DataView();
+            dv = usersTable.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
+        }
+
     }
 }
