@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace Presentation_Tier.Fines
         public frmManageFines()
         {
             InitializeComponent();
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            clsBorrowingRecords borrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(1);
+            if (borrowingRecord != null)
+            {
+                frmAddNewFine addNewFine = new frmAddNewFine(borrowingRecord);
+                addNewFine.ShowDialog();    
+            }
         }
     }
 }

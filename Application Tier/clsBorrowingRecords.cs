@@ -16,8 +16,9 @@ namespace Application_Tier
         public DateTime BorrowingDate { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime? ActualReturnDate { get; set; }
-        clsBookCopies BookCopy { get; set; }
-        clsUsers User { get; set; }
+        public clsBookCopies BookCopy { get; set; }
+        public clsBooks Book { get; set; }
+        public clsUsers User { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
@@ -30,6 +31,7 @@ namespace Application_Tier
             ActualReturnDate = actualReturnDate;
             BookCopy = clsBookCopies.GetBookCopyByID(copyID);
             User = clsUsers.GetUserByID(userID);
+            Book = clsBooks.GetBookByID(BookCopy.BookID);
             this.enMode = Mode.Add;
         }
 
@@ -44,6 +46,7 @@ namespace Application_Tier
             ActualReturnDate = actualReturnDate;
             BookCopy = clsBookCopies.GetBookCopyByID(copyID);
             User = clsUsers.GetUserByID(userID);
+            Book = clsBooks.GetBookByID(BookCopy.BookID);
             this.enMode = Mode.Update;
         }
 
@@ -66,7 +69,7 @@ namespace Application_Tier
                     enMode = Mode.Update;
                     return AddNewBorrowingRecord();
                 case Mode.Update:
-                 return UpdateBorrowingRecord();
+                    return UpdateBorrowingRecord();
                 default:
                     return false;
             }

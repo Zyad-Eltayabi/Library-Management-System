@@ -49,6 +49,7 @@
     <Compile Include="clsBorrowingRecordsDB.cs" />
     <Compile Include="clsCountriesDB.cs" />
     <Compile Include="clsErrorLog.cs" />
+    <Compile Include="clsSettingsDB.cs" />
     <Compile Include="clsUsersDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

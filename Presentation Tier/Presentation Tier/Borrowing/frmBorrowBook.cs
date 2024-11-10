@@ -84,10 +84,13 @@ namespace Presentation_Tier.Borrowing
                 txtBorrowingDate.Text = _borrowingRecord.BorrowingDate.ToShortDateString();
                 dtDueDate.MinDate = _borrowingRecord.DueDate;
                 dtActualReturnDate.Enabled = true;
-                dtActualReturnDate.MinDate = DateTime.Now;
                 if (_borrowingRecord.ActualReturnDate != null)
                 {
                     dtActualReturnDate.Value = _borrowingRecord.ActualReturnDate.Value;
+                }
+                else
+                {
+                    dtActualReturnDate.MinDate = DateTime.Now;
                 }
                 GetUserIDs();
                 SetUserID();

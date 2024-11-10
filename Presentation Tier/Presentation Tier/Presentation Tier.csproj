@@ -146,6 +146,12 @@
     <Compile Include="Component\frm.Designer.cs">
       <DependentUpon>frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fines\frmAddNewFine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fines\frmAddNewFine.Designer.cs">
+      <DependentUpon>frmAddNewFine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fines\frmManageFines.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\frm.resx">
       <DependentUpon>frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fines\frmAddNewFine.resx">
+      <DependentUpon>frmAddNewFine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fines\frmManageFines.resx">
       <DependentUpon>frmManageFines.cs</DependentUpon>
