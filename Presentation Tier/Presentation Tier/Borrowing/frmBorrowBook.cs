@@ -1,4 +1,5 @@
 ﻿using Application_Tier;
+using Presentation_Tier.Fines;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -172,12 +173,27 @@ namespace Presentation_Tier.Borrowing
                 if (_borrowingRecord.Save())
                 {
                     clsUtilityLibrary.PrintInfoMessage("borrowing record updated successfully.");
+                    CheckFines();
                     return;
                 }
             }
 
             clsUtilityLibrary.PrintErrorMessage("Failed to save");
+        }
 
+        private void CheckFines()
+        {
+            if (_borrowingRecord.ActualReturnDate != null)
+            {
+                int numberOfLateDays = _borrowingRecord.ActualReturnDate.Value.Day - _borrowingRecord.DueDate.Day;
+                if (numberOfLateDays > 0)
+                {
+                    clsUtilityLibrary.PrintWarningMessage("There is a fine for this user.");
+                    frmAddNewFine addNewFine = new frmAddNewFine(_borrowingRecord);
+                    addNewFine.ShowDialog();
+                }
+
+            }
         }
 
         private void Save()

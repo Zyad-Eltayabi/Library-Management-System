@@ -18,14 +18,5 @@ namespace Presentation_Tier.Fines
             InitializeComponent();
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            clsBorrowingRecords borrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(1);
-            if (borrowingRecord != null)
-            {
-                frmAddNewFine addNewFine = new frmAddNewFine(borrowingRecord);
-                addNewFine.ShowDialog();    
-            }
-        }
     }
 }

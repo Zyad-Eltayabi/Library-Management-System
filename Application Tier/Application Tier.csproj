@@ -47,6 +47,7 @@
     <Compile Include="clsBookCopies.cs" />
     <Compile Include="clsBooks.cs" />
     <Compile Include="clsCountries.cs" />
+    <Compile Include="clsFines.cs" />
     <Compile Include="clsHashing.cs" />
     <Compile Include="clsSettings.cs" />
     <Compile Include="clsUsers.cs" />

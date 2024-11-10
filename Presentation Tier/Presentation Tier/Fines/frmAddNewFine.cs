@@ -16,6 +16,7 @@ namespace Presentation_Tier.Fines
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
         private clsBorrowingRecords _borrowingRecord { get; set; }
+        private clsFines _fine { get; set; }
         public frmAddNewFine(clsBorrowingRecords borrowingRecord)
         {
             InitializeComponent();
@@ -72,6 +73,46 @@ namespace Presentation_Tier.Fines
         {
             int fine = clsSettings.GetDefaultFinePerDay();
             return fine > -1 ? fine : 0;
+        }
+
+        private void AddNewFine()
+        {
+            _fine = new clsFines(
+                _borrowingRecord.UserID,
+                _borrowingRecord.BorrowingRecordID,
+                (short)GetNumberOfLateDays(),
+                (decimal)GetFineAmount(),
+                cbPaymentStatus.Checked
+                );
+
+            if (_fine.Save())
+            {
+                clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Failed to save");
+            }
+        }
+
+        private void Save()
+        {
+            switch (enMode)
+            {
+                case Mode.Add:
+                    enMode = Mode.Update;
+                    AddNewFine();
+                    break;
+                case Mode.Update:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Save();
         }
     }
 }
