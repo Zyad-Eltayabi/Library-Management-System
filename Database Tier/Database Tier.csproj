@@ -50,6 +50,7 @@
     <Compile Include="clsCountryDB.cs" />
     <Compile Include="clsErrorLog.cs" />
     <Compile Include="clsFineDB.cs" />
+    <Compile Include="clsReservationDB.cs" />
     <Compile Include="clsSettingsDB.cs" />
     <Compile Include="clsUserDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -49,6 +49,7 @@
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsFine.cs" />
     <Compile Include="clsHashing.cs" />
+    <Compile Include="clsReservation.cs" />
     <Compile Include="clsSettings.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

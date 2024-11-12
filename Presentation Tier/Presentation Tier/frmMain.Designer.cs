@@ -146,6 +146,7 @@
             this.btnReservation.Size = new System.Drawing.Size(247, 45);
             this.btnReservation.TabIndex = 6;
             this.btnReservation.Text = "Reservation";
+            this.btnReservation.Click += new System.EventHandler(this.btnReservation_Click);
             // 
             // btnAuthors
             // 

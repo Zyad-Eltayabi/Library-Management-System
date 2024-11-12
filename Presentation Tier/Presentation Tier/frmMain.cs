@@ -4,6 +4,7 @@ using Presentation_Tier.BookCopies;
 using Presentation_Tier.Books;
 using Presentation_Tier.Borrowing;
 using Presentation_Tier.Fines;
+using Presentation_Tier.Reservations;
 using Presentation_Tier.Users;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace Presentation_Tier
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnFines.PerformClick();
+            btnCopies.PerformClick();
         }
 
         private void btnAuthors_Click(object sender, EventArgs e)
@@ -81,6 +82,11 @@ namespace Presentation_Tier
         private void btnFines_Click(object sender, EventArgs e)
         {
             AddNewFormToMainPanel(new frmManageFines());
+        }
+
+        private void btnReservation_Click(object sender, EventArgs e)
+        {
+            AddNewFormToMainPanel(new frmManageReservations());
         }
     }
 }
