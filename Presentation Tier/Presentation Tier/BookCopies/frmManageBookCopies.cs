@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Guna.UI2.Native.WinApi;
 
 namespace Presentation_Tier.BookCopies
 {
@@ -128,7 +129,44 @@ namespace Presentation_Tier.BookCopies
             GetBookCopies();
         }
 
-        private void reserveTheBookToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void CheckIsThereAnyReservationOnThisBookCopy(ref clsBookCopy bookCopy)
+        {
+            int getLatestReservationIdOnBookCopy = clsReservation.GetLatestReservationIdOnBookCopy(bookCopy.CopyID);
+            if (getLatestReservationIdOnBookCopy == -1)
+            {
+                // That is mean there is not any reservation on this book copy and available to reserve
+                frmCreateNewReservation createNewReservation = new frmCreateNewReservation(bookCopy.CopyID);
+                createNewReservation.ShowDialog();
+                GetBookCopies();
+            }
+
+            // check The book copy Is borrowed and is returned or not.
+            clsReservation reservation = clsReservation.GetReservationRecordByID(getLatestReservationIdOnBookCopy);
+            if (reservation.IsBorrowed && reservation.IsReturned)
+            {
+                // That mean this book copy is available to reserve
+                frmCreateNewReservation createNewReservation = new frmCreateNewReservation(bookCopy.CopyID);
+                createNewReservation.ShowDialog();
+                GetBookCopies();
+                return;
+            }
+
+            if(!reservation.IsBorrowed)
+            {
+                clsUtilityLibrary.PrintWarningMessage("We cannot reserve this book because there was a reservation on it and did not borrowed yet to the user.");
+                return;
+            }
+
+            if(!reservation.IsReturned)
+            {
+                clsUtilityLibrary.PrintWarningMessage("We cannot reserve this book because there was a reservation on it and did not returned yet from the user.");
+                return;
+            }
+        }
+
+        private void IsBookAvailableForBorrowing()
         {
             int copyID = GetCopyID();
             clsBookCopy bookCopy = clsBookCopy.GetBookCopyByID(copyID);
@@ -145,9 +183,17 @@ namespace Presentation_Tier.BookCopies
                 return;
             }
 
-            frmCreateNewReservation createNewReservation = new frmCreateNewReservation(copyID);
-            createNewReservation.ShowDialog();
-            GetBookCopies();
+            CheckIsThereAnyReservationOnThisBookCopy(ref bookCopy);
+        }
+
+        private void ReserveBookCopy()
+        {
+            IsBookAvailableForBorrowing();
+        }
+
+        private void reserveTheBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReserveBookCopy();
         }
     }
 }
