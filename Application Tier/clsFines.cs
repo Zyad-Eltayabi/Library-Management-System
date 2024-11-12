@@ -32,6 +32,19 @@ namespace Application_Tier
             this.enMode = Mode.Add;
         }
 
+        public clsFines(int fineID, int userID, int borrowingRecordID, short numberOfLateDays, decimal fineAmount,
+            bool paymentStatus)
+        {
+            FineID = fineID;
+            UserID = userID;
+            BorrowingRecordID = borrowingRecordID;
+            NumberOfLateDays = numberOfLateDays;
+            FineAmount = fineAmount;
+            PaymentStatus = paymentStatus;
+            BorrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(borrowingRecordID);
+            this.enMode = Mode.Update;
+        }
+
         private bool AddNewFine()
         {
             this.FineID = clsFinesDB.AddNewFine(UserID, BorrowingRecordID, NumberOfLateDays, FineAmount, PaymentStatus);
@@ -55,6 +68,24 @@ namespace Application_Tier
         public static DataTable GetAllFines()
         {
             return clsFinesDB.GetAllFines();
+        }
+
+        public static bool DoesFineExist(int fineID)
+        {
+            return clsFinesDB.DoesFineExist(fineID);
+        }
+
+        public static clsFines GetFineByID(int fineID)
+        {
+            int userID = -1;
+            int borrowingRecordID = -1;
+            short numberOfLateDays = -1;
+            decimal fineAmount = 0; bool paymentStatus = false;
+
+            if (clsFinesDB.GetFineByID(fineID, ref userID, ref borrowingRecordID, ref numberOfLateDays, ref fineAmount, ref paymentStatus))
+                return new clsFines(fineID, userID, borrowingRecordID, numberOfLateDays, fineAmount, paymentStatus);
+
+            return null;
         }
     }
 }

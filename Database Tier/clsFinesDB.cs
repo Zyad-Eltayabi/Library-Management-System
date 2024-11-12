@@ -82,5 +82,71 @@ namespace Database_Tier
             return dataTable;
         }
 
+        public static bool DoesFineExist(int fineID)
+        {
+            bool isFound = false;
+            string query = @"SELECT FineID FROM Fines WHERE FineID = @FineID";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("FineID", fineID);
+
+                        object result = sqlCommand.ExecuteScalar();
+
+                        isFound = (result != null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.Message);
+
+            }
+            return isFound;
+        }
+
+        public static bool GetFineByID(int fineID, ref int userID, ref int borrowingRecordID, ref short numberOfLateDays, ref decimal fineAmount, ref bool paymentStatus)
+        {
+            bool isFound = false;
+            string query = "SELECT TOP 1 * FROM Fines WHERE FineID = @FineID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlConnection.Open();
+                        sqlCommand.Parameters.AddWithValue("FineID", fineID);
+
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            if (sqlDataReader.Read())
+                            {
+                                isFound = true;
+                                userID = (int)sqlDataReader["UserID"];
+                                borrowingRecordID = (int)sqlDataReader["BorrowingRecordID"];
+                                numberOfLateDays = (short)sqlDataReader["NumberOfLateDays"];
+                                fineAmount = (decimal)sqlDataReader["FineAmount"];
+                                paymentStatus = (bool)sqlDataReader["PaymentStatus"];
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return isFound;
+        }
+
     }
 }

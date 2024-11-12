@@ -1,4 +1,5 @@
 ﻿using Application_Tier;
+using Presentation_Tier.Borrowing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,24 @@ namespace Presentation_Tier.Fines
         {
             dgvTable.DataSource = clsFines.GetAllFines();
             lbRecords.Text = dgvTable.RowCount.ToString();
+        }
+
+        private int GetFineID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["FineID"].Value.ToString());
+        }
+
+        private void updateToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            clsFines fine = clsFines.GetFineByID(GetFineID());
+            if (fine != null)
+            {
+                frmAddNewFine addNewFine = new frmAddNewFine(fine);
+                addNewFine.ShowDialog();
+                return;
+            }
+
+            clsUtilityLibrary.PrintWarningMessage("This fine record is not found");
         }
     }
 }

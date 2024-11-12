@@ -17,11 +17,19 @@ namespace Presentation_Tier.Fines
         public Mode enMode { get; set; }
         private clsBorrowingRecords _borrowingRecord { get; set; }
         private clsFines _fine { get; set; }
+
         public frmAddNewFine(clsBorrowingRecords borrowingRecord)
         {
             InitializeComponent();
             _borrowingRecord = borrowingRecord;
             enMode = Mode.Add;
+        }
+
+        public frmAddNewFine(clsFines fine)
+        {
+            InitializeComponent();
+            _fine = fine;
+            enMode = Mode.Update;
         }
 
         private void frmAddNewFine_Load(object sender, EventArgs e)
@@ -37,9 +45,28 @@ namespace Presentation_Tier.Fines
                     SetFineInfoInAddMode();
                     break;
                 case Mode.Update:
+                    SetFineInfoInUpdateMode();
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void SetFineInfoInUpdateMode()
+        {
+            if (_fine != null)
+            {
+                this.Text = "Update Fine";
+                lbFineID.Text = _fine.FineID.ToString();
+                lbBorrowingRecordID.Text = _fine.BorrowingRecordID.ToString();
+                lbCopyID.Text = _fine.BorrowingRecord.CopyID.ToString();
+                lbBookTitle.Text = _fine.BorrowingRecord.Book.Title.ToString();
+                lbUserID.Text = _fine.BorrowingRecord.UserID.ToString();
+                lbUserName.Text = (_fine.BorrowingRecord.User.FirstName + " " + _fine.BorrowingRecord.User.LastName).ToString();
+                lbLateDays.Text = _fine.NumberOfLateDays.ToString();
+                lbDefaultFinePerDay.Text = GetDefaultFinePerDay().ToString();
+                lbFineAmount.Text = _fine.FineAmount.ToString();
+                cbPaymentStatus.Checked = _fine.PaymentStatus;
             }
         }
 
