@@ -48,5 +48,19 @@ namespace Presentation_Tier.Fines
 
             clsUtilityLibrary.PrintWarningMessage("This fine record is not found");
         }
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable fines = clsFines.GetAllFines();
+            DataView dv = new DataView();
+            dv = fines.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
+        }
+
+        private void txtFilter_TextChanged_1(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
     }
 }
