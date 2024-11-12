@@ -35,5 +35,30 @@ namespace Database_Tier
             }
             return fine;
         }
+
+        public static int GetDefaultBorrowDays()
+        {
+            int days = -1;
+            string query = "select DefaultBorrowDays from Settings";
+            try
+            {
+
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        object result = sqlCommand.ExecuteScalar();
+                        if (result != null)
+                            days = int.Parse(result.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsErrorLog.Log(ex.ToString());
+            }
+            return days;
+        }
     }
 }

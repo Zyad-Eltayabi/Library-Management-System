@@ -9,7 +9,7 @@ namespace Application_Tier
 {
     public class clsSettings
     {
-        public int DefaultBorrrowDays {  get; set; }
+        public int DefaultBorrowDays {  get; set; }
         public int DefaultFinePerDay {  get; set; }
         public clsSettings()
         {
@@ -19,6 +19,11 @@ namespace Application_Tier
         public static int GetDefaultFinePerDay()
         {
             return clsSettingsDB.GetDefaultFinePerDay();
+        }
+
+        public static int GetDefaultBorrowDays()
+        {
+            return clsSettingsDB.GetDefaultBorrowDays();    
         }
     }
 }
