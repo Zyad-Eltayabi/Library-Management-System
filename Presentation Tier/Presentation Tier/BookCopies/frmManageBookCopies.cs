@@ -1,6 +1,7 @@
 ﻿using Application_Tier;
 using Presentation_Tier.Books;
 using Presentation_Tier.Borrowing;
+using Presentation_Tier.Reservations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -113,6 +114,7 @@ namespace Presentation_Tier.BookCopies
             if (bookCopy == null)
             {
                 clsUtilityLibrary.PrintWarningMessage("This book is not found");
+                return;
             }
 
             if (!bookCopy.AvailabilityStatus)
@@ -123,6 +125,29 @@ namespace Presentation_Tier.BookCopies
 
             frmBorrowBook frmBorrowBook = new frmBorrowBook(bookCopy);
             frmBorrowBook.ShowDialog();
+            GetBookCopies();
+        }
+
+        private void reserveTheBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int copyID = GetCopyID();
+            clsBookCopy bookCopy = clsBookCopy.GetBookCopyByID(copyID);
+
+            if (bookCopy == null)
+            {
+                clsUtilityLibrary.PrintWarningMessage("This book is not found");
+                return;
+            }
+
+            if (bookCopy.AvailabilityStatus)
+            {
+                clsUtilityLibrary.PrintWarningMessage("This book is available to borrow !!");
+                return;
+            }
+
+            frmCreateNewReservation createNewReservation = new frmCreateNewReservation(copyID);
+            createNewReservation.ShowDialog();
+            GetBookCopies();
         }
     }
 }

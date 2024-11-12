@@ -36,7 +36,6 @@
             this.lbReservationID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbUserID = new System.Windows.Forms.Label();
             this.lbCopyID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -47,8 +46,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dtReservationDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
+            this.cbUsers = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.lbReservationDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -127,16 +127,6 @@
             this.label1.Size = new System.Drawing.Size(83, 36);
             this.label1.TabIndex = 97;
             this.label1.Text = "User ID";
-            // 
-            // lbUserID
-            // 
-            this.lbUserID.AutoSize = true;
-            this.lbUserID.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbUserID.Location = new System.Drawing.Point(342, 313);
-            this.lbUserID.Name = "lbUserID";
-            this.lbUserID.Size = new System.Drawing.Size(37, 36);
-            this.lbUserID.TabIndex = 95;
-            this.lbUserID.Text = "??";
             // 
             // lbCopyID
             // 
@@ -221,7 +211,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(263, 417);
+            this.pictureBox2.Location = new System.Drawing.Point(263, 428);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(46, 36);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -232,24 +222,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(38, 417);
+            this.label7.Location = new System.Drawing.Point(38, 428);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(166, 36);
             this.label7.TabIndex = 108;
             this.label7.Text = "ReservationDate";
-            // 
-            // dtReservationDate
-            // 
-            this.dtReservationDate.Checked = true;
-            this.dtReservationDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtReservationDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtReservationDate.Location = new System.Drawing.Point(348, 417);
-            this.dtReservationDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtReservationDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtReservationDate.Name = "dtReservationDate";
-            this.dtReservationDate.Size = new System.Drawing.Size(200, 36);
-            this.dtReservationDate.TabIndex = 111;
-            this.dtReservationDate.Value = new System.DateTime(2024, 11, 12, 7, 18, 35, 195);
             // 
             // btnSave
             // 
@@ -265,17 +242,45 @@
             this.btnSave.Size = new System.Drawing.Size(180, 45);
             this.btnSave.TabIndex = 112;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // cbUsers
+            // 
+            this.cbUsers.BackColor = System.Drawing.Color.Transparent;
+            this.cbUsers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUsers.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbUsers.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbUsers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbUsers.ItemHeight = 30;
+            this.cbUsers.Location = new System.Drawing.Point(348, 309);
+            this.cbUsers.Name = "cbUsers";
+            this.cbUsers.Size = new System.Drawing.Size(154, 36);
+            this.cbUsers.TabIndex = 113;
+            this.cbUsers.SelectedIndexChanged += new System.EventHandler(this.cbUsers_SelectedIndexChanged);
+            // 
+            // lbReservationDate
+            // 
+            this.lbReservationDate.AutoSize = true;
+            this.lbReservationDate.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReservationDate.Location = new System.Drawing.Point(342, 428);
+            this.lbReservationDate.Name = "lbReservationDate";
+            this.lbReservationDate.Size = new System.Drawing.Size(37, 36);
+            this.lbReservationDate.TabIndex = 106;
+            this.lbReservationDate.Text = "??";
             // 
             // frmCreateNewReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 568);
+            this.ClientSize = new System.Drawing.Size(800, 568);
+            this.Controls.Add(this.cbUsers);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dtReservationDate);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.lbReservationDate);
             this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox6);
@@ -287,13 +292,13 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.lbUserID);
             this.Controls.Add(this.lbCopyID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "frmCreateNewReservation";
             this.Text = "Create New Reservation";
+            this.Load += new System.EventHandler(this.frmCreateNewReservation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -320,13 +325,13 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label lbUserID;
         private System.Windows.Forms.Label lbCopyID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label7;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtReservationDate;
         private Guna.UI2.WinForms.Guna2Button btnSave;
+        private Guna.UI2.WinForms.Guna2ComboBox cbUsers;
+        private System.Windows.Forms.Label lbReservationDate;
     }
 }
