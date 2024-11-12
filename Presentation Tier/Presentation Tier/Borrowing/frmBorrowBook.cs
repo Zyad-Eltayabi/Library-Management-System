@@ -70,9 +70,16 @@ namespace Presentation_Tier.Borrowing
                 lbCopyID.Text = _bookCopy.CopyID.ToString();
                 lbBookTitle.Text = _bookCopy.Book.Title.ToString();
                 txtBorrowingDate.Text = DateTime.Now.ToShortDateString();
-                dtDueDate.MinDate = DateTime.Now.AddDays(1);
+                lbDueDate.Text = GetDueDate().ToString();
                 GetUserIDs();
             }
+        }
+
+        private DateTime GetDueDate()
+        {
+            int GetDefaultBorrowDays = clsSettings.GetDefaultBorrowDays();
+            DateTime dueDate = DateTime.Now;
+            return GetDefaultBorrowDays > 0 ? dueDate.AddDays(GetDefaultBorrowDays) : dueDate.AddDays(1);
         }
 
         private void SetBookCopyInfoInUpdateMode()
@@ -83,7 +90,7 @@ namespace Presentation_Tier.Borrowing
                 lbCopyID.Text = _borrowingRecord.CopyID.ToString();
                 lbBookTitle.Text = (clsBookCopies.GetBookCopyByID(_borrowingRecord.CopyID)).Book.Title.ToString();
                 txtBorrowingDate.Text = _borrowingRecord.BorrowingDate.ToShortDateString();
-                dtDueDate.MinDate = _borrowingRecord.DueDate;
+                lbDueDate.Text = _borrowingRecord.DueDate.ToString();
                 dtActualReturnDate.Enabled = true;
                 if (_borrowingRecord.ActualReturnDate != null)
                 {
@@ -135,7 +142,7 @@ namespace Presentation_Tier.Borrowing
                 userID,
                 _bookCopy.CopyID,
                 DateTime.Now,
-                dtDueDate.Value,
+                GetDueDate(),
                 null
                 );
 
@@ -158,7 +165,6 @@ namespace Presentation_Tier.Borrowing
 
         private void UpdateBorrowingRecord()
         {
-            _borrowingRecord.DueDate = dtDueDate.Value;
             _borrowingRecord.UserID = int.Parse(cbUsers.Text.ToString());
             if (dtActualReturnDate.Enabled)
                 _borrowingRecord.ActualReturnDate = dtActualReturnDate.Value;
@@ -187,7 +193,7 @@ namespace Presentation_Tier.Borrowing
             {
                 int numberOfLateDays = _borrowingRecord.ActualReturnDate.Value.Day - _borrowingRecord.DueDate.Day;
                 if (numberOfLateDays > 0)
-                {
+                {m
                     clsUtilityLibrary.PrintWarningMessage("There is a fine for this user.");
                     frmAddNewFine addNewFine = new frmAddNewFine(_borrowingRecord);
                     addNewFine.ShowDialog();

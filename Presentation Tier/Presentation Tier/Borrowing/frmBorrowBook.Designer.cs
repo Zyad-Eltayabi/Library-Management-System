@@ -40,7 +40,6 @@
             this.lbUserName = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dtDueDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.dtActualReturnDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
@@ -55,6 +54,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbDueDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -181,19 +181,6 @@
             this.label4.Size = new System.Drawing.Size(156, 36);
             this.label4.TabIndex = 74;
             this.label4.Text = "BorrowingDate";
-            // 
-            // dtDueDate
-            // 
-            this.dtDueDate.Checked = true;
-            this.dtDueDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtDueDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtDueDate.Location = new System.Drawing.Point(308, 551);
-            this.dtDueDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtDueDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtDueDate.Name = "dtDueDate";
-            this.dtDueDate.Size = new System.Drawing.Size(317, 45);
-            this.dtDueDate.TabIndex = 78;
-            this.dtDueDate.Value = new System.DateTime(2024, 10, 18, 3, 42, 42, 51);
             // 
             // label7
             // 
@@ -345,17 +332,27 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
+            // lbDueDate
+            // 
+            this.lbDueDate.AutoSize = true;
+            this.lbDueDate.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDueDate.Location = new System.Drawing.Point(316, 543);
+            this.lbDueDate.Name = "lbDueDate";
+            this.lbDueDate.Size = new System.Drawing.Size(37, 36);
+            this.lbDueDate.TabIndex = 84;
+            this.lbDueDate.Text = "??";
+            // 
             // frmBorrowBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 795);
+            this.Controls.Add(this.lbDueDate);
             this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.dtActualReturnDate);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.dtDueDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.label4);
@@ -416,12 +413,12 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtDueDate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtActualReturnDate;
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2Button btnBorrow;
         private System.Windows.Forms.Label txtBorrowingDate;
+        private System.Windows.Forms.Label lbDueDate;
     }
 }
