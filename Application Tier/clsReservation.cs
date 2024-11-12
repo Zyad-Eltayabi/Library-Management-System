@@ -20,7 +20,7 @@ namespace Application_Tier
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsReservation(int userID, int copyID, DateTime reservationDate,bool isBorrowed,bool isReturned)
+        public clsReservation(int userID, int copyID, DateTime reservationDate, bool isBorrowed, bool isReturned)
         {
             UserID = userID;
             CopyID = copyID;
@@ -30,6 +30,19 @@ namespace Application_Tier
             this.bookCopy = clsBookCopy.GetBookCopyByID(copyID);
             this.user = clsUser.GetUserByID(userID);
             enMode = Mode.Add;
+        }
+
+        private clsReservation(int reservationID, int userID, int copyID, DateTime reservationDate, bool isBorrowed, bool isReturned)
+        {
+            ReservationID = reservationID;
+            UserID = userID;
+            CopyID = copyID;
+            ReservationDate = reservationDate;
+            IsBorrowed = isBorrowed;
+            IsReturned = isReturned;
+            this.bookCopy = clsBookCopy.GetBookCopyByID(copyID);
+            this.user = clsUser.GetUserByID(userID);
+            enMode = Mode.Update;
         }
 
         private bool AddNewReservation()
@@ -50,5 +63,25 @@ namespace Application_Tier
                     return false;
             }
         }
+
+        public static int GetLatestReservationIdOnBookCopy(int bookCopyID)
+        {
+            return clsReservationDB.GetLatestReservationIdOnBookCopy(bookCopyID);
+        }
+
+        public static clsReservation GetReservationRecordByID(int ReservationID)
+        {
+            int userID = -1;
+            int copyID = -1;
+            DateTime reservationDate = DateTime.Now;
+            bool isBorrowed = false;
+            bool isReturned = false;
+
+            if (clsReservationDB.GetReservationByID(ReservationID, ref userID, ref copyID, ref reservationDate, ref isBorrowed, ref isReturned))
+                return new clsReservation(ReservationID, userID, copyID, reservationDate, isBorrowed, isReturned);
+
+            return null;
+        }
+
     }
 }
