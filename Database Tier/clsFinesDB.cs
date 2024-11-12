@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,33 @@ namespace Database_Tier
             return fineID;
 
 
+        }
+
+        public static DataTable GetAllFines()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetFines", sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
         }
 
     }

@@ -193,7 +193,7 @@ namespace Presentation_Tier.Borrowing
             {
                 int numberOfLateDays = _borrowingRecord.ActualReturnDate.Value.Day - _borrowingRecord.DueDate.Day;
                 if (numberOfLateDays > 0)
-                {m
+                {
                     clsUtilityLibrary.PrintWarningMessage("There is a fine for this user.");
                     frmAddNewFine addNewFine = new frmAddNewFine(_borrowingRecord);
                     addNewFine.ShowDialog();

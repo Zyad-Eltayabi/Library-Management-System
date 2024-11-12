@@ -1,6 +1,7 @@
 ﻿using Database_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,11 @@ namespace Application_Tier
                 default:
                     return false;
             }
+        }
+
+        public static DataTable GetAllFines()
+        {
+            return clsFinesDB.GetAllFines();
         }
     }
 }

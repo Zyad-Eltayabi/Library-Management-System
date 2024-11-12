@@ -18,5 +18,15 @@ namespace Presentation_Tier.Fines
             InitializeComponent();
         }
 
+        private void frmManageFines_Load(object sender, EventArgs e)
+        {
+            GetFines();
+        }
+
+        private void GetFines()
+        {
+            dgvTable.DataSource = clsFines.GetAllFines();
+            lbRecords.Text = dgvTable.RowCount.ToString();
+        }
     }
 }
