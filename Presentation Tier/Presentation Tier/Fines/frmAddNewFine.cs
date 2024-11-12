@@ -122,6 +122,19 @@ namespace Presentation_Tier.Fines
             }
         }
 
+        private void UpdateFine()
+        {
+            _fine.PaymentStatus = cbPaymentStatus.Checked;
+            if (_fine.Save())
+            {
+                clsUtilityLibrary.PrintInfoMessage("Data updated Successfully");
+            }
+            else
+            {
+                clsUtilityLibrary.PrintErrorMessage("Failed to save");
+            }
+        }
+
         private void Save()
         {
             switch (enMode)
@@ -131,6 +144,7 @@ namespace Presentation_Tier.Fines
                     AddNewFine();
                     break;
                 case Mode.Update:
+                    UpdateFine();
                     break;
                 default:
                     break;

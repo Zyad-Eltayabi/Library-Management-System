@@ -42,6 +42,7 @@ namespace Presentation_Tier.Fines
             {
                 frmAddNewFine addNewFine = new frmAddNewFine(fine);
                 addNewFine.ShowDialog();
+                GetFines(); 
                 return;
             }
 

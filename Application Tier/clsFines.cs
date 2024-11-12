@@ -51,6 +51,11 @@ namespace Application_Tier
             return FineID != -1;
         }
 
+        private bool UpdateFine()
+        {
+            return clsFinesDB.UpdateFine(FineID, UserID, BorrowingRecordID, NumberOfLateDays, FineAmount, PaymentStatus);
+        }
+
         public bool Save()
         {
             switch (enMode)
@@ -59,7 +64,7 @@ namespace Application_Tier
                     enMode = Mode.Update;
                     return AddNewFine();
                 case Mode.Update:
-                //return ;
+                    return UpdateFine();
                 default:
                     return false;
             }
