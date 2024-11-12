@@ -49,6 +49,12 @@
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.cbUsers = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lbReservationDate = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbIsBorrowed = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.cbIsReturned = new Guna.UI2.WinForms.Guna2CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -56,6 +62,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // lbUserName
@@ -237,7 +245,7 @@
             this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(234, 496);
+            this.btnSave.Location = new System.Drawing.Point(263, 626);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(180, 45);
             this.btnSave.TabIndex = 112;
@@ -270,11 +278,91 @@
             this.lbReservationDate.TabIndex = 106;
             this.lbReservationDate.Text = "??";
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(263, 493);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(46, 36);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 116;
+            this.pictureBox8.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(38, 493);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 36);
+            this.label2.TabIndex = 115;
+            this.label2.Text = "IsBorrowed ";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(263, 542);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(46, 36);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 119;
+            this.pictureBox9.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Janna LT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(38, 542);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(119, 36);
+            this.label9.TabIndex = 118;
+            this.label9.Text = "IsReturned ";
+            // 
+            // cbIsBorrowed
+            // 
+            this.cbIsBorrowed.AutoSize = true;
+            this.cbIsBorrowed.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbIsBorrowed.CheckedState.BorderRadius = 0;
+            this.cbIsBorrowed.CheckedState.BorderThickness = 0;
+            this.cbIsBorrowed.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbIsBorrowed.Location = new System.Drawing.Point(348, 501);
+            this.cbIsBorrowed.Name = "cbIsBorrowed";
+            this.cbIsBorrowed.Size = new System.Drawing.Size(58, 21);
+            this.cbIsBorrowed.TabIndex = 120;
+            this.cbIsBorrowed.Text = "True";
+            this.cbIsBorrowed.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbIsBorrowed.UncheckedState.BorderRadius = 0;
+            this.cbIsBorrowed.UncheckedState.BorderThickness = 0;
+            this.cbIsBorrowed.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            // 
+            // cbIsReturned
+            // 
+            this.cbIsReturned.AutoSize = true;
+            this.cbIsReturned.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbIsReturned.CheckedState.BorderRadius = 0;
+            this.cbIsReturned.CheckedState.BorderThickness = 0;
+            this.cbIsReturned.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbIsReturned.Location = new System.Drawing.Point(348, 550);
+            this.cbIsReturned.Name = "cbIsReturned";
+            this.cbIsReturned.Size = new System.Drawing.Size(58, 21);
+            this.cbIsReturned.TabIndex = 120;
+            this.cbIsReturned.Text = "True";
+            this.cbIsReturned.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbIsReturned.UncheckedState.BorderRadius = 0;
+            this.cbIsReturned.UncheckedState.BorderThickness = 0;
+            this.cbIsReturned.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            // 
             // frmCreateNewReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 568);
+            this.ClientSize = new System.Drawing.Size(800, 698);
+            this.Controls.Add(this.cbIsReturned);
+            this.Controls.Add(this.cbIsBorrowed);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cbUsers);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pictureBox2);
@@ -306,6 +394,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,5 +423,11 @@
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2ComboBox cbUsers;
         private System.Windows.Forms.Label lbReservationDate;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.Label label9;
+        private Guna.UI2.WinForms.Guna2CheckBox cbIsBorrowed;
+        private Guna.UI2.WinForms.Guna2CheckBox cbIsReturned;
     }
 }

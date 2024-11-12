@@ -13,16 +13,20 @@ namespace Application_Tier
         public int UserID { get; set; }
         public int CopyID { get; set; }
         DateTime ReservationDate { get; set; }
+        public bool IsBorrowed { get; set; }
+        public bool IsReturned { get; set; }
         clsBookCopy bookCopy { get; set; }
         clsUser user { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsReservation( int userID, int copyID, DateTime reservationDate)
+        public clsReservation(int userID, int copyID, DateTime reservationDate,bool isBorrowed,bool isReturned)
         {
             UserID = userID;
             CopyID = copyID;
             ReservationDate = reservationDate;
+            IsBorrowed = isBorrowed;
+            IsReturned = isReturned;
             this.bookCopy = clsBookCopy.GetBookCopyByID(copyID);
             this.user = clsUser.GetUserByID(userID);
             enMode = Mode.Add;
@@ -30,7 +34,7 @@ namespace Application_Tier
 
         private bool AddNewReservation()
         {
-            this.ReservationID = clsReservationDB.AddNewReservation(UserID, CopyID,ReservationDate);
+            this.ReservationID = clsReservationDB.AddNewReservation(UserID, CopyID, ReservationDate, IsBorrowed, IsReturned);
             return ReservationID != -1;
         }
 

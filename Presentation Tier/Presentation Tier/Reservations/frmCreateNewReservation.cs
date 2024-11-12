@@ -48,7 +48,7 @@ namespace Presentation_Tier.Reservations
         private void AddNewReservation()
         {
             int userID = int.Parse(cbUsers.Text.ToString());
-            _reservation = new clsReservation(userID, _bookCopy.CopyID, DateTime.Now);
+            _reservation = new clsReservation(userID, _bookCopy.CopyID, DateTime.Now,cbIsBorrowed.Checked,cbIsReturned.Checked);
             if (_reservation.Save())
             {
                 this.Text = "Update Reservation";

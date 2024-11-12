@@ -10,14 +10,14 @@ namespace Database_Tier
 {
     public class clsReservationDB
     {
-        public static int AddNewReservation(int userID, int copyID, DateTime reservationDate)
+        public static int AddNewReservation(int userID, int copyID, DateTime reservationDate, bool isBorrowed, bool isReturned)
         {
             int reservationID = -1;
             string query = @" USE [LibraryManagementSystem] 
                                                    INSERT INTO [dbo].[Reservations]
-                                                    ([UserID],[CopyID],[ReservationDate])
+                                                    ([UserID],[CopyID],[ReservationDate],[IsBorrowed],[IsReturned])
                                                      VALUES
-                                                      (@UserID,@CopyID,@ReservationDate);
+                                                      (@UserID,@CopyID,@ReservationDate,@IsBorrowed,@IsReturned);
                                                         select SCOPE_IDENTITY();";
 
             try
@@ -30,6 +30,8 @@ namespace Database_Tier
                         sqlCommand.Parameters.AddWithValue("@UserID", userID);
                         sqlCommand.Parameters.AddWithValue("@CopyID", copyID);
                         sqlCommand.Parameters.AddWithValue("@ReservationDate", reservationDate);
+                        sqlCommand.Parameters.AddWithValue("@IsBorrowed", isBorrowed);
+                        sqlCommand.Parameters.AddWithValue("@IsReturned", isReturned);
 
 
                         object result = sqlCommand.ExecuteScalar();
