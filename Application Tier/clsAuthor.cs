@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsAuthors
+    public class clsAuthor
     {
         public int AuthorID { get; set; }
         public string FirstName { get; set; }
@@ -20,7 +20,7 @@ namespace Application_Tier
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsAuthors(string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID)
+        public clsAuthor(string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -31,7 +31,7 @@ namespace Application_Tier
             enMode = Mode.Add;
         }
 
-        private clsAuthors(int authorID, string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID, Mode enMode)
+        private clsAuthor(int authorID, string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID, Mode enMode)
         {
             AuthorID = authorID;
             FirstName = firstName;
@@ -43,7 +43,7 @@ namespace Application_Tier
             this.enMode = enMode;
         }
 
-        public static clsAuthors GetAuthorByID(int authorID)
+        public static clsAuthor GetAuthorByID(int authorID)
         {
             string firstName = "", lastName = "";
             DateTime dateOfBirth = DateTime.Now;
@@ -51,8 +51,8 @@ namespace Application_Tier
             bool gender = true;
             int nationalityID = -1;
 
-            if (clsAuthorsDB.GetAuthorByID(authorID, ref firstName, ref lastName, ref dateOfBirth, ref dateOfDeath, ref gender, ref nationalityID))
-                return new clsAuthors(authorID, firstName, lastName, dateOfBirth, dateOfDeath, gender, nationalityID, Mode.Update);
+            if (clsAuthorDB.GetAuthorByID(authorID, ref firstName, ref lastName, ref dateOfBirth, ref dateOfDeath, ref gender, ref nationalityID))
+                return new clsAuthor(authorID, firstName, lastName, dateOfBirth, dateOfDeath, gender, nationalityID, Mode.Update);
 
             return null;
 
@@ -60,13 +60,13 @@ namespace Application_Tier
 
         private bool AddNewAuthor()
         {
-            this.AuthorID = clsAuthorsDB.AddNewAuthor(FirstName, LastName, DateOfBirth, DateOfDeath, Gender, NationalityID);
+            this.AuthorID = clsAuthorDB.AddNewAuthor(FirstName, LastName, DateOfBirth, DateOfDeath, Gender, NationalityID);
             return AuthorID != -1;
         }
 
         private bool UpdateAuthor()
         {
-            return clsAuthorsDB.UpdateAuthor(AuthorID, FirstName, LastName, DateOfBirth, DateOfDeath, Gender, NationalityID);
+            return clsAuthorDB.UpdateAuthor(AuthorID, FirstName, LastName, DateOfBirth, DateOfDeath, Gender, NationalityID);
         }
 
         public bool Save()
@@ -88,17 +88,17 @@ namespace Application_Tier
 
         public static DataTable GetAllAuthors()
         {
-            return clsAuthorsDB.GetAllAuthors();
+            return clsAuthorDB.GetAllAuthors();
         }
 
         public static bool DeleteAuthor(int authorID)
         {
-            return clsAuthorsDB.DeleteAuthor(authorID);
+            return clsAuthorDB.DeleteAuthor(authorID);
         }
 
         public static DataTable GetAuthorsNames()
         {
-            return clsAuthorsDB.GetAuthorsNames();
+            return clsAuthorDB.GetAuthorsNames();
         }
 
         public string AuthorFullName()

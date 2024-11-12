@@ -13,7 +13,7 @@ namespace Presentation_Tier.Admins
 {
     public partial class frmAddNewAdmin : Form
     {
-        clsAdmins _updatedAdmin { get; set; }
+        clsAdmin _updatedAdmin { get; set; }
         public frmAddNewAdmin()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Presentation_Tier.Admins
         {
             InitializeComponent();
             _enMode = Mode.Update;
-            _updatedAdmin = clsAdmins.GetAdminByID(adminID);
+            _updatedAdmin = clsAdmin.GetAdminByID(adminID);
         }
 
         private enum Mode { Add = 1, Update = 2 };
@@ -67,7 +67,7 @@ namespace Presentation_Tier.Admins
 
         private void AddNewAdmin()
         {
-            clsAdmins newAdmin = new clsAdmins(txtName.Text.ToString(), txtUserName.Text.ToString(),
+            clsAdmin newAdmin = new clsAdmin(txtName.Text.ToString(), txtUserName.Text.ToString(),
                 txtPass.Text.ToString(), cbIsActive.Checked);
 
             if (newAdmin.Save())

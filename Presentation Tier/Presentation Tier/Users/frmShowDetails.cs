@@ -27,7 +27,7 @@ namespace Presentation_Tier.Users
 
         private void SetUserDetails()
         {
-            clsUsers user = clsUsers.GetUserByID(_userID);
+            clsUser user = clsUser.GetUserByID(_userID);
 
             lbUserID.Text = user.UserID.ToString();
             lbUserName.Text = user.FirstName;
@@ -42,7 +42,7 @@ namespace Presentation_Tier.Users
             else
                 rbFemale.Checked = true;
 
-            lbCountry.Text = clsCountries.GetCountryName(user.NationalityID);
+            lbCountry.Text = clsCountry.GetCountryName(user.NationalityID);
         }
     }
 }

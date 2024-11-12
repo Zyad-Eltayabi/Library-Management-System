@@ -33,7 +33,7 @@ namespace Presentation_Tier.Admins
 
         private void GetAllAdmins()
         {
-            dgvTable.DataSource = clsAdmins.GetAllAdmins();
+            dgvTable.DataSource = clsAdmin.GetAllAdmins();
             lbRecords.Text = dgvTable.Rows.Count.ToString();
         }
 
@@ -56,7 +56,7 @@ namespace Presentation_Tier.Admins
             if(MessageBox.Show($"Are you sure to delete this Admin where ID = {adminID}", "Info", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                if(clsAdmins.DeleteAdmin(adminID))
+                if(clsAdmin.DeleteAdmin(adminID))
                 {
                     clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
                     GetAllAdmins();
@@ -82,7 +82,7 @@ namespace Presentation_Tier.Admins
 
         private void SetFilter(string colName, string colValue)
         {
-            DataTable admins = clsAdmins.GetAllAdmins();
+            DataTable admins = clsAdmin.GetAllAdmins();
             DataView dv = new DataView();
             dv = admins.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))

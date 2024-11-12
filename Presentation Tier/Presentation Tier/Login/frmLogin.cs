@@ -41,7 +41,7 @@ namespace Presentation_Tier.Login
 
         private void CheckUsernameAndPassword()
         {
-            DataTable adminDetails = clsAdmins.GetAdminByUserNameAndPassword(txtUser.Text.ToString(), txtPass.Text.ToString());
+            DataTable adminDetails = clsAdmin.GetAdminByUserNameAndPassword(txtUser.Text.ToString(), txtPass.Text.ToString());
 
             if (adminDetails.Rows.Count == 0)
             {

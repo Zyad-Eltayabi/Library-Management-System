@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Database_Tier
 {
-    public class clsBorrowingRecordsDB
+    public class clsBorrowingRecordDB
     {
         public static int AddNewBorrowingRecord(int userID, int copyID, DateTime borrowingDate, DateTime dueDate, DateTime? actualReturnDate)
         {

@@ -42,16 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsAdminsDB.cs" />
-    <Compile Include="clsAuthorsDB.cs" />
-    <Compile Include="clsBookCopiesDB.cs" />
+    <Compile Include="clsAdminDB.cs" />
+    <Compile Include="clsAuthorDB.cs" />
+    <Compile Include="clsBookCopyDB.cs" />
     <Compile Include="clsBooksDB.cs" />
-    <Compile Include="clsBorrowingRecordsDB.cs" />
-    <Compile Include="clsCountriesDB.cs" />
+    <Compile Include="clsBorrowingRecordDB.cs" />
+    <Compile Include="clsCountryDB.cs" />
     <Compile Include="clsErrorLog.cs" />
-    <Compile Include="clsFinesDB.cs" />
+    <Compile Include="clsFineDB.cs" />
     <Compile Include="clsSettingsDB.cs" />
-    <Compile Include="clsUsersDB.cs" />
+    <Compile Include="clsUserDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

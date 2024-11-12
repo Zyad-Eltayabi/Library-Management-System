@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsUsers
+    public class clsUser
     {
         public int UserID { get; set; }
         public string LibraryCardNumber { get; set; }
@@ -25,7 +25,7 @@ namespace Application_Tier
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        private clsUsers(int userID, string libraryCardNumber, string firstName, string lastName, DateTime dateOfBirth, bool gender,
+        private clsUser(int userID, string libraryCardNumber, string firstName, string lastName, DateTime dateOfBirth, bool gender,
             string email, string phoneNumber, string address, DateTime membershipDate, int nationalityID, Mode enMode)
         {
             UserID = userID;
@@ -42,7 +42,7 @@ namespace Application_Tier
             this.enMode = enMode;
         }
 
-        public clsUsers(string libraryCardNumber, string firstName, string lastName, DateTime dateOfBirth, bool gender,
+        public clsUser(string libraryCardNumber, string firstName, string lastName, DateTime dateOfBirth, bool gender,
             string email, string phoneNumber, string address, DateTime membershipDate, int nationalityID, Mode enMode)
         {
             LibraryCardNumber = libraryCardNumber;
@@ -60,7 +60,7 @@ namespace Application_Tier
 
         private bool AddNewUser()
         {
-            this.UserID = clsUsersDB.AddNewUser(LibraryCardNumber, FirstName, LastName, DateOfBirth, Gender,
+            this.UserID = clsUserDB.AddNewUser(LibraryCardNumber, FirstName, LastName, DateOfBirth, Gender,
              Email, PhoneNumber, Address, MembershipDate, NationalityID);
 
             return UserID != -1;
@@ -68,7 +68,7 @@ namespace Application_Tier
 
         private bool UpdateAuthor()
         {
-            return clsUsersDB.UpdateUser(UserID, LibraryCardNumber, FirstName, LastName, DateOfBirth, Gender,
+            return clsUserDB.UpdateUser(UserID, LibraryCardNumber, FirstName, LastName, DateOfBirth, Gender,
              Email, PhoneNumber, Address, MembershipDate, NationalityID);
         }
 
@@ -91,32 +91,32 @@ namespace Application_Tier
 
         public static DataTable GetAllUsers()
         {
-            return clsUsersDB.GetAllUsers();
+            return clsUserDB.GetAllUsers();
         }
 
-        public static clsUsers GetUserByID(int userID)
+        public static clsUser GetUserByID(int userID)
         {
             string libraryCardNumber = "", firstName = "", lastName = "", email = "", phoneNumber = "", address = "";
             DateTime dateOfBirth = DateTime.Now;
             bool gender = true;
             DateTime membershipDate = DateTime.Now; int nationalityID = -1;
 
-            if (clsUsersDB.GetUserByID(userID, ref libraryCardNumber, ref firstName, ref lastName, ref dateOfBirth, ref gender,
+            if (clsUserDB.GetUserByID(userID, ref libraryCardNumber, ref firstName, ref lastName, ref dateOfBirth, ref gender,
             ref email, ref phoneNumber, ref address, ref membershipDate, ref nationalityID))
-                return new clsUsers(userID, libraryCardNumber, firstName, lastName, dateOfBirth, gender,
-             email, phoneNumber, address, membershipDate, nationalityID, clsUsers.Mode.Update);
+                return new clsUser(userID, libraryCardNumber, firstName, lastName, dateOfBirth, gender,
+             email, phoneNumber, address, membershipDate, nationalityID, clsUser.Mode.Update);
 
             return null;
         }
 
         public static bool DoesUserExist(int userID)
         {
-            return clsUsersDB.DoesUserExist(userID);
+            return clsUserDB.DoesUserExist(userID);
         }
 
         public static bool DeleteUser(int userID)
         {
-            return clsUsersDB.DeleteUser(userID);
+            return clsUserDB.DeleteUser(userID);
         }
     }
 }

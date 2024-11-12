@@ -15,19 +15,19 @@ namespace Presentation_Tier.Borrowing
 {
     public partial class frmBorrowBook : Form
     {
-        clsBookCopies _bookCopy { get; set; }
-        clsBorrowingRecords _borrowingRecord { get; set; }
+        clsBookCopy _bookCopy { get; set; }
+        clsBorrowingRecord _borrowingRecord { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public frmBorrowBook(clsBookCopies bookCopy)
+        public frmBorrowBook(clsBookCopy bookCopy)
         {
             InitializeComponent();
             _bookCopy = bookCopy;
             enMode = Mode.Add;
         }
 
-        public frmBorrowBook(clsBorrowingRecords borrowingRecord)
+        public frmBorrowBook(clsBorrowingRecord borrowingRecord)
         {
             InitializeComponent();
             _borrowingRecord = borrowingRecord;
@@ -58,7 +58,7 @@ namespace Presentation_Tier.Borrowing
 
         private void GetUserIDs()
         {
-            DataTable users = clsUsers.GetAllUsers();
+            DataTable users = clsUser.GetAllUsers();
             cbUsers.DataSource = users;
             cbUsers.DisplayMember = "UserID";
         }
@@ -88,7 +88,7 @@ namespace Presentation_Tier.Borrowing
             {
                 lbBorrowingRecordID.Text = _borrowingRecord.BorrowingRecordID.ToString();
                 lbCopyID.Text = _borrowingRecord.CopyID.ToString();
-                lbBookTitle.Text = (clsBookCopies.GetBookCopyByID(_borrowingRecord.CopyID)).Book.Title.ToString();
+                lbBookTitle.Text = (clsBookCopy.GetBookCopyByID(_borrowingRecord.CopyID)).Book.Title.ToString();
                 txtBorrowingDate.Text = _borrowingRecord.BorrowingDate.ToShortDateString();
                 lbDueDate.Text = _borrowingRecord.DueDate.ToString();
                 dtActualReturnDate.Enabled = true;
@@ -127,7 +127,7 @@ namespace Presentation_Tier.Borrowing
             int userID = -1;
             if (int.TryParse(cbUsers.Text.ToString(), out userID))
             {
-                clsUsers user = clsUsers.GetUserByID(userID);
+                clsUser user = clsUser.GetUserByID(userID);
                 if (user != null)
                 {
                     lbUserName.Text = user.FirstName + " " + user.LastName;
@@ -138,7 +138,7 @@ namespace Presentation_Tier.Borrowing
         private void AddNewBorrowingRecord()
         {
             int userID = int.Parse(cbUsers.Text.ToString());
-            _borrowingRecord = new clsBorrowingRecords(
+            _borrowingRecord = new clsBorrowingRecord(
                 userID,
                 _bookCopy.CopyID,
                 DateTime.Now,
@@ -170,7 +170,7 @@ namespace Presentation_Tier.Borrowing
                 _borrowingRecord.ActualReturnDate = dtActualReturnDate.Value;
 
             // First, active a book copy.
-            _bookCopy = clsBookCopies.GetBookCopyByID(_borrowingRecord.CopyID);
+            _bookCopy = clsBookCopy.GetBookCopyByID(_borrowingRecord.CopyID);
             _bookCopy.AvailabilityStatus = true;
 
             if (_bookCopy.UpdateBookCopy())

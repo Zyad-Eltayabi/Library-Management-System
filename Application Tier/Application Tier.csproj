@@ -41,16 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsBorrowingRecords.cs" />
-    <Compile Include="clsAdmins.cs" />
-    <Compile Include="clsAuthors.cs" />
-    <Compile Include="clsBookCopies.cs" />
-    <Compile Include="clsBooks.cs" />
-    <Compile Include="clsCountries.cs" />
-    <Compile Include="clsFines.cs" />
+    <Compile Include="clsBorrowingRecord.cs" />
+    <Compile Include="clsAdmin.cs" />
+    <Compile Include="clsAuthor.cs" />
+    <Compile Include="clsBookCopy.cs" />
+    <Compile Include="clsBook.cs" />
+    <Compile Include="clsCountry.cs" />
+    <Compile Include="clsFine.cs" />
     <Compile Include="clsHashing.cs" />
     <Compile Include="clsSettings.cs" />
-    <Compile Include="clsUsers.cs" />
+    <Compile Include="clsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

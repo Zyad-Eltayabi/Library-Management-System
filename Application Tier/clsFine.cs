@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsFines
+    public class clsFine
     {
         public int FineID { get; set; }
         public int UserID { get; set; }
@@ -16,11 +16,11 @@ namespace Application_Tier
         public short NumberOfLateDays { get; set; }
         public decimal FineAmount { get; set; }
         public bool PaymentStatus { get; set; }
-        public clsBorrowingRecords BorrowingRecord { get; set; }
+        public clsBorrowingRecord BorrowingRecord { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsFines(int userID, int borrowingRecordID, short numberOfLateDays, decimal fineAmount,
+        public clsFine(int userID, int borrowingRecordID, short numberOfLateDays, decimal fineAmount,
             bool paymentStatus)
         {
             UserID = userID;
@@ -28,11 +28,11 @@ namespace Application_Tier
             NumberOfLateDays = numberOfLateDays;
             FineAmount = fineAmount;
             PaymentStatus = paymentStatus;
-            BorrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(borrowingRecordID);
+            BorrowingRecord = clsBorrowingRecord.GetBorrowingRecordByID(borrowingRecordID);
             this.enMode = Mode.Add;
         }
 
-        public clsFines(int fineID, int userID, int borrowingRecordID, short numberOfLateDays, decimal fineAmount,
+        public clsFine(int fineID, int userID, int borrowingRecordID, short numberOfLateDays, decimal fineAmount,
             bool paymentStatus)
         {
             FineID = fineID;
@@ -41,19 +41,19 @@ namespace Application_Tier
             NumberOfLateDays = numberOfLateDays;
             FineAmount = fineAmount;
             PaymentStatus = paymentStatus;
-            BorrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(borrowingRecordID);
+            BorrowingRecord = clsBorrowingRecord.GetBorrowingRecordByID(borrowingRecordID);
             this.enMode = Mode.Update;
         }
 
         private bool AddNewFine()
         {
-            this.FineID = clsFinesDB.AddNewFine(UserID, BorrowingRecordID, NumberOfLateDays, FineAmount, PaymentStatus);
+            this.FineID = clsFineDB.AddNewFine(UserID, BorrowingRecordID, NumberOfLateDays, FineAmount, PaymentStatus);
             return FineID != -1;
         }
 
         private bool UpdateFine()
         {
-            return clsFinesDB.UpdateFine(FineID, UserID, BorrowingRecordID, NumberOfLateDays, FineAmount, PaymentStatus);
+            return clsFineDB.UpdateFine(FineID, UserID, BorrowingRecordID, NumberOfLateDays, FineAmount, PaymentStatus);
         }
 
         public bool Save()
@@ -72,23 +72,23 @@ namespace Application_Tier
 
         public static DataTable GetAllFines()
         {
-            return clsFinesDB.GetAllFines();
+            return clsFineDB.GetAllFines();
         }
 
         public static bool DoesFineExist(int fineID)
         {
-            return clsFinesDB.DoesFineExist(fineID);
+            return clsFineDB.DoesFineExist(fineID);
         }
 
-        public static clsFines GetFineByID(int fineID)
+        public static clsFine GetFineByID(int fineID)
         {
             int userID = -1;
             int borrowingRecordID = -1;
             short numberOfLateDays = -1;
             decimal fineAmount = 0; bool paymentStatus = false;
 
-            if (clsFinesDB.GetFineByID(fineID, ref userID, ref borrowingRecordID, ref numberOfLateDays, ref fineAmount, ref paymentStatus))
-                return new clsFines(fineID, userID, borrowingRecordID, numberOfLateDays, fineAmount, paymentStatus);
+            if (clsFineDB.GetFineByID(fineID, ref userID, ref borrowingRecordID, ref numberOfLateDays, ref fineAmount, ref paymentStatus))
+                return new clsFine(fineID, userID, borrowingRecordID, numberOfLateDays, fineAmount, paymentStatus);
 
             return null;
         }

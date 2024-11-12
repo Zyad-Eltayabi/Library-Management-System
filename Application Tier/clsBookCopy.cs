@@ -8,37 +8,37 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsBookCopies
+    public class clsBookCopy
     {
         public int CopyID { get; set; }
         public int BookID { get; set; }
         public bool AvailabilityStatus { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
-        public clsBooks Book { get; set; }
+        public clsBook Book { get; set; }
 
-        public clsBookCopies(int bookID, bool availabilityStatus)
+        public clsBookCopy(int bookID, bool availabilityStatus)
         {
             BookID = bookID;
-            Book = clsBooks.GetBookByID(bookID);
+            Book = clsBook.GetBookByID(bookID);
             AvailabilityStatus = availabilityStatus;
             this.enMode = Mode.Add;
         }
 
-        private clsBookCopies(int copyID, int bookID, bool availabilityStatus)
+        private clsBookCopy(int copyID, int bookID, bool availabilityStatus)
         {
             CopyID = copyID;
             BookID = bookID;
             AvailabilityStatus = availabilityStatus;
             this.enMode = Mode.Update;
-            Book = clsBooks.GetBookByID(bookID);
+            Book = clsBook.GetBookByID(bookID);
         }
 
         public bool AddBookCopies(int NumberOfCopies)
         {
             for (int i = 0; i < NumberOfCopies; i++)
             {
-                this.CopyID = clsBookCopiesDB.AddNewBookCopy(BookID, AvailabilityStatus);
+                this.CopyID = clsBookCopyDB.AddNewBookCopy(BookID, AvailabilityStatus);
 
                 if (CopyID == -1)
                     return false;
@@ -49,33 +49,33 @@ namespace Application_Tier
 
         public static DataTable GetAllBookCopies()
         {
-            return clsBookCopiesDB.GetAllBookCopies();
+            return clsBookCopyDB.GetAllBookCopies();
         }
 
         public static bool DoesBookCopyExist(int bookCopyID)
         {
-            return clsBookCopiesDB.DoesBookCopyExist(bookCopyID);
+            return clsBookCopyDB.DoesBookCopyExist(bookCopyID);
         }
 
         public static bool DeleteBookCopy(int bookCopyID)
         {
-            return clsBookCopiesDB.DeleteBookCopy(bookCopyID);
+            return clsBookCopyDB.DeleteBookCopy(bookCopyID);
         }
 
-        public static clsBookCopies GetBookCopyByID(int bookCopyID)
+        public static clsBookCopy GetBookCopyByID(int bookCopyID)
         {
             int bookID = -1;
             bool availabilityStatus = false;
 
-            if (clsBookCopiesDB.GetBookCopyByID(bookCopyID, ref bookID, ref availabilityStatus))
-                return new clsBookCopies(bookCopyID, bookID, availabilityStatus);
+            if (clsBookCopyDB.GetBookCopyByID(bookCopyID, ref bookID, ref availabilityStatus))
+                return new clsBookCopy(bookCopyID, bookID, availabilityStatus);
 
             return null;
         }
 
         public bool UpdateBookCopy()
         {
-            return clsBookCopiesDB.UpdateBookCopy(CopyID, BookID, AvailabilityStatus);
+            return clsBookCopyDB.UpdateBookCopy(CopyID, BookID, AvailabilityStatus);
         }
     }
 }

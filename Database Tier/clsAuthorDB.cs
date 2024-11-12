@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Data;
+
+
 namespace Database_Tier
-
-
 {
-    public class clsAdminsDB
+    public class clsAuthorDB
     {
-        public static int AddNewAdmin(string userName, string password, bool isActive, string fullName)
+        public static int AddNewAuthor(string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID)
         {
-            int adminID = -1;
+            int authorID = -1;
             string query = @" USE [LibraryManagementSystem] 
-                                                   INSERT INTO [dbo].[Admins]
-                                                    ( [UserName], [Password], [IsActive], [FullName])
+                                                   INSERT INTO [dbo].[Authors]
+                                                    ([FirstName],[LastName],[DateOfBirth],[DateOfDeath],[Gender],[NationalityID])
                                                      VALUES
-                                                      (@UserName, @Password, @IsActive, @FullName);
+                                                      (@FirstName,@LastName,@DateOfBirth,@DateOfDeath,@Gender,@NationalityID);
                                                         select SCOPE_IDENTITY();";
-
 
             try
             {
@@ -30,15 +29,24 @@ namespace Database_Tier
                     sqlConnection.Open();
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                        sqlCommand.Parameters.AddWithValue("@UserName", userName);
-                        sqlCommand.Parameters.AddWithValue("@Password", password);
-                        sqlCommand.Parameters.AddWithValue("@IsActive", isActive);
-                        sqlCommand.Parameters.AddWithValue("@FullName", fullName ?? (object)DBNull.Value);
+                        sqlCommand.Parameters.AddWithValue("@FirstName", firstName);
+                        sqlCommand.Parameters.AddWithValue("@LastName", lastName);
+                        sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+                        sqlCommand.Parameters.AddWithValue("@Gender", gender);
+                        sqlCommand.Parameters.AddWithValue("@NationalityID", nationalityID);
+                        if (dateOfDeath == null)
+                        {
+                            sqlCommand.Parameters.AddWithValue("@DateOfDeath", DBNull.Value);
+                        }
+                        else
+                        {
+                            sqlCommand.Parameters.AddWithValue("@DateOfDeath", dateOfDeath);
+                        }
 
 
                         object result = sqlCommand.ExecuteScalar();
                         if (result != null)
-                            adminID = int.Parse(result.ToString());
+                            authorID = int.Parse(result.ToString());
 
                     }
                 }
@@ -48,21 +56,21 @@ namespace Database_Tier
             catch (Exception ex)
             {
                 clsErrorLog.Log(ex.Message);
+
             }
 
-            return adminID;
+            return authorID;
         }
 
-        public static DataTable GetAllAdmins()
+        public static DataTable GetAllAuthors()
         {
             DataTable dataTable = new DataTable();
-
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
                 {
                     sqlConnection.Open();
-                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllAdmins", sqlConnection))
+                    using (SqlCommand sqlCommand = new SqlCommand("SP_GetAllAuthors", sqlConnection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
@@ -74,16 +82,14 @@ namespace Database_Tier
             }
             catch (Exception ex)
             {
-
                 clsErrorLog.Log(ex.Message);
             }
-
             return dataTable;
         }
 
-        public static bool DeleteAdmin(int adminID)
+        public static bool DeleteAuthor(int authorID)
         {
-            string query = @"delete from Admins where AdminID = @AdminID";
+            string query = @"delete from Authors where AuthorID = @AuthorID";
             int rowsAffected = 0;
             try
             {
@@ -92,7 +98,7 @@ namespace Database_Tier
                     sqlConnection.Open();
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                        sqlCommand.Parameters.AddWithValue("@AdminID", adminID);
+                        sqlCommand.Parameters.AddWithValue("@AuthorID", authorID);
                         rowsAffected = (int)sqlCommand.ExecuteNonQuery();
                     }
                 }
@@ -104,10 +110,10 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
-        public static bool GetAdminByID(int adminID, ref string fullName, ref string userName, ref string password, ref bool isActive)
+        public static bool GetAuthorByID(int authorID, ref string firstName, ref string lastName, ref DateTime dateOfBirth, ref DateTime? dateOfDeath, ref bool gender, ref int nationalityID)
         {
             bool isFound = false;
-            string query = "select top 1 * from Admins where AdminID = @AdminID";
+            string query = "SELECT TOP 1 * FROM Authors WHERE AuthorID = @AuthorID";
 
             try
             {
@@ -116,17 +122,23 @@ namespace Database_Tier
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
                         sqlConnection.Open();
-                        sqlCommand.Parameters.AddWithValue("@AdminID", adminID);
+                        sqlCommand.Parameters.AddWithValue("AuthorID", authorID);
 
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             if (sqlDataReader.Read())
                             {
                                 isFound = true;
-                                fullName = (string)sqlDataReader["FullName"];
-                                userName = (string)sqlDataReader["UserName"];
-                                password = (string)sqlDataReader["Password"];
-                                isActive = (bool)sqlDataReader["IsActive"];
+                                firstName = (string)sqlDataReader["FirstName"];
+                                lastName = (string)sqlDataReader["LastName"];
+                                dateOfBirth = (DateTime)sqlDataReader["DateOfBirth"];
+
+                                if (!String.IsNullOrEmpty(sqlDataReader["DateOfDeath"].ToString()))
+                                    dateOfDeath = (DateTime)sqlDataReader["DateOfDeath"];
+
+                                gender = (bool)sqlDataReader["Gender"];
+                                nationalityID = (int)sqlDataReader["NationalityID"];
+                                ;
                             }
                         }
                     }
@@ -141,17 +153,18 @@ namespace Database_Tier
             return isFound;
         }
 
-        public static bool UpdateAdmin(int adminID, string fullName, string userName, string password, bool isActive)
+        public static bool UpdateAuthor(int authorID, string firstName, string lastName, DateTime dateOfBirth, DateTime? dateOfDeath, bool gender, int nationalityID)
         {
             int rowsAffected = 0;
             string query = @"USE [LibraryManagementSystem]
-                                        UPDATE [dbo].[Admins]
-                                              SET  
-                                                    [FullName] = @FullName,
-                                                    [UserName] = @UserName,
-                                                    [Password] = @Password,
-                                                    [IsActive] = @IsActive
-                                         WHERE AdminID = @AdminID";
+                                        UPDATE [dbo].[Authors]
+                                              SET  [FirstName] = @FirstName,
+                                                     [LastName] = @LastName,
+                                                     [DateOfBirth] = @DateOfBirth,
+                                                     [DateOfDeath] = @DateOfDeath,
+                                                     [Gender] = @Gender,
+                                                     [NationalityID] = @NationalityID
+                                         WHERE AuthorID = @AuthorID";
 
             try
             {
@@ -160,11 +173,22 @@ namespace Database_Tier
                     sqlConnection.Open();
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                        sqlCommand.Parameters.AddWithValue("@AdminID", adminID);
-                        sqlCommand.Parameters.AddWithValue("@FullName", fullName ?? (object)DBNull.Value);
-                        sqlCommand.Parameters.AddWithValue("@UserName", userName);
-                        sqlCommand.Parameters.AddWithValue("@Password", password);
-                        sqlCommand.Parameters.AddWithValue("@IsActive", isActive);
+                        sqlCommand.Parameters.AddWithValue("@AuthorID", authorID);
+                        sqlCommand.Parameters.AddWithValue("@FirstName", firstName);
+                        sqlCommand.Parameters.AddWithValue("@LastName", lastName);
+                        sqlCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+
+                        if (dateOfDeath == null)
+                        {
+                            sqlCommand.Parameters.AddWithValue("@DateOfDeath", DBNull.Value);
+                        }
+                        else
+                        {
+                            sqlCommand.Parameters.AddWithValue("@DateOfDeath", dateOfDeath);
+                        }
+
+                        sqlCommand.Parameters.AddWithValue("@Gender", gender);
+                        sqlCommand.Parameters.AddWithValue("@NationalityID", nationalityID);
 
 
                         rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
@@ -179,11 +203,11 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
-        public static DataTable GetAdminByUserNameAndPassword(string userName,string password)
+        public static DataTable GetAuthorsNames()
         {
             DataTable dataTable = new DataTable();
 
-            string query = @"SELECT TOP 1 * FROM Admins WHERE UserName = @UserName AND Password = @Password";
+            string query = @"select AuthorID, FullName = FirstName + ' ' +  LastName from Authors";
 
             try
             {
@@ -192,9 +216,6 @@ namespace Database_Tier
                     sqlConnection.Open();
                     using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                        sqlCommand.Parameters.AddWithValue("@UserName",userName);
-                        sqlCommand.Parameters.AddWithValue("@Password", password);
-
                         using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                         {
                             dataTable.Load(sqlDataReader);
@@ -210,6 +231,5 @@ namespace Database_Tier
 
             return dataTable;
         }
-
     }
 }

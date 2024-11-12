@@ -41,7 +41,7 @@ namespace Presentation_Tier.BookCopies
 
         private void GetBookCopies()
         {
-            dgvTable.DataSource = clsBookCopies.GetAllBookCopies();
+            dgvTable.DataSource = clsBookCopy.GetAllBookCopies();
             lbRecords.Text = dgvTable.Rows.Count.ToString();
         }
 
@@ -68,7 +68,7 @@ namespace Presentation_Tier.BookCopies
 
         private void SetFilter(string colName, string colValue)
         {
-            DataTable _bookCopiesTable = clsBookCopies.GetAllBookCopies();
+            DataTable _bookCopiesTable = clsBookCopy.GetAllBookCopies();
             DataView dv = new DataView();
             dv = _bookCopiesTable.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))
@@ -83,9 +83,9 @@ namespace Presentation_Tier.BookCopies
             if (MessageBox.Show($"Are you sure to delete this Book Copy where ID = {copyID}", "Info", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                if (clsBookCopies.DoesBookCopyExist(copyID))
+                if (clsBookCopy.DoesBookCopyExist(copyID))
                 {
-                    if (clsBookCopies.DeleteBookCopy(copyID))
+                    if (clsBookCopy.DeleteBookCopy(copyID))
                     {
                         clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
                         GetBookCopies();
@@ -108,7 +108,7 @@ namespace Presentation_Tier.BookCopies
         private void borrowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int copyID = GetCopyID();
-            clsBookCopies bookCopy = clsBookCopies.GetBookCopyByID(copyID);
+            clsBookCopy bookCopy = clsBookCopy.GetBookCopyByID(copyID);
 
             if (bookCopy == null)
             {

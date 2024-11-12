@@ -21,7 +21,7 @@ namespace Presentation_Tier.Books
         DataTable _authorsDetails;
         private string _imagePath;
         private string _imageName;
-        private clsBooks _book;
+        private clsBook _book;
         private int _bookID;
         private enum Mode { Add = 1, Update = 2 }
         private Mode _enMode { get; set; }
@@ -38,7 +38,7 @@ namespace Presentation_Tier.Books
             InitializeComponent();
             _enMode = Mode.Update;
             _bookID = bookID;
-            _book = clsBooks.GetBookByID(_bookID);
+            _book = clsBook.GetBookByID(_bookID);
         }
 
         private bool ValidateTextBoxes()
@@ -110,7 +110,7 @@ namespace Presentation_Tier.Books
 
         private void GetAuthorsNames()
         {
-            _authorsDetails = clsAuthors.GetAuthorsNames();
+            _authorsDetails = clsAuthor.GetAuthorsNames();
             cbAuthor.DataSource = _authorsDetails;
             cbAuthor.ValueMember = "FullName";
         }
@@ -122,7 +122,7 @@ namespace Presentation_Tier.Books
 
         private void AddNewBook()
         {
-            _book = new clsBooks(
+            _book = new clsBook(
                 txtBookTitle.Text.ToString(),
                 txtISBN.Text.ToString(),
                 dtPublicationDate.Value,

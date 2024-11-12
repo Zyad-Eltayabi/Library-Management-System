@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Database_Tier
 {
-    public static class clsFinesDB
+    public static class clsFineDB
     {
         public static int AddNewFine(int userID, int borrowingRecordID, short numberOfLateDays, decimal fineAmount, bool paymentStatus)
         {

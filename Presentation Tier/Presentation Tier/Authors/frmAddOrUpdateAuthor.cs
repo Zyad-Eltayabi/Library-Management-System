@@ -17,7 +17,7 @@ namespace Presentation_Tier.Authors
         private enum Mode { Add = 1, Update = 2 };
         private Mode _enMode;
         private int _authorID;
-        private clsAuthors _updatedAuthor;
+        private clsAuthor _updatedAuthor;
 
         public frmAddOrUpdateAuthor()
         {
@@ -29,7 +29,7 @@ namespace Presentation_Tier.Authors
             InitializeComponent();
             _enMode = Mode.Update;
             _authorID = authorID;
-            _updatedAuthor = clsAuthors.GetAuthorByID(_authorID);
+            _updatedAuthor = clsAuthor.GetAuthorByID(_authorID);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace Presentation_Tier.Authors
 
             int nationalityID = cbCountry.SelectedIndex + 1;
 
-            clsAuthors author = new clsAuthors(
+            clsAuthor author = new clsAuthor(
                 txtFirstName.Text.ToString(),
                 txtLastName.Text.ToString(),
                 dtDateOfBirth.Value.Date,
@@ -147,7 +147,7 @@ namespace Presentation_Tier.Authors
 
         private void GetAllCountries()
         {
-            DataTable countries = clsCountries.GetAllCountries();
+            DataTable countries = clsCountry.GetAllCountries();
             cbCountry.DataSource = countries;
             cbCountry.ValueMember = "CountryName";
         }

@@ -56,7 +56,7 @@ namespace Presentation_Tier.BookCopies
 
         private void GetBookByTitle()
         {
-            int bookID = clsBooks.GetBookIDByBookTitle(txtFilter.Text.ToString());
+            int bookID = clsBook.GetBookIDByBookTitle(txtFilter.Text.ToString());
 
             if (bookID == -1)
             {
@@ -73,7 +73,7 @@ namespace Presentation_Tier.BookCopies
         private void GetBookByID()
         {
             int bookID = int.Parse(txtFilter.Text.ToString());
-            if (clsBooks.DoesBookExist(bookID))
+            if (clsBook.DoesBookExist(bookID))
             {
                 _bookID = bookID;
                 ucShowBookDetails1.LoadBookInfo(bookID);
@@ -95,7 +95,7 @@ namespace Presentation_Tier.BookCopies
         {
             int numberOfBookCopies = int.Parse(nudValue.Value.ToString());
 
-            clsBookCopies bookCopies = new clsBookCopies(_bookID, true);
+            clsBookCopy bookCopies = new clsBookCopy(_bookID, true);
 
             if (bookCopies.AddBookCopies(numberOfBookCopies))
             {

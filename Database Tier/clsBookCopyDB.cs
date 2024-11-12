@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Database_Tier
 {
-    public class clsBookCopiesDB
+    public class clsBookCopyDB
     {
         public static int AddNewBookCopy(int bookID, bool availabilityStatus)
         {

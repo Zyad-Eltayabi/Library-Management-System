@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsBooks
+    public class clsBook
     {
         public int BookID { get; set; }
         public string Title { get; set; }
@@ -19,12 +19,12 @@ namespace Application_Tier
         public string AdditionalDetails { get; set; }
         public string BookImage { get; set; }
         public int AuthorID { get; set; }
-        public clsAuthors Author { get; set; }
+        public clsAuthor Author { get; set; }
 
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsBooks(string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails,
+        public clsBook(string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails,
             string bookImage, int authorID)
         {
             Title = title;
@@ -34,11 +34,11 @@ namespace Application_Tier
             AdditionalDetails = additionalDetails;
             BookImage = bookImage;
             AuthorID = authorID;
-            Author = clsAuthors.GetAuthorByID(authorID);
+            Author = clsAuthor.GetAuthorByID(authorID);
             enMode = Mode.Add;
         }
 
-        private clsBooks(int bookID, string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails,
+        private clsBook(int bookID, string title, string iSBN, DateTime publicationDate, string genre, string additionalDetails,
             string bookImage, int authorID)
         {
             BookID = bookID;
@@ -49,7 +49,7 @@ namespace Application_Tier
             AdditionalDetails = additionalDetails;
             BookImage = bookImage;
             AuthorID = authorID;
-            Author = clsAuthors.GetAuthorByID(authorID);
+            Author = clsAuthor.GetAuthorByID(authorID);
             this.enMode = Mode.Update;
         }
 
@@ -94,7 +94,7 @@ namespace Application_Tier
             return clsBooksDB.DoesBookExist(bookID);
         }
 
-        public static clsBooks GetBookByID(int bookID)
+        public static clsBook GetBookByID(int bookID)
         {
             string title = "";
             string iSBN = "";
@@ -107,7 +107,7 @@ namespace Application_Tier
 
             if (clsBooksDB.GetBookByID(bookID, ref title, ref iSBN, ref publicationDate, ref genre,
             ref additionalDetails, ref bookImage, ref authorID))
-                return new clsBooks(bookID, title, iSBN, publicationDate, genre,
+                return new clsBook(bookID, title, iSBN, publicationDate, genre,
              additionalDetails, bookImage, authorID);
 
             return null;

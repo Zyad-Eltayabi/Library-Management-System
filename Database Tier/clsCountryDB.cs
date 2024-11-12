@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Database_Tier
 {
-    public class clsCountriesDB
+    public class clsCountryDB
     {
         public static DataTable GetAllCountries()
         {

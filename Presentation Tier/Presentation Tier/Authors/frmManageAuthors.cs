@@ -39,7 +39,7 @@ namespace Presentation_Tier.Authors
 
         private void GetALlAuthors()
         {
-            dgvTable.DataSource = clsAuthors.GetAllAuthors();
+            dgvTable.DataSource = clsAuthor.GetAllAuthors();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
 
@@ -50,7 +50,7 @@ namespace Presentation_Tier.Authors
             if (MessageBox.Show($"Are you sure to delete this Author where ID = {authorID}", "Info", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                if (clsAuthors.DeleteAuthor(authorID))
+                if (clsAuthor.DeleteAuthor(authorID))
                 {
                     clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
                     GetALlAuthors();
@@ -81,7 +81,7 @@ namespace Presentation_Tier.Authors
 
         private void SetFilter(string colName, string colValue)
         {
-            DataTable _authorsTable = clsAuthors.GetAllAuthors();
+            DataTable _authorsTable = clsAuthor.GetAllAuthors();
             DataView dv = new DataView();
             dv = _authorsTable.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))

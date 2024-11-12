@@ -25,14 +25,14 @@ namespace Presentation_Tier.Borrowing
 
         private void GetBorrowingBooks()
         {
-            dgvTable.DataSource = clsBorrowingRecords.GetAllBorrowingRecords();
+            dgvTable.DataSource = clsBorrowingRecord.GetAllBorrowingRecords();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int borrowingRecordID = GetBorrowingRecordID();
-            clsBorrowingRecords borrowingRecord = clsBorrowingRecords.GetBorrowingRecordByID(borrowingRecordID);
+            clsBorrowingRecord borrowingRecord = clsBorrowingRecord.GetBorrowingRecordByID(borrowingRecordID);
             if (borrowingRecord != null)
             {
                 frmBorrowBook borrowBook = new frmBorrowBook(borrowingRecord);
@@ -56,7 +56,7 @@ namespace Presentation_Tier.Borrowing
 
         private void SetFilter(string colName, string colValue)
         {
-            DataTable _borrowingBooks = clsBorrowingRecords.GetAllBorrowingRecords();
+            DataTable _borrowingBooks = clsBorrowingRecord.GetAllBorrowingRecords();
             DataView dv = new DataView();
             dv = _borrowingBooks.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))
@@ -71,9 +71,9 @@ namespace Presentation_Tier.Borrowing
             if (MessageBox.Show($"Are you sure to delete this borrowing record where BorrowingID = {borrowingRecordID}", "Info", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                if (clsBorrowingRecords.DoesBorrowingRecordExist(borrowingRecordID))
+                if (clsBorrowingRecord.DoesBorrowingRecordExist(borrowingRecordID))
                 {
-                    if (clsBorrowingRecords.DeleteBorrowingRecord(borrowingRecordID))
+                    if (clsBorrowingRecord.DeleteBorrowingRecord(borrowingRecordID))
                     {
                         clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
                         GetBorrowingBooks();

@@ -26,7 +26,7 @@ namespace Presentation_Tier.Fines
 
         private void GetFines()
         {
-            dgvTable.DataSource = clsFines.GetAllFines();
+            dgvTable.DataSource = clsFine.GetAllFines();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
 
@@ -37,7 +37,7 @@ namespace Presentation_Tier.Fines
 
         private void updateToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            clsFines fine = clsFines.GetFineByID(GetFineID());
+            clsFine fine = clsFine.GetFineByID(GetFineID());
             if (fine != null)
             {
                 frmAddNewFine addNewFine = new frmAddNewFine(fine);
@@ -50,7 +50,7 @@ namespace Presentation_Tier.Fines
         }
         private void SetFilter(string colName, string colValue)
         {
-            DataTable fines = clsFines.GetAllFines();
+            DataTable fines = clsFine.GetAllFines();
             DataView dv = new DataView();
             dv = fines.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))

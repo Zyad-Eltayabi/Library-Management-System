@@ -41,7 +41,7 @@ namespace Presentation_Tier.Books
 
         private void GetAllBooks()
         {
-            dgvTable.DataSource = clsBooks.GetAllBooks();
+            dgvTable.DataSource = clsBook.GetAllBooks();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
 
@@ -54,7 +54,7 @@ namespace Presentation_Tier.Books
         {
             int bookID = GetBookID();
 
-            if (clsBooks.DoesBookExist(bookID))
+            if (clsBook.DoesBookExist(bookID))
             {
                 frmAddAndUpdateBook updateBook = new frmAddAndUpdateBook(bookID);
                 updateBook.ShowDialog();
@@ -74,9 +74,9 @@ namespace Presentation_Tier.Books
             if (MessageBox.Show($"Are you sure to delete this Book where ID = {bookID}", "Info", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
-                if (clsBooks.DoesBookExist(bookID))
+                if (clsBook.DoesBookExist(bookID))
                 {
-                    if (clsBooks.DeleteBook(bookID))
+                    if (clsBook.DeleteBook(bookID))
                     {
                         clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
                         GetAllBooks();
@@ -102,7 +102,7 @@ namespace Presentation_Tier.Books
 
         private void SetFilter(string colName, string colValue)
         {
-            DataTable _booksTable = clsBooks.GetAllBooks();
+            DataTable _booksTable = clsBook.GetAllBooks();
             DataView dv = new DataView();
             dv = _booksTable.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))

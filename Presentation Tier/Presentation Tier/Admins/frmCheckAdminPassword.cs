@@ -13,12 +13,12 @@ namespace Presentation_Tier.Admins
 {
     public partial class frmCheckAdminPassword : Form
     {
-        clsAdmins _admin { get; set; }
+        clsAdmin _admin { get; set; }
         int _adminID { get; set; }
         public frmCheckAdminPassword(int adminID)
         {
             InitializeComponent();
-            _admin = clsAdmins.GetAdminByID(adminID);
+            _admin = clsAdmin.GetAdminByID(adminID);
             _adminID = adminID;
         }
 

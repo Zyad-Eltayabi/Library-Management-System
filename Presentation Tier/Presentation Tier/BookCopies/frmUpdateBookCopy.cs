@@ -13,7 +13,7 @@ namespace Presentation_Tier.BookCopies
 {
     public partial class frmUpdateBookCopy : Form
     {
-        private clsBookCopies _bookCopy;
+        private clsBookCopy _bookCopy;
         private int _copyID;
 
         public frmUpdateBookCopy(int copyID)
@@ -29,9 +29,9 @@ namespace Presentation_Tier.BookCopies
 
         private void GetBookInfo()
         {
-            if (clsBookCopies.DoesBookCopyExist(_copyID))
+            if (clsBookCopy.DoesBookCopyExist(_copyID))
             {
-                _bookCopy = clsBookCopies.GetBookCopyByID(_copyID);
+                _bookCopy = clsBookCopy.GetBookCopyByID(_copyID);
                 if (_bookCopy != null)
                 {
                     lbCopyID.Text = _bookCopy.CopyID.ToString();

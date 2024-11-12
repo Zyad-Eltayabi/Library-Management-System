@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Presentation_Tier
 {
-    public class clsCountries
+    public class clsCountry
     {
         public static DataTable GetAllCountries()
         {
-            return clsCountriesDB.GetAllCountries();
+            return clsCountryDB.GetAllCountries();
         }
 
         public static string GetCountryName(int countryID)
         {
-            return clsCountriesDB.GetCountryName(countryID);
+            return clsCountryDB.GetCountryName(countryID);
         }
     }
 }

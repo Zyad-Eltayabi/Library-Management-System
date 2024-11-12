@@ -18,7 +18,7 @@ namespace Presentation_Tier.Users
         private enum Mode { Add = 1, Update = 2 };
         private Mode _enMode;
         int _userID;
-        clsUsers _updatedUser { get; set; }
+        clsUser _updatedUser { get; set; }
 
         public frmAddNewUser()
         {
@@ -44,7 +44,7 @@ namespace Presentation_Tier.Users
 
         private void GetAllCountries()
         {
-            DataTable countries = clsCountries.GetAllCountries();
+            DataTable countries = clsCountry.GetAllCountries();
             cbCountry.DataSource = countries;
             cbCountry.ValueMember = "CountryName";
         }
@@ -100,7 +100,7 @@ namespace Presentation_Tier.Users
             string newLibraryCard = (Guid.NewGuid()).ToString();
             int nationalityNumber = cbCountry.SelectedIndex + 1;
 
-            clsUsers user = new clsUsers(
+            clsUser user = new clsUser(
                 newLibraryCard,
                 txtFirstName.Text,
                 txtLastName.Text,
@@ -111,7 +111,7 @@ namespace Presentation_Tier.Users
                 txtAddress.Text,
                 DateTime.Now,
                 nationalityNumber,
-                clsUsers.Mode.Add
+                clsUser.Mode.Add
                 );
 
             if (user.Save())
@@ -119,7 +119,7 @@ namespace Presentation_Tier.Users
                 lbUserID.Text = user.UserID.ToString();
                 this.Text = "Update User";
                 clsUtilityLibrary.PrintInfoMessage("Data Saved Successfully");
-                _updatedUser = clsUsers.GetUserByID(user.UserID);
+                _updatedUser = clsUser.GetUserByID(user.UserID);
             }
             else
             {
@@ -176,7 +176,7 @@ namespace Presentation_Tier.Users
         {
             this.Text = "Update User";
 
-            _updatedUser = clsUsers.GetUserByID(_userID);
+            _updatedUser = clsUser.GetUserByID(_userID);
 
             lbUserID.Text = _updatedUser.UserID.ToString();
             txtFirstName.Text = _updatedUser.FirstName.ToString();

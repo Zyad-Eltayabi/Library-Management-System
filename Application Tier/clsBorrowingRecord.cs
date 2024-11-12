@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsBorrowingRecords
+    public class clsBorrowingRecord
     {
         public int BorrowingRecordID { get; set; }
         public int UserID { get; set; }
@@ -16,26 +16,26 @@ namespace Application_Tier
         public DateTime BorrowingDate { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime? ActualReturnDate { get; set; }
-        public clsBookCopies BookCopy { get; set; }
-        public clsBooks Book { get; set; }
-        public clsUsers User { get; set; }
+        public clsBookCopy BookCopy { get; set; }
+        public clsBook Book { get; set; }
+        public clsUser User { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsBorrowingRecords(int userID, int copyID, DateTime borrowingDate, DateTime dueDate, DateTime? actualReturnDate)
+        public clsBorrowingRecord(int userID, int copyID, DateTime borrowingDate, DateTime dueDate, DateTime? actualReturnDate)
         {
             UserID = userID;
             CopyID = copyID;
             BorrowingDate = borrowingDate;
             DueDate = dueDate;
             ActualReturnDate = actualReturnDate;
-            BookCopy = clsBookCopies.GetBookCopyByID(copyID);
-            User = clsUsers.GetUserByID(userID);
-            Book = clsBooks.GetBookByID(BookCopy.BookID);
+            BookCopy = clsBookCopy.GetBookCopyByID(copyID);
+            User = clsUser.GetUserByID(userID);
+            Book = clsBook.GetBookByID(BookCopy.BookID);
             this.enMode = Mode.Add;
         }
 
-        private clsBorrowingRecords(int borrowingRecordID, int userID, int copyID, DateTime borrowingDate, DateTime dueDate,
+        private clsBorrowingRecord(int borrowingRecordID, int userID, int copyID, DateTime borrowingDate, DateTime dueDate,
             DateTime? actualReturnDate)
         {
             BorrowingRecordID = borrowingRecordID;
@@ -44,21 +44,21 @@ namespace Application_Tier
             BorrowingDate = borrowingDate;
             DueDate = dueDate;
             ActualReturnDate = actualReturnDate;
-            BookCopy = clsBookCopies.GetBookCopyByID(copyID);
-            User = clsUsers.GetUserByID(userID);
-            Book = clsBooks.GetBookByID(BookCopy.BookID);
+            BookCopy = clsBookCopy.GetBookCopyByID(copyID);
+            User = clsUser.GetUserByID(userID);
+            Book = clsBook.GetBookByID(BookCopy.BookID);
             this.enMode = Mode.Update;
         }
 
         private bool AddNewBorrowingRecord()
         {
-            this.BorrowingRecordID = clsBorrowingRecordsDB.AddNewBorrowingRecord(UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
+            this.BorrowingRecordID = clsBorrowingRecordDB.AddNewBorrowingRecord(UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
             return this.BorrowingRecordID != -1;
         }
 
         private bool UpdateBorrowingRecord()
         {
-            return clsBorrowingRecordsDB.UpdateBorrowingRecord(BorrowingRecordID, UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
+            return clsBorrowingRecordDB.UpdateBorrowingRecord(BorrowingRecordID, UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
         }
 
         public bool Save()
@@ -77,10 +77,10 @@ namespace Application_Tier
 
         public static bool DoesBorrowingRecordExist(int borrowingRecordID)
         {
-            return clsBorrowingRecordsDB.DoesBorrowingRecordExist(borrowingRecordID);
+            return clsBorrowingRecordDB.DoesBorrowingRecordExist(borrowingRecordID);
         }
 
-        public static clsBorrowingRecords GetBorrowingRecordByID(int borrowingRecordID)
+        public static clsBorrowingRecord GetBorrowingRecordByID(int borrowingRecordID)
         {
             int userID = -1;
             int copyID = -1;
@@ -88,9 +88,9 @@ namespace Application_Tier
             DateTime dueDate = DateTime.Now;
             DateTime? actualReturnDate = null;
 
-            if (clsBorrowingRecordsDB.GetBorrowingRecordByID(borrowingRecordID, ref userID, ref copyID, ref borrowingDate,
+            if (clsBorrowingRecordDB.GetBorrowingRecordByID(borrowingRecordID, ref userID, ref copyID, ref borrowingDate,
                 ref dueDate, ref actualReturnDate))
-                return new clsBorrowingRecords(borrowingRecordID, userID, copyID, borrowingDate,
+                return new clsBorrowingRecord(borrowingRecordID, userID, copyID, borrowingDate,
                  dueDate, actualReturnDate);
 
             return null;
@@ -98,12 +98,12 @@ namespace Application_Tier
 
         public static DataTable GetAllBorrowingRecords()
         {
-            return clsBorrowingRecordsDB.GetAllBorrowingRecords();
+            return clsBorrowingRecordDB.GetAllBorrowingRecords();
         }
 
         public static bool DeleteBorrowingRecord(int borrowingRecordID)
         {
-            return clsBorrowingRecordsDB.DeleteBorrowingRecord(borrowingRecordID);
+            return clsBorrowingRecordDB.DeleteBorrowingRecord(borrowingRecordID);
         }
     }
 }

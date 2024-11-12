@@ -14,7 +14,7 @@ namespace Presentation_Tier.Books
 {
     public partial class ucShowBookDetails : UserControl
     {
-        clsBooks _book { get; set; }
+        clsBook _book { get; set; }
         public ucShowBookDetails()
         {
             InitializeComponent();
@@ -22,9 +22,9 @@ namespace Presentation_Tier.Books
 
         public void LoadBookInfo(int bookId)
         {
-            if (clsBooks.DoesBookExist(bookId))
+            if (clsBook.DoesBookExist(bookId))
             {
-                _book = clsBooks.GetBookByID(bookId);
+                _book = clsBook.GetBookByID(bookId);
                 lbBookID.Text = _book.BookID.ToString();
                 lbGenre.Text = _book.Genre.ToString();
                 lbISBN.Text = _book.ISBN.ToString();

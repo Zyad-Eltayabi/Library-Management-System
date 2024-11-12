@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application_Tier
 {
-    public class clsAdmins
+    public class clsAdmin
     {
         public int AdminID { get; set; }
         public string FullName { get; set; }
@@ -18,7 +18,7 @@ namespace Application_Tier
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
-        public clsAdmins(string fullName, string userName, string password, bool isActive)
+        public clsAdmin(string fullName, string userName, string password, bool isActive)
         {
             FullName = fullName;
             UserName = userName;
@@ -27,7 +27,7 @@ namespace Application_Tier
             enMode = Mode.Add;
         }
 
-        private clsAdmins(int adminID, string fullName, string userName, string password, bool isActive, Mode enMode)
+        private clsAdmin(int adminID, string fullName, string userName, string password, bool isActive, Mode enMode)
         {
             AdminID = adminID;
             FullName = fullName;
@@ -37,13 +37,13 @@ namespace Application_Tier
             this.enMode = enMode;
         }
 
-        public static clsAdmins GetAdminByID(int adminID)
+        public static clsAdmin GetAdminByID(int adminID)
         {
             string fullName = string.Empty, userName = string.Empty, password = string.Empty;
             bool isActive = false;
 
-            if (clsAdminsDB.GetAdminByID(adminID, ref fullName, ref userName, ref password, ref isActive))
-                return new clsAdmins(adminID, fullName, userName, password, isActive, Mode.Update);
+            if (clsAdminDB.GetAdminByID(adminID, ref fullName, ref userName, ref password, ref isActive))
+                return new clsAdmin(adminID, fullName, userName, password, isActive, Mode.Update);
 
             return null;
         }
@@ -51,31 +51,31 @@ namespace Application_Tier
         private bool AddNewAdmin()
         {
             string encryptedPassword = clsHashing.ComputeHash(Password);
-            this.AdminID = clsAdminsDB.AddNewAdmin(UserName, encryptedPassword, IsActive, FullName);
+            this.AdminID = clsAdminDB.AddNewAdmin(UserName, encryptedPassword, IsActive, FullName);
             return AdminID != -1;
         }
 
         public static DataTable GetAllAdmins()
         {
-            return clsAdminsDB.GetAllAdmins();
+            return clsAdminDB.GetAllAdmins();
         }
 
         public static bool DeleteAdmin(int adminID)
         {
-            return clsAdminsDB.DeleteAdmin(adminID);
+            return clsAdminDB.DeleteAdmin(adminID);
         }
 
         private bool UpdateAdmin()
         {
             string encryptedPassword = clsHashing.ComputeHash(Password);
-            return clsAdminsDB.UpdateAdmin(AdminID, FullName, UserName, encryptedPassword, IsActive);
+            return clsAdminDB.UpdateAdmin(AdminID, FullName, UserName, encryptedPassword, IsActive);
         }
 
         public static DataTable GetAdminByUserNameAndPassword(string userName, string password)
         {
             string encryptedPassword = clsHashing.ComputeHash(password);
 
-            return clsAdminsDB.GetAdminByUserNameAndPassword(userName, encryptedPassword);
+            return clsAdminDB.GetAdminByUserNameAndPassword(userName, encryptedPassword);
         }
 
         public bool Save()

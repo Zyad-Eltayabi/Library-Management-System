@@ -27,7 +27,7 @@ namespace Presentation_Tier.Users
 
         private void GetAllUsers()
         {
-            dgvTable.DataSource = clsUsers.GetAllUsers();
+            dgvTable.DataSource = clsUser.GetAllUsers();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
 
@@ -52,7 +52,7 @@ namespace Presentation_Tier.Users
         {
             int userID = GetUserID();
 
-            if (clsUsers.DoesUserExist(userID))
+            if (clsUser.DoesUserExist(userID))
             {
                 frmAddNewUser addNewUser = new frmAddNewUser(userID);
                 addNewUser.ShowDialog();
@@ -67,12 +67,12 @@ namespace Presentation_Tier.Users
         {
             int userID = GetUserID();
 
-            if (clsUsers.DoesUserExist(userID))
+            if (clsUser.DoesUserExist(userID))
             {
                 if (MessageBox.Show($"Are you sure to delete this User where ID = {userID}", "Info", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
-                    if (clsUsers.DeleteUser(userID))
+                    if (clsUser.DeleteUser(userID))
                     {
                         clsUtilityLibrary.PrintInfoMessage("Deleted successfully.");
                         GetAllUsers();
@@ -90,7 +90,7 @@ namespace Presentation_Tier.Users
 
         private void showDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (clsUsers.DoesUserExist(GetUserID()))
+            if (clsUser.DoesUserExist(GetUserID()))
             {
                 frmShowDetails showDetails = new frmShowDetails(GetUserID());
                 showDetails.ShowDialog();
@@ -107,7 +107,7 @@ namespace Presentation_Tier.Users
 
         private void SetFilter(string colName, string colValue)
         {
-            DataTable usersTable = clsUsers.GetAllUsers();
+            DataTable usersTable = clsUser.GetAllUsers();
             DataView dv = new DataView();
             dv = usersTable.DefaultView;
             if (!string.IsNullOrWhiteSpace(colValue))

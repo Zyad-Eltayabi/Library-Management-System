@@ -15,17 +15,17 @@ namespace Presentation_Tier.Fines
     {
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
-        private clsBorrowingRecords _borrowingRecord { get; set; }
-        private clsFines _fine { get; set; }
+        private clsBorrowingRecord _borrowingRecord { get; set; }
+        private clsFine _fine { get; set; }
 
-        public frmAddNewFine(clsBorrowingRecords borrowingRecord)
+        public frmAddNewFine(clsBorrowingRecord borrowingRecord)
         {
             InitializeComponent();
             _borrowingRecord = borrowingRecord;
             enMode = Mode.Add;
         }
 
-        public frmAddNewFine(clsFines fine)
+        public frmAddNewFine(clsFine fine)
         {
             InitializeComponent();
             _fine = fine;
@@ -104,7 +104,7 @@ namespace Presentation_Tier.Fines
 
         private void AddNewFine()
         {
-            _fine = new clsFines(
+            _fine = new clsFine(
                 _borrowingRecord.UserID,
                 _borrowingRecord.BorrowingRecordID,
                 (short)GetNumberOfLateDays(),

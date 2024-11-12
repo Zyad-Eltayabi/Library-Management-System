@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Database_Tier
 {
-    public class clsUsersDB
+    public class clsUserDB
     {
         public static int AddNewUser(string libraryCardNumber, string firstName, string lastName, DateTime dateOfBirth, bool gender,
             string email, string phoneNumber, string address, DateTime membershipDate, int nationalityID)
