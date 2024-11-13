@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,25 @@ namespace Presentation_Tier.Reservations
         {
             InitializeComponent();
         }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int reservationID = GetReservationID();
+            clsReservation reservation = clsReservation.GetReservationRecordByID(reservationID);
+            if (reservation != null)
+            {
+                frmCreateNewReservation updateReservation = new frmCreateNewReservation(reservation);
+                updateReservation.ShowDialog();
+                return;
+            }
+
+            clsUtilityLibrary.PrintWarningMessage("There was not a reservation with this ID Number");
+        }
+
+        private int GetReservationID()
+        {
+            return int.Parse(dgvTable.SelectedRows[0].Cells["ReservationID"].Value.ToString());
+        }
+
     }
 }

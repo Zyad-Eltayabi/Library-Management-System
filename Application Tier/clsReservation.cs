@@ -12,11 +12,11 @@ namespace Application_Tier
         public int ReservationID { get; set; }
         public int UserID { get; set; }
         public int CopyID { get; set; }
-        DateTime ReservationDate { get; set; }
+        public DateTime ReservationDate { get; set; }
         public bool IsBorrowed { get; set; }
         public bool IsReturned { get; set; }
-        clsBookCopy bookCopy { get; set; }
-        clsUser user { get; set; }
+        public clsBookCopy bookCopy { get; set; }
+        public clsUser user { get; set; }
         public enum Mode { Add = 1, Update = 2 }
         public Mode enMode { get; set; }
 
@@ -51,6 +51,11 @@ namespace Application_Tier
             return ReservationID != -1;
         }
 
+        private bool UpdateReservation()
+        {
+            return clsReservationDB.UpdateReservation(ReservationID, UserID, CopyID, ReservationDate, IsBorrowed, IsReturned);
+        }
+
         public bool Save()
         {
             switch (enMode)
@@ -59,6 +64,7 @@ namespace Application_Tier
                     enMode = Mode.Update;
                     return AddNewReservation();
                 case Mode.Update:
+                    return UpdateReservation();
                 default:
                     return false;
             }

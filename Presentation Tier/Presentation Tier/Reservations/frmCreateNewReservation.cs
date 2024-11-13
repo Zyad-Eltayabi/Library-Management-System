@@ -25,6 +25,13 @@ namespace Presentation_Tier.Reservations
             enMode = Mode.Add;
         }
 
+        public frmCreateNewReservation(clsReservation reservation)
+        {
+            InitializeComponent();
+            _reservation = reservation;
+            enMode = Mode.Update;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             Save();
@@ -39,16 +46,57 @@ namespace Presentation_Tier.Reservations
                     AddNewReservation();
                     break;
                 case Mode.Update:
+                    UpdateReservation();
                     break;
                 default:
                     break;
             }
         }
 
+        private bool ActivateTheBookCopyForBorrowing()
+        {
+            _reservation.bookCopy.AvailabilityStatus = true;
+            if (_reservation.bookCopy.UpdateBookCopy())
+                return true;
+            return false;
+        }
+
+        private void UpdateReservation()
+        {
+            _reservation.UserID = int.Parse(cbUsers.Text.ToString());
+            _reservation.IsBorrowed = cbIsBorrowed.Checked;
+            _reservation.IsReturned = cbIsReturned.Checked;
+
+            // Save Updates
+            if (_reservation.Save())
+            {
+                if (_reservation.IsBorrowed && _reservation.IsReturned)
+                {
+                    if (ActivateTheBookCopyForBorrowing())
+                    {
+                        clsUtilityLibrary.PrintInfoMessage("Reservation record updated successfully.");
+                        return;
+                    }
+                    else
+                    {
+                        clsUtilityLibrary.PrintErrorMessage("Failed to update book copy");
+                        return;
+                    }
+                }
+                else
+                {
+                    clsUtilityLibrary.PrintInfoMessage("Reservation record updated successfully.");
+                    return;
+                }
+            }
+
+            clsUtilityLibrary.PrintErrorMessage("Failed to update");
+        }
+
         private void AddNewReservation()
         {
             int userID = int.Parse(cbUsers.Text.ToString());
-            _reservation = new clsReservation(userID, _bookCopy.CopyID, DateTime.Now,cbIsBorrowed.Checked,cbIsReturned.Checked);
+            _reservation = new clsReservation(userID, _bookCopy.CopyID, DateTime.Now, cbIsBorrowed.Checked, cbIsReturned.Checked);
             if (_reservation.Save())
             {
                 this.Text = "Update Reservation";
@@ -73,9 +121,35 @@ namespace Presentation_Tier.Reservations
                     LoadReservationInfoInAddMode();
                     break;
                 case Mode.Update:
+                    LoadReservationInfoInUpdateMode();
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void LoadReservationInfoInUpdateMode()
+        {
+            if (_reservation != null)
+            {
+                lbReservationID.Text = _reservation.ReservationID.ToString();
+                lbCopyID.Text = _reservation.CopyID.ToString();
+                lbBookTitle.Text = _reservation.bookCopy.Book.Title;
+                GetUserIDs();
+                SetUserID();
+                lbReservationDate.Text = _reservation.ReservationDate.ToShortDateString();
+                cbIsBorrowed.Checked = _reservation.IsBorrowed;
+                cbIsReturned.Checked = _reservation.IsReturned;
+            }
+        }
+
+        private void SetUserID()
+        {
+            int indexOfUserIDeInComboBox = cbUsers.FindString(_reservation.UserID.ToString());
+
+            if (indexOfUserIDeInComboBox >= 0)
+            {
+                cbUsers.SelectedIndex = indexOfUserIDeInComboBox;
             }
         }
 
@@ -84,7 +158,6 @@ namespace Presentation_Tier.Reservations
             if (_bookCopy != null)
             {
                 lbCopyID.Text = _bookCopy.CopyID.ToString();
-                lbBookTitle.Text = _bookCopy.Book.Title;
                 lbBookTitle.Text = _bookCopy.Book.Title;
                 GetUserIDs();
                 lbReservationDate.Text = DateTime.Now.ToShortDateString();

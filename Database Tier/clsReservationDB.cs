@@ -126,5 +126,44 @@ namespace Database_Tier
             return isFound;
         }
 
+        public static bool UpdateReservation(int reservationID, int userID, int copyID, DateTime reservationDate, bool isBorrowed, bool isReturned)
+        {
+            int rowsAffected = 0;
+            string query = @"USE [LibraryManagementSystem]
+                                        UPDATE [dbo].[Reservations]
+                                              SET  [UserID] = @UserID,
+                                             [CopyID] = @CopyID,
+                                             [ReservationDate] = @ReservationDate,
+                                             [IsBorrowed] = @IsBorrowed,
+                                             [IsReturned] = @IsReturned
+                                         WHERE ReservationID = @ReservationID";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@ReservationID", reservationID);
+                        sqlCommand.Parameters.AddWithValue("@UserID", userID);
+                        sqlCommand.Parameters.AddWithValue("@CopyID", copyID);
+                        sqlCommand.Parameters.AddWithValue("@ReservationDate", reservationDate);
+                        sqlCommand.Parameters.AddWithValue("@IsBorrowed", isBorrowed);
+                        sqlCommand.Parameters.AddWithValue("@IsReturned", isReturned);
+
+
+                        rowsAffected = int.Parse(sqlCommand.ExecuteNonQuery().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return rowsAffected > 0;
+        }
+
     }
 }
