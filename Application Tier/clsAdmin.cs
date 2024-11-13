@@ -94,5 +94,10 @@ namespace Application_Tier
             }
             return false;
         }
+
+        public static DataTable GetAdminsCount()
+        {
+            return clsAdminDB.GetAdminsCount();
+        }
     }
 }

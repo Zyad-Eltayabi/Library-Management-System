@@ -200,6 +200,33 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static DataTable GetBookCopiesCount()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = @"select TotalBookCopies = COUNT(BookCopies.CopyID) from BookCopies";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return dataTable;
+        }
 
     }
 }

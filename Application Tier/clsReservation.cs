@@ -94,5 +94,10 @@ namespace Application_Tier
         {
             return clsReservationDB.GetAllReservations();
         }
+
+        public static DataTable GetReservationsCount()
+        {
+            return clsReservationDB.GetReservationsCount();
+        }
     }
 }

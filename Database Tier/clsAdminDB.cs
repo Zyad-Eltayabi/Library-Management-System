@@ -211,5 +211,32 @@ namespace Database_Tier
             return dataTable;
         }
 
+        public static DataTable GetAdminsCount()
+        {
+            DataTable dataTable = new DataTable();
+            string query = @"select TotalAdmins = COUNT(Admins.AdminID) from Admins";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
+
     }
 }

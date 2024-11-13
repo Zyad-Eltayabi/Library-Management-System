@@ -105,5 +105,10 @@ namespace Application_Tier
         {
             return FirstName + " " + LastName;
         }
+
+        public static DataTable GetAuthorsCount()
+        {
+            return clsAuthorDB.GetAuthorsCount();
+        }
     }
 }

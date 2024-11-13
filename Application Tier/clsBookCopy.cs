@@ -77,5 +77,10 @@ namespace Application_Tier
         {
             return clsBookCopyDB.UpdateBookCopy(CopyID, BookID, AvailabilityStatus);
         }
+
+        public static DataTable GetBookCopiesCount()
+        {
+            return clsBookCopyDB.GetBookCopiesCount();
+        }
     }
 }

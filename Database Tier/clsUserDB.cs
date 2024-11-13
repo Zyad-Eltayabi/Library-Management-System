@@ -228,6 +228,32 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static DataTable GetUsersCount()
+        {
+            DataTable dataTable = new DataTable();
+            string query = @"select TotalUsers = COUNT(Users.UserID) from Users";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
 
 
 

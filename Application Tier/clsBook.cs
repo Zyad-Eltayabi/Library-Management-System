@@ -122,5 +122,10 @@ namespace Application_Tier
         {
             return clsBooksDB.GetBookIDByBookTitle(bookTitle);
         }
+
+        public static DataTable GetBooksCount()
+        {
+            return clsBooksDB.GetBooksCount();
+        }
     }
 }

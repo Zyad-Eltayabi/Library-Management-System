@@ -209,6 +209,34 @@ namespace Database_Tier
             return rowsAffected > 0;
         }
 
+        public static DataTable GetBorrowingBooksCount()
+        {
+            DataTable dataTable = new DataTable();
+            string query = @"select BorrowingBooks = COUNT(BorrowingRecords.BorrowingRecordID)
+                            from BorrowingRecords
+                            where ActualReturnDate is null";
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+            return dataTable;
+        }
+
 
     }
 }

@@ -253,5 +253,35 @@ namespace Database_Tier
             }
             return bookID;
         }
+
+        public static DataTable GetBooksCount()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = @" select TotalBooks = COUNT(Books.BookID) from Books";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
+
     }
 }

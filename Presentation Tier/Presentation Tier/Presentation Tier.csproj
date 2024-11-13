@@ -146,6 +146,12 @@
     <Compile Include="Component\frm.Designer.cs">
       <DependentUpon>frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\frmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\frmDashboard.Designer.cs">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fines\frmAddNewFine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Component\frm.resx">
       <DependentUpon>frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\frmDashboard.resx">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fines\frmAddNewFine.resx">
       <DependentUpon>frmAddNewFine.cs</DependentUpon>

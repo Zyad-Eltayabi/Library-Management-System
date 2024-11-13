@@ -195,5 +195,37 @@ namespace Database_Tier
             return dataTable;
         }
 
+        public static DataTable GetReservationsCount()
+        {
+            DataTable dataTable = new DataTable();
+
+            string query = @"select ReservationsCount = COUNT(Reservations.ReservationID)
+                            from Reservations
+                            where Reservations.IsReturned  = '0'";
+
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
+                        {
+                            dataTable.Load(sqlDataReader);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                clsErrorLog.Log(ex.Message);
+            }
+
+            return dataTable;
+        }
+
+
     }
 }

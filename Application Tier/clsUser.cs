@@ -118,5 +118,10 @@ namespace Application_Tier
         {
             return clsUserDB.DeleteUser(userID);
         }
+
+        public static DataTable GetUsersCount()
+        {
+            return clsUserDB.GetUsersCount();
+        }
     }
 }

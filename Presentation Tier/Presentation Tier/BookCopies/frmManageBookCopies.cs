@@ -140,6 +140,7 @@ namespace Presentation_Tier.BookCopies
                 frmCreateNewReservation createNewReservation = new frmCreateNewReservation(bookCopy.CopyID);
                 createNewReservation.ShowDialog();
                 GetBookCopies();
+                return;
             }
 
             // check The book copy Is borrowed and is returned or not.

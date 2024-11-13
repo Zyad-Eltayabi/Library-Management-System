@@ -56,6 +56,11 @@ namespace Application_Tier
             return this.BorrowingRecordID != -1;
         }
 
+        public static DataTable GetBorrowingBooksCount()
+        {
+            return clsBorrowingRecordDB.GetBorrowingBooksCount();
+        }
+
         private bool UpdateBorrowingRecord()
         {
             return clsBorrowingRecordDB.UpdateBorrowingRecord(BorrowingRecordID, UserID, CopyID, BorrowingDate, DueDate, ActualReturnDate);
