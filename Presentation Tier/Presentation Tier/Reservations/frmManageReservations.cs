@@ -48,5 +48,20 @@ namespace Presentation_Tier.Reservations
             dgvTable.DataSource = clsReservation.GetAllReservations();
             lbRecords.Text = dgvTable.RowCount.ToString();
         }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            SetFilter(cbFilter.Text.ToString(), txtFilter.Text.ToString());
+        }
+
+        private void SetFilter(string colName, string colValue)
+        {
+            DataTable reservations =clsReservation.GetAllReservations();
+            DataView dv = new DataView();
+            dv = reservations.DefaultView;
+            if (!string.IsNullOrWhiteSpace(colValue))
+                dv.RowFilter = string.Format(@"CONVERT([{0}], System.String) LIKE '{1}%'", colName, colValue);
+            dgvTable.DataSource = dv;
+        }
     }
 }
