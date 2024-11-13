@@ -26,6 +26,7 @@ namespace Presentation_Tier.Reservations
             {
                 frmCreateNewReservation updateReservation = new frmCreateNewReservation(reservation);
                 updateReservation.ShowDialog();
+                GetReservations();
                 return;
             }
 
@@ -37,5 +38,15 @@ namespace Presentation_Tier.Reservations
             return int.Parse(dgvTable.SelectedRows[0].Cells["ReservationID"].Value.ToString());
         }
 
+        private void frmManageReservations_Load(object sender, EventArgs e)
+        {
+            GetReservations();
+        }
+
+        private void GetReservations()
+        {
+            dgvTable.DataSource = clsReservation.GetAllReservations();
+            lbRecords.Text = dgvTable.RowCount.ToString();
+        }
     }
 }
