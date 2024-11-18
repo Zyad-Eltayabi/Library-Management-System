@@ -56,7 +56,8 @@ namespace Presentation_Tier.Login
             }
 
             frmMain main = new frmMain();
-            main.ShowDialog();
+            main.Show();
+            this.Hide();
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)

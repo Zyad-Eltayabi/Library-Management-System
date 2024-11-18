@@ -139,8 +139,8 @@ namespace Database_Tier
                                 iSBN = (string)sqlDataReader["ISBN"];
                                 publicationDate = (DateTime)sqlDataReader["PublicationDate"];
                                 genre = (string)sqlDataReader["Genre"];
-                                additionalDetails = (string)sqlDataReader["AdditionalDetails"];
-                                bookImage = (string)sqlDataReader["BookImage"];
+                                additionalDetails = sqlDataReader["AdditionalDetails"].ToString();
+                                bookImage = sqlDataReader["BookImage"].ToString();
                                 authorID = (int)sqlDataReader["AuthorID"];
 
                             }

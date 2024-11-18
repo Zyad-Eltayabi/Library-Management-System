@@ -192,6 +192,7 @@ namespace Presentation_Tier.Books
             if (!string.IsNullOrEmpty(_book.BookImage))
             {
                 _imagePath = $@"{GetBooksImagesFolderPath()}\{_book.BookImage}";
+                _imageName = _book.BookImage;
                 ReadImage();
             }
         }
