@@ -46,7 +46,12 @@ Developed a robust Library Management System to streamline and automate library 
 <img src="https://github.com/user-attachments/assets/02001df9-cddd-48b0-ba4c-1eb4a058d987" alt="project-screenshot" width="100%" height="100%/">
 <hr>
 <img src="https://github.com/user-attachments/assets/4998a18f-d040-4e2a-86ab-e694543ac58b" alt="project-screenshot" width="100%" height="100%/">
-<hr>
+
+<h2>🎬 Watch the Demo Video! </h2>
+
+<p>Take a moment to explore the demo video, where I calmly give you a simple overview of how everything works. </p>
+<p>- Watch it on Google Drive : <a href="https://drive.google.com/file/d/169IQRt8gcwIwbEz527DPUXpSp-0ZqfA-/view?usp=drive_link" target="_blank">Video</a> </p>
+
 
 
   <h2>🛠️ Installation Steps:</h2>
